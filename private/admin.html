@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Sai Rudra Motors</title>
+  <link rel="stylesheet" href="/css/admin.css">
+  <style>
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (min-width: 640px) {
+      .admin-stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .stat-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .stat-icon {
+      font-size: 2rem;
+      background: #EFF6FF;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      letter-spacing: 0.05em;
+    }
+    .stat-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-text);
+      display: block;
+      margin-top: 2px;
+    }
+    .admin-search-bar {
+      margin-bottom: 20px;
+    }
+    .admin-search-bar input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      background: #FFFFFF;
+      outline: none;
+      font-family: inherit;
+    }
+    .admin-search-bar input:focus {
+      border-color: var(--color-focus);
+    }
+    .dashboard-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="admin-topbar">
+    <div class="brand" style="display:flex;align-items:center;gap:10px;">
+      <span>🚗</span>
+      <span>Sai Rudra Motors &bull; Admin</span>
+    </div>
+    <div class="admin-nav">
+      <a href="#" class="nav-link active" data-view="dashboard">Suppliers</a>
+      <a href="#" class="nav-link" data-view="settings">Settings</a>
+      <a href="/" target="_blank" class="view-site" title="Open customer website in new tab">View site &nearr;</a>
+      <button class="btn-logout" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="admin-container">
+    <!-- Dashboard view -->
+    <div id="viewDashboard" class="view active">
+      <div class="dashboard-top">
+        <div>
+          <h1 style="margin-bottom:4px;">Brands & Suppliers</h1>
+          <p style="color:var(--color-text-muted);font-size:0.95rem;">Manage automotive manufacturers, authorized brands, and their parts inventory.</p>
+        </div>
+        <button class="btn-primary" id="addSupplierBtn">+ Add New Supplier</button>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="admin-stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🏢</div>
+          <div>
+            <span class="stat-label">Total Brands</span>
+            <span class="stat-val" id="statSupplierCount">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚙️</div>
+          <div>
+            <span class="stat-label">Total Parts</span>
+            <span class="stat-val" id="statPartCount">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💬</div>
+          <div>
+            <span class="stat-label">WhatsApp Contact</span>
+            <span class="stat-val" id="statWhatsappNum" style="font-size:1.1rem;color:var(--color-whatsapp);">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search in Admin -->
+      <div class="admin-search-bar">
+        <input type="text" id="adminSupplierSearch" placeholder="Filter suppliers by name..." aria-label="Filter suppliers">
+      </div>
+
+      <div class="supplier-list" id="supplierList">
+        <!-- Supplier cards injected here -->
+      </div>
+      <div class="empty-state hidden" id="dashboardEmpty">
+        <h2>No suppliers found.</h2>
+        <p>Add your first supplier to get started.</p>
+      </div>
+    </div>
+
+    <!-- Add / Edit supplier form -->
+    <div id="viewSupplierForm" class="view hidden">
+      <div style="display:flex;align-items:center;gap:var(--spacing-12);margin-bottom:var(--spacing-20);">
+        <button class="btn-secondary" id="backToDashboardFromSupplierForm">&larr; Back to suppliers</button>
+        <h1 id="supplierFormTitle">Add supplier</h1>
+      </div>
+      <form id="supplierForm" novalidate class="form-panel" style="max-width:550px;">
+        <div class="form-group">
+          <label for="supplierName">Supplier Name (required)</label>
+          <input type="text" id="supplierName" name="name" required maxlength="60" placeholder="e.g. Sangsin Brakes">
+          <div class="field-error" id="supplierNameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="supplierLogo">Supplier Logo (optional)</label>
+          <select id="supplierLogo" name="logo">
+            <option value="">No logo</option>
+          </select>
+          <div class="logo-preview" id="logoPreview" style="margin-top:var(--spacing-12);display:none;">
+            <img id="previewLogo" alt="Logo preview" style="max-width:140px;height:auto;border-radius:var(--radius);border:1px solid var(--color-border);padding:8px;background:#FFFFFF;">
+          </div>
+          <div class="field-error" id="supplierLogoError"></div>
+        </div>
+
+        <div class="field-error" id="supplierFormError"></div>
+        <div style="display:flex;gap:var(--spacing-12);margin-top:var(--spacing-16);">
+          <button type="submit" class="btn-primary" id="supplierFormSaveBtn">Save Supplier</button>
+          <button type="button" class="btn-secondary" id="supplierFormCancelBtn">Cancel</button>
+          <input type="hidden" id="supplierFormId">
+        </div>
+      </form>
+      <button class="btn-danger" id="deleteSupplierBtn" style="display:none;margin-top:var(--spacing-20);">Delete Supplier</button>
+      <div class="field-error" id="deleteSupplierError"></div>
+    </div>
+
+    <!-- Supplier parts view -->
+    <div id="viewSupplierParts" class="view hidden">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--spacing-12);margin-bottom:var(--spacing-24);">
+        <div style="display:flex;align-items:center;gap:var(--spacing-12);">
+          <button class="btn-secondary" id="backToDashboard">&larr; Back to suppliers</button>
+          <h1 id="partsPageTitle">Parts</h1>
+        </div>
+        <button class="btn-primary" id="addPartBtn">+ Add Part</button>
+      </div>
+      <div class="admin-parts-grid" id="partsGrid">
+        <!-- Part cards injected here -->
+      </div>
+      <div class="empty-state hidden" id="partsEmpty">
+        <h2>No parts listed for this supplier yet.</h2>
+        <p>Add your first part with a photo and compatible vehicles.</p>
+      </div>
+    </div>
+
+    <!-- Add / Edit part form -->
+    <div id="viewPartForm" class="view hidden">
+      <div style="display:flex;align-items:center;gap:var(--spacing-12);margin-bottom:var(--spacing-24);">
+        <button class="btn-secondary" id="backToParts">&larr; Back to parts</button>
+        <h1 id="partFormTitle">Add part</h1>
+      </div>
+      <form id="partForm" novalidate class="form-panel" style="max-width:650px;">
+        <div class="form-group">
+          <label>Photo (required)</label>
+          <div class="image-picker" id="imagePicker" style="border:2px dashed var(--color-border);padding:24px;text-align:center;border-radius:var(--radius);cursor:pointer;background:#FAFAFA;">
+            <input type="file" id="partImage" accept="image/jpeg,image/png,image/webp" style="display:none;">
+            <div style="font-size:2rem;margin-bottom:8px;">📷</div>
+            <p style="font-weight:600;margin-bottom:4px;">Tap or drag & drop to choose a photo</p>
+            <p style="font-size:0.85rem;color:var(--color-text-muted);">JPG, PNG or WebP, up to 5 MB</p>
+          </div>
+          <div class="image-preview" id="imagePreview" style="margin-top:12px;display:none;">
+            <img id="previewImage" alt="Photo preview" style="max-width:200px;height:auto;border-radius:var(--radius);border:1px solid var(--color-border);">
+          </div>
+          <button type="button" class="btn-secondary" id="changePhotoBtn" style="display:none;margin-top:8px;">Change photo</button>
+          <div class="field-error" id="imageError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="vehicleInput">Compatible Vehicles (required, at least 1)</label>
+          <div class="tag-input" id="tagInput">
+            <input type="text" id="vehicleInput" placeholder="Type vehicle (e.g. Maruti Swift 2018-2022) and press Enter">
+          </div>
+          <div id="tagSuggestions" class="tag-suggestions"></div>
+          <div class="field-error" id="vehiclesError"></div>
+          <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:var(--spacing-4);">Press Enter or Comma after typing each vehicle name.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="partName">Part Name / Ref (optional)</label>
+          <input type="text" id="partName" name="name" placeholder="e.g. Front Brake Pad Set" maxlength="120">
+          <div class="field-error" id="partNameError"></div>
+        </div>
+
+        <div class="field-error" id="partFormError"></div>
+        <div style="display:flex;gap:var(--spacing-12);margin-top:var(--spacing-16);">
+          <button type="submit" class="btn-primary" id="partFormSaveBtn">Save Part</button>
+          <button type="button" class="btn-secondary" id="partFormCancelBtn">Cancel</button>
+          <input type="hidden" id="partFormId">
+          <input type="hidden" id="partFormSupplierId">
+        </div>
+      </form>
+      <button class="btn-danger" id="deletePartBtn" style="display:none;margin-top:var(--spacing-20);">Delete Part</button>
+      <div class="field-error" id="deletePartError"></div>
+    </div>
+
+    <!-- Settings view -->
+    <div id="viewSettings" class="view hidden">
+      <h1 style="margin-bottom:20px;">Business Settings</h1>
+      <form id="settingsForm" novalidate>
+        <div class="settings-grid">
+          <div class="form-panel">
+            <h2>Business Details</h2>
+            <div class="form-group">
+              <label for="businessName">Business Name</label>
+              <input type="text" id="businessName" name="businessName" required maxlength="60">
+              <div class="field-error" id="businessNameError"></div>
+            </div>
+          </div>
+          <div class="form-panel">
+            <h2>WhatsApp Contact Number</h2>
+            <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:var(--spacing-12);">Used for customer inquiry links. Digits only, with country code (e.g. 918660957903).</p>
+            <div class="form-group">
+              <label for="whatsappNumber">WhatsApp Number</label>
+              <input type="text" id="whatsappNumber" name="whatsappNumber" placeholder="918660957903" maxlength="15">
+              <div class="field-error" id="whatsappNumberError"></div>
+            </div>
+          </div>
+        </div>
+        <div class="field-error" id="settingsError"></div>
+        <button type="submit" class="btn-primary" style="margin-top:20px;">Save Settings</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confirm dialog -->
+  <div class="modal-overlay" id="confirmOverlay">
+    <div class="modal">
+      <h3 id="confirmTitle">Confirm Action</h3>
+      <p id="confirmMessage">Are you sure you want to proceed?</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="confirmCancel">Cancel</button>
+        <button class="btn-confirm-danger" id="confirmOk">Confirm Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast toast-success hidden" id="toast"></div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

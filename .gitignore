@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.local
+*.log
+uploads/*
+.vercel
+.DS_Store
+server.err
+server.out
+test-login.json
+.wrangler/

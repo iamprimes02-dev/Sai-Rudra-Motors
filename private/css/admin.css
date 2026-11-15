@@ -1,0 +1,618 @@
+/* Admin site styles - Sai Rudra Motors */
+/* Design tokens per Design.md section 2 */
+
+:root {
+  --color-bg: #F6F6F4;
+  --color-surface: #FFFFFF;
+  --color-text: #1C1F24;
+  --color-text-muted: #5B616B;
+  --color-border: #E2E2DE;
+  --color-primary: #1F3A5F;
+  --color-primary-text: #FFFFFF;
+  --color-whatsapp: #1EA855;
+  --color-danger: #B42318;
+  --color-success: #067647;
+  --color-focus: #2563EB;
+
+  --font-stack: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --radius: 8px;
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-stack);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+/* ---------- Admin top bar ---------- */
+.admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 64px;
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-16, 16px);
+}
+
+.admin-topbar .brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.admin-nav {
+  display: flex;
+  gap: var(--spacing-12);
+  align-items: center;
+}
+
+.admin-nav a,
+.admin-nav button {
+  color: var(--color-primary-text);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  padding: var(--spacing-8) var(--spacing-14);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.1);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.admin-nav a:hover,
+.admin-nav button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.admin-nav a:focus-visible,
+.admin-nav button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.btn-logout {
+  background: var(--color-danger);
+  color: #FFFFFF;
+}
+
+.btn-logout:hover {
+  opacity: 0.9;
+}
+
+/* ---------- Container ---------- */
+.admin-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--spacing-24);
+}
+
+.admin-container h1 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-24);
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  border: none;
+  border-radius: var(--radius);
+  padding: var(--spacing-12) var(--spacing-20);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  height: 44px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  padding: var(--spacing-10) var(--spacing-18);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  height: 44px;
+}
+
+.btn-secondary:hover {
+  background: #F0F0F0;
+}
+
+.btn-danger {
+  background: var(--color-surface);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius);
+  padding: var(--spacing-8) var(--spacing-14);
+  font-size: 0.875rem;
+  cursor: pointer;
+  height: 36px;
+}
+
+.btn-danger:hover {
+  background: #FDECEA;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: var(--spacing-4);
+  color: var(--color-text-muted);
+}
+
+.btn-icon:hover {
+  color: var(--color-danger);
+}
+
+/* ---------- Supplier list (dashboard) ---------- */
+.supplier-list {
+  display: grid;
+  gap: var(--spacing-12);
+}
+
+.supplier-card-admin {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-16);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+}
+
+.supplier-card-admin .info {
+  flex: 1;
+}
+
+.supplier-card-admin .info h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+}
+
+.supplier-card-admin .info p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.supplier-card-admin .actions {
+  display: flex;
+  gap: var(--spacing-8);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .supplier-card-admin {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .supplier-card-admin .actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: var(--spacing-12);
+  }
+}
+
+/* ---------- Empty state ---------- */
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-48) var(--spacing-16);
+  color: var(--color-text-muted);
+}
+
+.empty-state h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-8);
+  color: var(--color-text);
+}
+
+/* ---------- Form ---------- */
+.form-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-24);
+  margin-bottom: var(--spacing-24);
+}
+
+.form-panel h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-20);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-16);
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-6);
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--spacing-12);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-text);
+}
+
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-color: var(--color-focus);
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+  padding-top: var(--spacing-10);
+}
+
+.field-error {
+  color: var(--color-danger);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-4);
+  display: none;
+}
+
+.field-error.show {
+  display: block;
+}
+
+/* ---------- Image picker ---------- */
+.image-picker {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-24);
+  text-align: center;
+  background: var(--color-bg);
+  cursor: pointer;
+  position: relative;
+  margin-bottom: var(--spacing-16);
+}
+
+.image-picker:hover {
+  border-color: var(--color-primary);
+}
+
+.image-picker input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.image-picker p {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-8);
+}
+
+.image-preview {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto var(--spacing-12);
+  display: none;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ---------- Vehicle tag input ---------- */
+.tag-input {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-8);
+  background: var(--color-surface);
+  min-height: 44px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-6);
+  align-items: center;
+}
+
+.tag-input.focused {
+  border-color: var(--color-focus);
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+.tag-chip {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2px var(--spacing-8);
+  font-size: 0.9375rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+.tag-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--color-danger);
+  padding: 0 var(--spacing-4);
+  line-height: 1;
+}
+
+.tag-input input {
+  border: none;
+  outline: none;
+  font: inherit;
+  min-width: 100px;
+  flex: 1;
+}
+
+.tag-suggestions {
+  position: absolute;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tag-suggestions.open {
+  display: block;
+}
+
+.tag-suggestion {
+  padding: var(--spacing-8) var(--spacing-12);
+  cursor: pointer;
+  font-size: 0.9375rem;
+}
+
+.tag-suggestion:hover {
+  background: var(--color-bg);
+}
+
+/* ---------- Part cards (admin supplier view) ---------- */
+.admin-parts-grid {
+  display: grid;
+  gap: var(--spacing-12);
+}
+
+.admin-part-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-16);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+}
+
+.admin-part-card img {
+  width: 80px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #FFFFFF;
+}
+
+.admin-part-card .info {
+  flex: 1;
+}
+
+.admin-part-card .info h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+}
+
+.admin-part-card .info p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+.admin-part-card .actions {
+  display: flex;
+  gap: var(--spacing-8);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .admin-part-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .admin-part-card .actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: var(--spacing-12);
+  }
+  .admin-part-card img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+}
+
+/* ---------- Settings ---------- */
+.settings-grid {
+  display: grid;
+  gap: var(--spacing-16);
+}
+
+@media (min-width: 600px) {
+  .settings-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  display: none;
+  position: fixed;
+  bottom: var(--spacing-24);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--spacing-12) var(--spacing-24);
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  z-index: 100;
+}
+
+.toast.show {
+  display: block;
+}
+
+.toast-success { background: var(--color-success); }
+.toast-danger { background: var(--color-danger); }
+
+/* ---------- Modal / Confirm dialog ---------- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: var(--spacing-24);
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal h3 {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-8);
+}
+
+.modal p {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-20);
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--spacing-8);
+  justify-content: flex-end;
+}
+
+.btn-cancel {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  padding: var(--spacing-10) var(--spacing-18);
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.btn-confirm-danger {
+  background: var(--color-danger);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius);
+  padding: var(--spacing-10) var(--spacing-18);
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+/* ---------- Spinner ---------- */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: var(--spacing-8);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- View switching ---------- */
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}

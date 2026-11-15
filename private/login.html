@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Sai Rudra Motors</title>
+  <link rel="stylesheet" href="/css/admin.css">
+  <style>
+    .login-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+      background: linear-gradient(135deg, #0F2744 0%, #1E3A8A 100%);
+    }
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.25);
+      padding: 32px 28px;
+    }
+    .login-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .login-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border-radius: 12px;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .login-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 4px;
+    }
+    .login-subtitle {
+      font-size: 0.875rem;
+      color: #64748B;
+    }
+    .password-input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .password-input-group input {
+      width: 100%;
+      padding-right: 44px;
+    }
+    .toggle-pwd-btn {
+      position: absolute;
+      right: 8px;
+      background: none;
+      border: none;
+      color: #64748B;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 6px 8px;
+      border-radius: 4px;
+    }
+    .toggle-pwd-btn:hover {
+      color: #0F172A;
+    }
+    .back-to-site {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.875rem;
+      color: #94A3B8;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .back-to-site:hover {
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-badge">🛡️</div>
+        <h1 class="login-title">Admin Portal</h1>
+        <p class="login-subtitle">Sai Rudra Motors Inventory Management</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="password">Admin Password</label>
+          <div class="password-input-group">
+            <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Enter password" autofocus>
+            <button type="button" class="toggle-pwd-btn" id="togglePwd" aria-label="Toggle password visibility">👁️</button>
+          </div>
+          <div class="field-error" id="passwordError"></div>
+        </div>
+        <div class="field-error" id="generalError" style="margin-bottom:16px;"></div>
+        <button type="submit" class="btn-primary" id="loginBtn" style="width:100%;height:46px;font-size:1rem;font-weight:700;">Sign In to Dashboard</button>
+      </form>
+    </div>
+
+    <a href="/" class="back-to-site">&larr; Return to Customer Catalogue</a>
+  </div>
+
+  <script src="/js/admin.js"></script>
+  <script>
+    const togglePwd = document.getElementById('togglePwd');
+    const pwdInput = document.getElementById('password');
+    if (togglePwd && pwdInput) {
+      togglePwd.addEventListener('click', () => {
+        const isPwd = pwdInput.type === 'password';
+        pwdInput.type = isPwd ? 'text' : 'password';
+        togglePwd.textContent = isPwd ? '🔒' : '👁️';
+      });
+    }
+  </script>
+</body>
+</html>

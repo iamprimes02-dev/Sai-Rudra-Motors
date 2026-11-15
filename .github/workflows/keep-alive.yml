@@ -1,0 +1,20 @@
+name: Keep Supabase Awake
+
+# Scheduled workflow to keep the Supabase free project from pausing
+# due to inactivity. Queries the database every 24 hours.
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:       # Allow manual trigger
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query Supabase to keep it awake
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/settings?select=key" \
+            || true
