@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dealer Terminal — Sai Rudra Motors</title>
-  <link rel="stylesheet" href="/css/admin.css?v=3.9">
-  <script src="/js/theme.js?v=3.9"></script>
+  <link rel="stylesheet" href="/css/admin.css?v=4.0">
+  <script src="/js/theme.js?v=4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -83,7 +83,7 @@
 
       <!-- Quick Metrics Bento Grid -->
       <div class="admin-stats-grid">
-        <div class="stat-card stat-brands">
+        <div class="stat-card stat-brands" style="cursor:pointer;" onclick="switchView('dashboard');" title="Filter Brands">
           <div class="stat-icon icon-blue">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M9 15h2M13 11h2M13 15h2"></path></svg>
           </div>
@@ -92,7 +92,7 @@
             <span class="stat-val" id="statSupplierCount">0</span>
           </div>
         </div>
-        <div class="stat-card stat-parts">
+        <div class="stat-card stat-parts" style="cursor:pointer;" onclick="switchView('dashboard');" title="View Parts by Brand">
           <div class="stat-icon icon-cyan">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
           </div>
@@ -101,7 +101,7 @@
             <span class="stat-val" id="statPartCount">0</span>
           </div>
         </div>
-        <div class="stat-card stat-whatsapp">
+        <div class="stat-card stat-whatsapp" style="cursor:pointer;" onclick="switchView('settings');" title="Configure WhatsApp Number">
           <div class="stat-icon icon-emerald">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
           </div>
@@ -110,7 +110,7 @@
             <span class="stat-val" id="statWhatsappNum" style="font-size:1.15rem;color:var(--color-whatsapp);">Active</span>
           </div>
         </div>
-        <div class="stat-card stat-leads">
+        <div class="stat-card stat-leads" style="cursor:pointer;" onclick="switchView('inquiries');" title="View Stock Enquiries & Leads">
           <div class="stat-icon icon-red">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 12h6M9 16h4"></path></svg>
           </div>
@@ -297,7 +297,7 @@
             <h2>Business Details</h2>
             <div class="form-group">
               <label for="businessName">Business Name</label>
-              <input type="text" id="businessName" name="businessName" required maxlength="60">
+              <input type="text" id="businessName" name="businessName" required maxlength="60" value="Sai Rudra Motors">
               <div class="field-error" id="businessNameError"></div>
             </div>
           </div>
@@ -306,7 +306,7 @@
             <p style="font-size:0.88rem;color:var(--color-text-muted);margin-bottom:var(--spacing-16);">Used for customer inquiry links. Digits only, with country code (e.g. 918660957903).</p>
             <div class="form-group">
               <label for="whatsappNumber">WhatsApp Number</label>
-              <input type="text" id="whatsappNumber" name="whatsappNumber" placeholder="918660957903" maxlength="15">
+              <input type="text" id="whatsappNumber" name="whatsappNumber" placeholder="918660957903" maxlength="15" value="918660957903">
               <div class="field-error" id="whatsappNumberError"></div>
             </div>
           </div>
@@ -331,6 +331,6 @@
 
   <div class="toast toast-success hidden" id="toast"></div>
 
-  <script src="/js/admin.js?v=3.9"></script>
+  <script src="/js/admin.js?v=4.0"></script>
 </body>
 </html>

@@ -262,28 +262,60 @@ function confirmDialog(title, message) {
   });
 }
 
+function getView(name) {
+  const map = {
+    dashboard: 'viewDashboard',
+    supplierForm: 'viewSupplierForm',
+    supplierParts: 'viewSupplierParts',
+    partForm: 'viewPartForm',
+    settings: 'viewSettings',
+    inquiries: 'viewInquiries',
+  };
+  return document.getElementById(map[name] || name);
+}
+
 function switchView(viewName) {
-  Object.values(views).forEach((v) => {
-    if (v) {
-      v.classList.remove('active');
-      v.classList.add('hidden');
-      v.style.display = 'none';
+  const allViewIds = [
+    'viewDashboard',
+    'viewSupplierForm',
+    'viewSupplierParts',
+    'viewPartForm',
+    'viewSettings',
+    'viewInquiries',
+  ];
+
+  allViewIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.remove('active');
+      el.classList.add('hidden');
+      el.style.display = 'none';
     }
   });
-  navLinks.forEach((l) => l.classList.remove('active'));
-  const link = document.querySelector('.nav-link[data-view="' + viewName + '"]');
+
+  document.querySelectorAll('.admin-nav .nav-link').forEach((l) => l.classList.remove('active'));
+  const link = document.querySelector('.admin-nav .nav-link[data-view="' + viewName + '"]');
   if (link) link.classList.add('active');
-  const target = views[viewName];
+
+  const target = getView(viewName);
   if (target) {
     target.classList.remove('hidden');
     target.classList.add('active');
     target.style.display = 'block';
   }
 
+  // Auto-fetch data for the activated view
+  if (viewName === 'inquiries') loadInquiries();
+  if (viewName === 'settings') loadSettings();
+  if (viewName === 'dashboard') loadDashboard();
+
   // Scroll to top
   const container = document.querySelector('.admin-container');
   if (container) container.scrollTop = 0;
 }
+
+window.switchView = switchView;
+window.app.switchView = switchView;
 
 // --- Dashboard ---
 
@@ -632,10 +664,6 @@ async function openSupplierParts(id) {
     showToastMessage('Failed to load parts.', 'danger');
   }
 }
-    console.error('Load parts failed:', err);
-    showToastMessage('Failed to load parts.', 'danger');
-  }
-}
 
 window.app.editPart = (id) => openPartForm(id);
 window.app.deletePart = (id) => deletePart(id);
@@ -872,8 +900,10 @@ async function loadSettings() {
   try {
     const res = await apiRequest('/api/admin/settings');
     const data = await res.json();
-    document.getElementById('businessName').value = data.businessName || '';
-    document.getElementById('whatsappNumber').value = data.whatsappNumber || '';
+    const bName = document.getElementById('businessName');
+    const waNum = document.getElementById('whatsappNumber');
+    if (bName) bName.value = data.businessName || 'Sai Rudra Motors';
+    if (waNum) waNum.value = data.whatsappNumber || '918660957903';
   } catch (err) {
     showToastMessage('Failed to load settings.', 'danger');
   }
