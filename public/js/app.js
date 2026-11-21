@@ -512,6 +512,7 @@ function initHomePage() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, phone, enquiryType, brand, vehicle, part }),
+          keepalive: true,
         }).catch((err) => {
           console.warn('Lead persistence notice:', err);
         });
