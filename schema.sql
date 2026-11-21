@@ -55,3 +55,17 @@ INSERT INTO public.suppliers (name, logo) VALUES
   ('Delphi Driveshafts', '11_delphi_driveshafts.png')
 ON CONFLICT (name) DO NOTHING;
 
+-- 6. Inquiries table (Customer leads from Stock Check & Price form)
+CREATE TABLE IF NOT EXISTS public.inquiries (
+  id           SERIAL PRIMARY KEY,
+  name         TEXT NOT NULL,
+  phone        TEXT NOT NULL,
+  enquiry_type TEXT NOT NULL DEFAULT 'Retail Enquiry',
+  brand        TEXT NOT NULL,
+  vehicle      TEXT NOT NULL,
+  part         TEXT,
+  created_at   TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_inquiries_created_at ON public.inquiries(created_at DESC);
+

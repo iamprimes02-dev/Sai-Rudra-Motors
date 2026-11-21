@@ -14,7 +14,7 @@
     }
     @media (min-width: 640px) {
       .admin-stats-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
     }
     .stat-card {
@@ -86,6 +86,7 @@
     </div>
     <div class="admin-nav">
       <a href="#" class="nav-link active" data-view="dashboard">Suppliers</a>
+      <a href="#" class="nav-link" data-view="inquiries">Enquiries &amp; Leads</a>
       <a href="#" class="nav-link" data-view="settings">Settings</a>
       <a href="/" target="_blank" class="view-site" title="Open customer website in new tab">View site &nearr;</a>
       <button class="btn-logout" id="logoutBtn">Logout</button>
@@ -124,6 +125,13 @@
           <div>
             <span class="stat-label">WhatsApp Contact</span>
             <span class="stat-val" id="statWhatsappNum" style="font-size:1.1rem;color:var(--color-whatsapp);">Active</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📋</div>
+          <div>
+            <span class="stat-label">Stock Leads</span>
+            <span class="stat-val" id="statInquiryCount">0</span>
           </div>
         </div>
       </div>
@@ -243,6 +251,25 @@
       </form>
       <button class="btn-danger" id="deletePartBtn" style="display:none;margin-top:var(--spacing-20);">Delete Part</button>
       <div class="field-error" id="deletePartError"></div>
+    </div>
+
+    <!-- Inquiries / Leads view -->
+    <div id="viewInquiries" class="view hidden">
+      <div class="dashboard-top">
+        <div>
+          <h1 style="margin-bottom:4px;">Stock Enquiries &amp; Customer Leads</h1>
+          <p style="color:var(--color-text-muted);font-size:0.95rem;">Live customer requirements captured from the website Stock Check box.</p>
+        </div>
+        <button class="btn-secondary" id="refreshInquiriesBtn" style="padding:8px 14px;border-radius:var(--radius);cursor:pointer;">&#8635; Refresh</button>
+      </div>
+
+      <div class="inquiries-list" id="inquiriesList" style="display:flex;flex-direction:column;gap:12px;">
+        <!-- Inquiries injected here -->
+      </div>
+      <div class="empty-state hidden" id="inquiriesEmpty">
+        <h2>No enquiries yet.</h2>
+        <p>Customer submissions from the website Stock Check &amp; Price form will automatically appear here.</p>
+      </div>
     </div>
 
     <!-- Settings view -->

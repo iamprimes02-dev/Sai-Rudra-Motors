@@ -141,6 +141,36 @@ test('admin supplier CRUD and settings workflow', async () => {
   assert.strictEqual(delRes.body.ok, true);
 });
 
+test('customer inquiry submission and admin lead workflow', async () => {
+  // Public inquiry submission
+  const leadRes = await request('POST', base + '/api/inquiries', {
+    name: 'Prakash Auto Garage',
+    phone: '9876543210',
+    enquiryType: 'Wholesale Enquiry',
+    brand: 'Sangsin Brakes',
+    vehicle: 'Swift 2019',
+    part: 'Front Brake Pads',
+  });
+  assert.strictEqual(leadRes.status, 201);
+  assert.strictEqual(leadRes.body.ok, true);
+  const leadId = leadRes.body.id;
+  assert.ok(leadId);
+
+  // Admin listing inquiries
+  const adminLeadsRes = await request('GET', base + '/api/admin/inquiries');
+  assert.strictEqual(adminLeadsRes.status, 200);
+  assert.ok(Array.isArray(adminLeadsRes.body));
+  const found = adminLeadsRes.body.find(l => l.id === leadId);
+  assert.ok(found);
+  assert.strictEqual(found.name, 'Prakash Auto Garage');
+  assert.strictEqual(found.enquiry_type, 'Wholesale Enquiry');
+
+  // Admin deleting inquiry
+  const delLeadRes = await request('DELETE', base + `/api/admin/inquiries/${leadId}`, {}, { 'X-CSRF-Token': adminCsrf });
+  assert.strictEqual(delLeadRes.status, 200);
+  assert.strictEqual(delLeadRes.body.ok, true);
+});
+
 test('POST /api/admin/logout', async () => {
   const s = await request('GET', base + '/api/admin/session');
   adminCsrf = s.body.csrfToken;

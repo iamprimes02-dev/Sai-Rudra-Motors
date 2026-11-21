@@ -20,6 +20,7 @@ const views = {
   supplierParts: document.getElementById('viewSupplierParts'),
   partForm: document.getElementById('viewPartForm'),
   settings: document.getElementById('viewSettings'),
+  inquiries: document.getElementById('viewInquiries'),
 };
 
 const navLinks = document.querySelectorAll('.nav-link');
@@ -49,9 +50,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const view = link.getAttribute('data-view');
-      if (view) switchView(view);
+      if (view) {
+        switchView(view);
+        if (view === 'inquiries') loadInquiries();
+        if (view === 'settings') loadSettings();
+        if (view === 'dashboard') loadDashboard();
+      }
     });
   });
+
+  // Refresh inquiries button
+  const refreshInquiriesBtn = document.getElementById('refreshInquiriesBtn');
+  if (refreshInquiriesBtn) {
+    refreshInquiriesBtn.addEventListener('click', () => loadInquiries());
+  }
 
   // Dashboard: add supplier
   const addSupplierBtn = document.getElementById('addSupplierBtn');
@@ -307,13 +319,24 @@ async function loadDashboard() {
       statPartsEl.textContent = totalParts;
     }
 
-    // Load WhatsApp status
+    // Load WhatsApp status & Inquiry count
     try {
       const setRes = await apiRequest('/api/admin/settings');
       if (setRes.ok) {
         const setData = await setRes.json();
         if (statWaEl) {
           statWaEl.textContent = setData.whatsappNumber ? `+${setData.whatsappNumber}` : 'Not set';
+        }
+      }
+    } catch {}
+
+    try {
+      const inqRes = await apiRequest('/api/admin/inquiries');
+      if (inqRes.ok) {
+        const inqData = await inqRes.json();
+        const statInqEl = document.getElementById('statInquiryCount');
+        if (statInqEl && Array.isArray(inqData)) {
+          statInqEl.textContent = inqData.length;
         }
       }
     } catch {}
@@ -818,6 +841,82 @@ async function handleSettingsFormSubmit(e) {
     btn.disabled = false;
   }
 }
+
+// --- Inquiries (Leads) ---
+
+async function loadInquiries() {
+  const container = document.getElementById('inquiriesList');
+  const empty = document.getElementById('inquiriesEmpty');
+  if (!container) return;
+
+  try {
+    const res = await apiRequest('/api/admin/inquiries');
+    if (!res.ok) throw new Error('Failed to load enquiries');
+    const data = await res.json();
+
+    const statCount = document.getElementById('statInquiryCount');
+    if (statCount && Array.isArray(data)) statCount.textContent = data.length;
+
+    container.innerHTML = '';
+    if (!data || data.length === 0) {
+      if (empty) empty.classList.remove('hidden');
+      return;
+    }
+    if (empty) empty.classList.add('hidden');
+
+    data.forEach((item) => {
+      const card = document.createElement('div');
+      card.className = 'supplier-card-admin';
+      card.style.display = 'flex';
+      card.style.justifyContent = 'space-between';
+      card.style.alignItems = 'flex-start';
+
+      const typeBadgeColor = item.enquiry_type === 'Wholesale Enquiry' ? '#2563EB' : item.enquiry_type === 'Brand And Availability Enquiry' ? '#7C3AED' : '#059669';
+      const cleanPhone = String(item.phone || '').replace(/\D/g, '');
+      const waLink = cleanPhone ? `https://wa.me/${cleanPhone}` : '#';
+
+      card.innerHTML = `
+        <div class="info" style="flex:1;">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px;">
+            <h2 style="margin:0;font-size:1.15rem;">${escapeHtml(item.name || 'Customer')}</h2>
+            <span style="font-size:0.75rem;font-weight:700;padding:2px 8px;border-radius:12px;background:${typeBadgeColor}15;color:${typeBadgeColor};border:1px solid ${typeBadgeColor}40;">
+              ${escapeHtml(item.enquiry_type || 'Retail Enquiry')}
+            </span>
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">${formatDate(item.created_at)}</span>
+          </div>
+          <p style="margin:4px 0;font-size:0.92rem;color:var(--color-text);">
+            <strong>Phone:</strong> <a href="tel:${escapeAttr(item.phone)}" style="color:var(--color-focus);font-weight:600;">${escapeHtml(item.phone)}</a>
+            &bull;
+            <a href="${escapeAttr(waLink)}" target="_blank" style="color:var(--color-whatsapp);font-weight:600;margin-left:4px;">Open WhatsApp &rarr;</a>
+          </p>
+          <p style="margin:4px 0;font-size:0.88rem;color:var(--color-text-muted);">
+            <strong>Brand:</strong> ${escapeHtml(item.brand)} &bull; <strong>Vehicle:</strong> ${escapeHtml(item.vehicle)}
+            ${item.part ? `&bull; <strong>Part:</strong> ${escapeHtml(item.part)}` : ''}
+          </p>
+        </div>
+        <div class="actions" style="margin-left:16px;">
+          <button class="btn-icon" title="Delete enquiry" style="color:var(--color-danger);font-size:1.1rem;background:none;border:none;cursor:pointer;" onclick="app.deleteInquiry(${item.id})">&#10006;</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  } catch (err) {
+    showToastMessage('Failed to load enquiries.', 'danger');
+  }
+}
+
+window.app.deleteInquiry = async function (id) {
+  const confirmed = await confirmDialog('Delete enquiry', 'Remove this customer lead permanently?');
+  if (!confirmed) return;
+  try {
+    const res = await apiRequest(`/api/admin/inquiries/${id}`, { method: 'DELETE' });
+    if (!res.ok) throw new Error();
+    showToastMessage('Enquiry removed.');
+    loadInquiries();
+  } catch {
+    showToastMessage('Failed to delete enquiry.', 'danger');
+  }
+};
 
 // --- Utilities ---
 

@@ -74,4 +74,32 @@ router.get('/suppliers/:id/parts', async (req, res) => {
   res.json({ supplier, vehicles, parts: partsWithUrl });
 });
 
+// POST /api/inquiries - Record customer stock check enquiry
+router.post('/inquiries', async (req, res) => {
+  const { name, phone, enquiryType, brand, vehicle, part } = req.body || {};
+  if (!name || typeof name !== 'string' || name.trim().length < 2) {
+    return res.status(400).json({ error: 'Name is required (at least 2 characters).' });
+  }
+  if (!phone || typeof phone !== 'string' || phone.trim().length < 8) {
+    return res.status(400).json({ error: 'Valid phone number is required.' });
+  }
+  if (!brand || typeof brand !== 'string' || !brand.trim()) {
+    return res.status(400).json({ error: 'Brand is required.' });
+  }
+  if (!vehicle || typeof vehicle !== 'string' || !vehicle.trim()) {
+    return res.status(400).json({ error: 'Vehicle details are required.' });
+  }
+
+  const inquiry = await stmt.createInquiry({
+    name: name.trim().slice(0, 100),
+    phone: phone.trim().slice(0, 25),
+    enquiryType: (enquiryType && String(enquiryType).trim().slice(0, 50)) || 'Retail Enquiry',
+    brand: brand.trim().slice(0, 80),
+    vehicle: vehicle.trim().slice(0, 120),
+    part: part ? String(part).trim().slice(0, 150) : null,
+  });
+
+  return res.status(201).json({ ok: true, id: inquiry ? inquiry.id : null });
+});
+
 module.exports = router;

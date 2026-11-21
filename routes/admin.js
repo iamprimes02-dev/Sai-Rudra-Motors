@@ -382,4 +382,20 @@ router.put('/settings', adminWriteMiddleware, async (req, res) => {
   });
 });
 
+// GET /api/admin/inquiries
+router.get('/inquiries', loadSession, async (req, res) => {
+  if (!req.session || !req.session.admin) {
+    return res.status(401).json({ error: 'Admin login required.' });
+  }
+  const rows = await stmt.listInquiries();
+  return res.json(rows);
+});
+
+// DELETE /api/admin/inquiries/:id
+router.delete('/inquiries/:id', adminWriteMiddleware, async (req, res) => {
+  const id = Number(req.params.id);
+  await stmt.deleteInquiry(id);
+  return res.json({ ok: true });
+});
+
 module.exports = router;

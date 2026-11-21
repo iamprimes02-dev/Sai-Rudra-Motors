@@ -81,6 +81,7 @@ ensureDefaultSuppliers().catch((err) => {
 // These mirror the old `stmt` object for compatibility with routes.
 
 const _inMemoryParts = [];
+const _inMemoryInquiries = [];
 
 const stmt = {
   // --- Settings ---
@@ -336,6 +337,57 @@ const stmt = {
       }
     }
     return results;
+  },
+
+  // --- Inquiries (Customer leads) ---
+  async createInquiry(data) {
+    try {
+      const { data: row, error } = await supabase
+        .from('inquiries')
+        .insert({
+          name: data.name,
+          phone: data.phone,
+          enquiry_type: data.enquiryType || data.enquiry_type || 'Retail Enquiry',
+          brand: data.brand,
+          vehicle: data.vehicle,
+          part: data.part || null,
+        })
+        .select('*')
+        .single();
+      if (!error && row) {
+        return { lastInsertRowid: row.id, ...row };
+      }
+    } catch {}
+    const newInquiry = {
+      id: _inMemoryInquiries.length + 1,
+      lastInsertRowid: _inMemoryInquiries.length + 1,
+      name: data.name,
+      phone: data.phone,
+      enquiry_type: data.enquiryType || data.enquiry_type || 'Retail Enquiry',
+      brand: data.brand,
+      vehicle: data.vehicle,
+      part: data.part || null,
+      created_at: new Date().toISOString(),
+    };
+    _inMemoryInquiries.unshift(newInquiry);
+    return newInquiry;
+  },
+  async listInquiries() {
+    try {
+      const { data, error } = await supabase
+        .from('inquiries')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (!error && data && data.length > 0) return data;
+    } catch {}
+    return _inMemoryInquiries;
+  },
+  async deleteInquiry(id) {
+    try {
+      await supabase.from('inquiries').delete().eq('id', id);
+    } catch {}
+    const idx = _inMemoryInquiries.findIndex(i => i.id === Number(id));
+    if (idx !== -1) _inMemoryInquiries.splice(idx, 1);
   },
 };
 

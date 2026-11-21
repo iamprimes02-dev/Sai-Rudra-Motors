@@ -507,6 +507,15 @@ function initHomePage() {
           '• Part Needed: ' + part + '\n\n' +
           'Please confirm availability and rates. Thank you.';
 
+        // Save inquiry lead to server database (captures lead even if WhatsApp redirect is interrupted)
+        fetch('/api/inquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, enquiryType, brand, vehicle, part }),
+        }).catch((err) => {
+          console.warn('Lead persistence notice:', err);
+        });
+
         const link = buildContactLink(whatsappNumber, message);
         if (link) window.open(link, '_blank', 'noopener,noreferrer');
       });
