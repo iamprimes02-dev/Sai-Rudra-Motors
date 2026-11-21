@@ -419,30 +419,20 @@ button {
 }
 
 /* ==========================================================================
-   Hero: Custom Automotive Terminal
+   Hero: Authoritative Wholesale Parts Masthead
    ========================================================================== */
 .srm-terminal-hero {
-  background-color: var(--srm-dark-base);
+  background-color: #0A0F1D;
   color: #FFFFFF;
   padding: 44px 0 52px;
   position: relative;
-  overflow: hidden;
-  border-bottom: 2px solid var(--srm-dark-border);
-}
-
-.srm-carbon-pattern {
-  position: absolute;
-  inset: 0;
-  opacity: 0.05;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px);
-  background-size: 16px 16px;
-  pointer-events: none;
+  border-bottom: 1px solid #1E293B;
 }
 
 .srm-hero-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 36px;
   align-items: center;
   position: relative;
   z-index: 10;
@@ -455,60 +445,69 @@ button {
   }
 }
 
-.srm-tag-badge {
+.srm-distributor-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(229, 56, 59, 0.12);
-  border: 1px solid rgba(229, 56, 59, 0.35);
-  color: #FFA4A5;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #E2E8F0;
   font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  padding: 4px 10px;
-  border-radius: var(--radius-xs);
-  margin-bottom: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 16px;
 }
 
-.badge-accent-square {
+.badge-pulse-dot {
   width: 6px;
   height: 6px;
-  background-color: var(--srm-red-accent);
+  background-color: #22C55E;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
 }
 
 .srm-hero-title {
   font-family: var(--srm-font-display);
-  font-size: 2.5rem;
+  font-size: 2.35rem;
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin-bottom: 16px;
+  color: #FFFFFF;
+  margin-bottom: 14px;
+}
+
+.srm-hero-subtitle {
+  display: block;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: #94A3B8;
+  letter-spacing: -0.01em;
+  margin-top: 6px;
 }
 
 @media (max-width: 640px) {
   .srm-hero-title {
     font-size: 1.85rem;
   }
-}
-
-.srm-gradient-text {
-  background: linear-gradient(90deg, #FFFFFF 0%, #CBD5E1 50%, #94A3B8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  .srm-hero-subtitle {
+    font-size: 1.25rem;
+  }
 }
 
 .srm-hero-lead {
-  font-size: 1.02rem;
+  font-size: 0.98rem;
   color: #CBD5E1;
   line-height: 1.6;
-  margin-bottom: 24px;
-  max-width: 680px;
+  margin-bottom: 22px;
+  max-width: 640px;
 }
 
-/* Instant Search Input */
+/* Command Style Instant Search Input */
 .srm-search-terminal {
-  max-width: 640px;
-  margin-bottom: 28px;
+  max-width: 580px;
+  margin-bottom: 22px;
 }
 
 .srm-search-input-frame {
@@ -516,14 +515,15 @@ button {
   align-items: center;
   background: #FFFFFF;
   border-radius: var(--radius-sm);
-  padding: 4px 14px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-  border: 1px solid #FFFFFF;
-  transition: box-shadow 0.2s;
+  padding: 3px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .srm-search-input-frame:focus-within {
-  box-shadow: 0 0 0 2px var(--srm-red-accent), 0 6px 20px rgba(0, 0, 0, 0.4);
+  border-color: #38BDF8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3), 0 4px 18px rgba(0, 0, 0, 0.35);
 }
 
 .search-glyph {
@@ -535,7 +535,7 @@ button {
 .srm-search-input-frame input {
   flex: 1;
   border: none;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-family: inherit;
   color: var(--srm-text-dark);
   padding: 10px 0;
@@ -546,7 +546,7 @@ button {
   background: none;
   border: none;
   color: #94A3B8;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   cursor: pointer;
   padding: 0 6px;
 }
@@ -576,72 +576,46 @@ button {
   font-weight: 500;
 }
 
-/* Metric Strip */
-.srm-metric-strip {
+/* Operational Capabilities Row */
+.srm-capabilities-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 500px) {
+  .srm-capabilities-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.capability-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding-top: 16px;
-  border-top: 1px solid var(--srm-dark-border);
-}
-
-.metric-cell {
-  display: flex;
-  flex-direction: column;
-}
-
-.metric-num {
-  font-family: var(--srm-font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1.1;
-}
-
-.metric-desc {
-  font-size: 0.75rem;
-  color: #94A3B8;
+  gap: 8px;
+  font-size: 0.82rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: #CBD5E1;
 }
 
-.metric-divider {
-  width: 1px;
-  height: 28px;
-  background-color: var(--srm-dark-border);
-}
-
-@media (max-width: 480px) {
-  .metric-divider {
-    display: none;
-  }
-  .srm-metric-strip {
-    gap: 14px 20px;
-  }
+.capability-item svg {
+  color: #22C55E;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
-   Hero Quick Quote Form Widget
+   Hero Quick Quote Form Widget (Shadcn/UI Style Card)
    ========================================================================== */
 .srm-hero-widget-card {
-  background: var(--srm-dark-surface);
-  border: 1px solid var(--srm-dark-border);
-  border-radius: var(--radius-lg);
+  background: #111827;
+  border: 1px solid #1F2937;
+  border-radius: var(--radius-md);
   padding: 24px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   position: relative;
-}
-
-.srm-hero-widget-card::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 20px;
-  right: 20px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--srm-red-accent), transparent);
 }
 
 .widget-header {
@@ -649,7 +623,7 @@ button {
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .widget-kicker {
@@ -671,24 +645,24 @@ button {
   font-size: 0.68rem;
   font-weight: 700;
   color: #22C55E;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  padding: 3px 8px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 2px 8px;
   border-radius: var(--radius-xs);
   letter-spacing: 0.06em;
 }
 
 .widget-subtext {
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   color: #94A3B8;
   line-height: 1.4;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .widget-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .form-field {
@@ -698,7 +672,7 @@ button {
 }
 
 .form-field label {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
   color: #CBD5E1;
@@ -712,38 +686,39 @@ button {
 .select-frame select,
 .form-field input {
   width: 100%;
-  background: var(--srm-dark-elevated);
-  border: 1px solid var(--srm-dark-border);
-  color: #FFFFFF;
+  background: #0B0F19;
+  border: 1px solid #374151;
+  color: #F9FAFB;
   padding: 10px 14px;
   font-size: 0.88rem;
   border-radius: var(--radius-sm);
   outline: none;
   font-family: inherit;
-  transition: border-color 0.2s;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .select-frame select:focus,
 .form-field input:focus {
   border-color: #60A5FA;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25);
 }
 
 .widget-submit-btn {
-  margin-top: 6px;
+  margin-top: 4px;
   background-color: var(--srm-wa-green);
   color: #FFFFFF;
   border: none;
   border-radius: var(--radius-sm);
-  padding: 12px 18px;
-  font-size: 0.92rem;
+  padding: 11px 18px;
+  font-size: 0.90rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+  transition: background-color 0.18s, transform 0.1s;
 }
 
 .widget-submit-btn:hover {
@@ -982,24 +957,24 @@ button {
 .brand-card {
   background: var(--srm-card-bg);
   border: 1px solid var(--srm-card-border);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 2px 8px rgba(11, 17, 30, 0.05), 0 1px 2px rgba(11, 17, 30, 0.03);
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 3px rgba(11, 17, 30, 0.05), 0 1px 2px rgba(11, 17, 30, 0.03);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s, border-color 0.25s;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
 }
 
 .brand-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 32px -4px rgba(15, 39, 68, 0.12), 0 4px 12px -2px rgba(15, 39, 68, 0.06);
-  border-color: #CBD5E1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15, 39, 68, 0.08);
+  border-color: #94A3B8;
 }
 
 /* Precision Logo Frame */
 .brand-logo-container {
-  height: 140px;
+  height: 125px;
   background-color: #FFFFFF;
   padding: 18px 24px;
   display: flex;
@@ -1010,25 +985,15 @@ button {
   overflow: hidden;
 }
 
-.brand-logo-container::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(15, 39, 68, 0.08), transparent);
-}
-
 .brand-logo-img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s ease;
 }
 
 .brand-card:hover .brand-logo-img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .brand-card-body {
@@ -1048,50 +1013,15 @@ button {
 
 .brand-category-badge {
   display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 3px 8px;
   border-radius: var(--radius-xs);
-  border: 1px solid transparent;
-}
-
-/* Distinct category badge color themes */
-.brand-category-badge.cat-braking {
-  background: #FEF2F2;
-  color: #B91C1C;
-  border-color: #FECACA;
-}
-.brand-category-badge.cat-filtration {
-  background: #ECFEFF;
-  color: #0E7490;
-  border-color: #A5F3FC;
-}
-.brand-category-badge.cat-clutch {
-  background: #EEF2FF;
-  color: #4338CA;
-  border-color: #C7D2FE;
-}
-.brand-category-badge.cat-suspension {
-  background: #F0FDF4;
-  color: #15803D;
-  border-color: #BBF7D0;
-}
-.brand-category-badge.cat-fluids {
-  background: #FFFBEB;
-  color: #B45309;
-  border-color: #FDE68A;
-}
-.brand-category-badge.cat-rubber {
-  background: #F8FAFC;
+  background: #F1F5F9;
   color: #334155;
-  border-color: #CBD5E1;
-}
-.brand-category-badge.cat-electrical {
-  background: #FDF4FF;
-  color: #86198F;
-  border-color: #F0ABFC;
+  border: 1px solid #E2E8F0;
 }
 
 .brand-verified-chip {
@@ -1099,17 +1029,17 @@ button {
   align-items: center;
   gap: 4px;
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #15803D;
   background: #F0FDF4;
-  border: 1px solid #DCFCE7;
+  border: 1px solid #BBF7D0;
   padding: 2px 7px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-xs);
 }
 
 .brand-title {
   font-family: var(--srm-font-display);
-  font-size: 1.25rem;
+  font-size: 1.22rem;
   font-weight: 700;
   color: var(--srm-text-dark);
   line-height: 1.25;
@@ -1117,11 +1047,12 @@ button {
 }
 
 .brand-title a {
-  transition: color 0.2s;
+  transition: color 0.15s;
 }
 
 .brand-title a:hover {
-  color: var(--srm-red-accent);
+  color: var(--srm-primary-navy);
+  text-decoration: underline;
 }
 
 .brand-description {
@@ -1148,23 +1079,24 @@ button {
   gap: 8px;
   background-color: var(--srm-primary-navy);
   color: #FFFFFF;
-  padding: 11px 16px;
+  padding: 10px 16px;
   border-radius: var(--radius-sm);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 700;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: background-color 0.15s;
+  text-decoration: none;
 }
 
 .btn-view-parts svg {
-  transition: transform 0.2s;
+  transition: transform 0.15s;
 }
 
 .btn-view-parts:hover {
-  background-color: var(--srm-dark-base);
+  background-color: #0A192F;
 }
 
 .btn-view-parts:hover svg {
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 .btn-quick-wa {
@@ -1172,15 +1104,21 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: #F0FDF4;
-  border: 1px solid #BBF7D0;
+  background-color: #FFFFFF;
+  border: 1px solid #CBD5E1;
   color: #15803D;
   padding: 9px 16px;
   border-radius: var(--radius-sm);
   font-size: 0.84rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn-quick-wa:hover {
+  background-color: #F0FDF4;
+  border-color: #86EFAC;
+  color: #166534;
 }
 
 .btn-quick-wa:hover {
@@ -1193,10 +1131,10 @@ button {
    Supplier / Brand Page Hero
    ========================================================================== */
 .supplier-brand-hero {
-  background: var(--srm-dark-base);
+  background: #0A0F1D;
   color: #FFFFFF;
   padding: 36px 0;
-  border-bottom: 3px solid var(--srm-red-accent);
+  border-bottom: 1px solid #1E293B;
 }
 
 .supplier-brand-container {
@@ -1208,12 +1146,13 @@ button {
 
 .brand-logo-frame {
   background: #FFFFFF;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   min-width: 160px;
   height: 90px;
 }
@@ -1230,10 +1169,10 @@ button {
 
 .brand-badge-tag {
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #93C5FD;
+  letter-spacing: 0.06em;
+  color: #94A3B8;
 }
 
 .brand-hero-name {
@@ -1252,11 +1191,11 @@ button {
 }
 
 .brand-hero-tagline {
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #93C5FD;
+  color: #94A3B8;
   margin-bottom: 6px;
 }
 
@@ -1264,19 +1203,19 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(37, 99, 235, 0.16);
-  border: 1px solid rgba(147, 197, 253, 0.35);
-  color: #93C5FD;
-  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #E2E8F0;
+  padding: 3px 8px;
   border-radius: var(--radius-xs);
-  font-size: 0.74rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .oem-seal-badge svg {
-  color: #60A5FA;
+  color: #22C55E;
 }
 
 .brand-hero-meta {
@@ -1287,12 +1226,13 @@ button {
 
 .meta-tag {
   font-size: 0.75rem;
-  font-weight: 700;
-  background: rgba(255, 255, 255, 0.12);
-  color: #E2E8F0;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #CBD5E1;
   padding: 3px 10px;
   border-radius: var(--radius-xs);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
 }
 
 .srm-brand-quote-btn {
@@ -1303,12 +1243,12 @@ button {
   color: #FFFFFF;
   border: none;
   border-radius: var(--radius-sm);
-  padding: 12px 20px;
-  font-size: 0.92rem;
+  padding: 11px 18px;
+  font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  transition: background-color 0.18s, transform 0.1s;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
 }
 
 .srm-brand-quote-btn:hover {

@@ -80,28 +80,27 @@
     </div>
   </header>
 
-  <!-- Hero: Custom Automotive Terminal -->
+  <!-- Hero: Authoritative Wholesale Parts Masthead -->
   <section class="srm-terminal-hero">
-    <div class="srm-carbon-pattern"></div>
     <div class="srm-shell srm-hero-grid">
-      <!-- Left: Distribution Credibility & Search -->
+      <!-- Left: Primary Distributor Authority & Instant Search -->
       <div class="srm-hero-primary">
-        <div class="srm-tag-badge">
-          <span class="badge-accent-square"></span>
-          <span>AUTHORIZED MULTI-BRAND DISTRIBUTION HUB</span>
+        <div class="srm-distributor-badge">
+          <span class="badge-pulse-dot"></span>
+          <span>KARNATAKA WHOLESALE SPARES DEPOT &bull; TIER-1 DISTRIBUTION</span>
         </div>
         <h1 class="srm-hero-title">
-          Genuine Automotive Spares. <br>
-          <span class="srm-gradient-text">11 Tier-1 Distributor Lines.</span>
+          Genuine Automotive Spares.
+          <span class="srm-hero-subtitle">Direct Factory Inventory Across 11 Authorized Lines.</span>
         </h1>
         <p class="srm-hero-lead">
-          Official supply channel for workshops, fleet garages, technicians, and retailers. Direct factory inventory across braking systems, filtration, clutch assemblies, drivetrain, suspension, and high-performance lubricants.
+          Wholesale distribution channel serving independent workshops, dealership service centers, commercial fleets, and retailers across Karnataka. 100% verified OEM &amp; OES components with immediate depot fulfillment.
         </p>
 
-        <!-- Live Instant Brand Filter Bar -->
+        <!-- Command Style Instant Brand Filter Bar -->
         <div class="srm-search-terminal">
           <div class="srm-search-input-frame">
-            <svg class="search-glyph" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg class="search-glyph" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input type="text" id="supplierSearch" placeholder="Search brands (e.g. Sangsin, Rotex, Ceekay, Delphi, Autolek)..." aria-label="Search distributor brands">
             <span class="search-key-badge hide-mobile" title="Press / to search">/</span>
             <button type="button" id="clearSearchBtn" class="srm-clear-btn" style="display:none;" aria-label="Clear search input">&times;</button>
@@ -109,56 +108,53 @@
           <div class="srm-search-status" id="supplierSearchCount">Showing all 11 authorized distributor lines</div>
         </div>
 
-        <!-- Metric Badges -->
-        <div class="srm-metric-strip">
-          <div class="metric-cell">
-            <span class="metric-num">11</span>
-            <span class="metric-desc">Authorized Brands</span>
+        <!-- Operational Capabilities Badges -->
+        <div class="srm-capabilities-row">
+          <div class="capability-item">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>100% Factory OEM &amp; OES</span>
           </div>
-          <div class="metric-divider"></div>
-          <div class="metric-cell">
-            <span class="metric-num">100%</span>
-            <span class="metric-desc">OEM / OES Genuine</span>
+          <div class="capability-item">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Daily Route Dispatch</span>
           </div>
-          <div class="metric-divider"></div>
-          <div class="metric-cell">
-            <span class="metric-num">Same-Day</span>
-            <span class="metric-desc">Regional Dispatch</span>
+          <div class="capability-item">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Workshop Trade Accounts</span>
           </div>
-          <div class="metric-divider"></div>
-          <div class="metric-cell">
-            <span class="metric-num">Direct</span>
-            <span class="metric-desc">WhatsApp Pricing</span>
+          <div class="capability-item">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Direct WhatsApp Desk</span>
           </div>
         </div>
       </div>
 
-      <!-- Right: Interactive Quick Workshop Quote Widget -->
+      <!-- Right: Direct Workshop Inquiry Desk (shadcn/ui style) -->
       <div class="srm-hero-widget-card" id="quickInquiry">
         <div class="widget-header">
           <div class="widget-title-group">
-            <span class="widget-kicker">WORKSHOP & FLEET DIRECT</span>
-            <h3 class="widget-title">Quick Parts Stock Check</h3>
+            <span class="widget-kicker">TRADE COUNTER DESK</span>
+            <h3 class="widget-title">Check Stock &amp; Rates</h3>
           </div>
-          <div class="widget-badge-online">ONLINE DEPOT</div>
+          <div class="widget-badge-online">DEPOT DISPATCH</div>
         </div>
-        <p class="widget-subtext">Select brand and enter your vehicle to initiate an immediate WhatsApp availability inquiry.</p>
+        <p class="widget-subtext">Direct availability check for registered garages, fleets, and retail spares counters.</p>
         
         <form id="heroQuickQuoteForm" class="widget-form" novalidate>
           <div class="form-field">
-            <label for="widgetBrandSelect">Select Manufacturer / Brand</label>
+            <label for="widgetBrandSelect">Select Authorized Manufacturer</label>
             <div class="select-frame">
               <select id="widgetBrandSelect" required>
                 <option value="">Choose an Authorized Brand...</option>
                 <option value="Sangsin Brakes">Sangsin Brakes (Braking Systems)</option>
                 <option value="Autolek Filters">Autolek Filters (Air/Oil/Fuel/Cabin)</option>
-                <option value="Rotex Brake Discs">Rotex Brake Discs (Rotors & Discs)</option>
-                <option value="Ceekay Exedy Clutches">Ceekay Exedy (Clutch Kits & Plates)</option>
-                <option value="HL Mando Suspension & Brakes">HL Mando (Steering & Dampers)</option>
+                <option value="Rotex Brake Discs">Rotex Brake Discs (Rotors &amp; Discs)</option>
+                <option value="Ceekay Exedy Clutches">Ceekay Exedy (Clutch Kits &amp; Plates)</option>
+                <option value="HL Mando Suspension & Brakes">HL Mando (Steering &amp; Dampers)</option>
                 <option value="Delphi Engine Oils">Delphi Engine Oils (Lubricants)</option>
-                <option value="Delphi Driveshafts">Delphi Driveshafts (CV Axles & Shafts)</option>
+                <option value="Delphi Driveshafts">Delphi Driveshafts (CV Axles &amp; Shafts)</option>
                 <option value="TVS Coolants">TVS Coolants (Engine Coolants)</option>
-                <option value="MB Techno Rubber">MB Techno Rubber (Bushings & Mounts)</option>
+                <option value="MB Techno Rubber">MB Techno Rubber (Bushings &amp; Mounts)</option>
                 <option value="Mavrod Suspension">Mavrod Suspension (Shock Absorbers)</option>
                 <option value="MX Mark Xtralife">MX Mark Xtralife (Auto Electrical)</option>
               </select>
@@ -166,13 +162,13 @@
           </div>
 
           <div class="form-field">
-            <label for="widgetVehicleInput">Vehicle Model & Year</label>
-            <input type="text" id="widgetVehicleInput" placeholder="e.g. Maruti Swift 2018, Innova Crysta, i20..." required>
+            <label for="widgetVehicleInput">Vehicle Make, Model &amp; Year</label>
+            <input type="text" id="widgetVehicleInput" placeholder="e.g. Maruti Swift 2019, Innova Crysta, Hyundai i20..." required>
           </div>
 
           <div class="form-field">
-            <label for="widgetPartInput">Component Needed (Optional)</label>
-            <input type="text" id="widgetPartInput" placeholder="e.g. Front Brake Pads, Clutch Plate, Oil Filter">
+            <label for="widgetPartInput">Component Description (Optional)</label>
+            <input type="text" id="widgetPartInput" placeholder="e.g. Front Brake Pads, Clutch Set, Oil Filter">
           </div>
 
           <button type="submit" class="widget-submit-btn">
@@ -181,6 +177,8 @@
           </button>
         </form>
       </div>
+    </div>
+  </section>
     </div>
   </section>
 
