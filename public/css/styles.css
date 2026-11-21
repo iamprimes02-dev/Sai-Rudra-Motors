@@ -4,47 +4,51 @@
    ========================================================================== */
 
 :root {
-  /* Color Palette */
-  --srm-dark-base: #0B111E;
-  --srm-dark-surface: #111B2C;
-  --srm-dark-elevated: #18253C;
-  --srm-dark-border: #22324E;
-  
-  --srm-primary-navy: #0F2744;
-  --srm-red-accent: #E5383B;
-  --srm-red-glow: rgba(229, 56, 59, 0.25);
-  
-  --srm-steel-bg: #F3F5F9;
-  --srm-card-bg: #FFFFFF;
-  --srm-card-border: #E2E8F0;
-  --srm-card-hover-border: #CBD5E1;
+  /* Apple Design System Palette */
+  --srm-dark-base: #000000;
+  --srm-dark-surface: rgba(10, 14, 24, 0.75);
+  --srm-dark-elevated: rgba(255, 255, 255, 0.04);
+  --srm-dark-border: rgba(255, 255, 255, 0.08);
+
+  --srm-primary-navy: #0F172A;
+  --srm-apple-blue: #2997FF;
+  --srm-apple-cyan: #64D2FF;
+  --srm-apple-green: #30D158;
+  --srm-red-accent: #FF375F;
+  --srm-red-glow: rgba(255, 55, 95, 0.25);
+
+  --srm-steel-bg: #06080E;
+  --srm-card-bg: rgba(255, 255, 255, 0.025);
+  --srm-card-border: rgba(255, 255, 255, 0.08);
+  --srm-card-hover-border: rgba(255, 255, 255, 0.22);
 
   --srm-wa-green: #25D366;
   --srm-wa-hover: #20BA5A;
   --srm-wa-dark: #128C7E;
 
-  --srm-text-dark: #0F172A;
-  --srm-text-muted: #475569;
-  --srm-text-light: #64748B;
+  --srm-text-dark: #F5F5F7;
+  --srm-text-muted: #86868B;
+  --srm-text-light: #6E6E73;
   --srm-text-white: #FFFFFF;
-  --srm-text-subtle: #94A3B8;
+  --srm-text-subtle: #A1A1A6;
 
-  /* Typography */
-  --srm-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --srm-font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Typography - Apple Human Interface System Stack */
+  --srm-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
+  --srm-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
 
-  /* Sizing & Radius */
-  --radius-xs: 3px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  /* Apple Squircle Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
   --radius-pill: 9999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(11, 17, 30, 0.08);
-  --shadow-md: 0 4px 10px -2px rgba(11, 17, 30, 0.08), 0 2px 4px -2px rgba(11, 17, 30, 0.04);
-  --shadow-lg: 0 12px 24px -4px rgba(11, 17, 30, 0.12), 0 4px 8px -2px rgba(11, 17, 30, 0.06);
-  --shadow-card: 0 3px 12px rgba(15, 39, 68, 0.07);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -55,11 +59,15 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #06080E;
 }
 
 body {
   font-family: var(--srm-font);
   background-color: var(--srm-steel-bg);
+  background-image: 
+    radial-gradient(1200px 600px at 50% 0%, rgba(41, 151, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(800px 400px at 80% 30%, rgba(147, 51, 234, 0.05) 0%, transparent 60%);
   color: var(--srm-text-dark);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -93,49 +101,50 @@ button {
 }
 
 /* ==========================================================================
-   Utility Top Bar
+   Utility Top Bar - Apple Minimalist Dark Ribbon
    ========================================================================== */
 .srm-utility-bar {
-  background-color: var(--srm-dark-base);
-  color: var(--srm-text-subtle);
-  font-size: 0.78rem;
-  border-bottom: 1px solid var(--srm-dark-border);
+  background-color: #000000;
+  color: #86868B;
+  font-size: 0.74rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .srm-utility-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 7px;
-  padding-bottom: 7px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .srm-utility-left,
 .srm-utility-right {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 .utility-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #E2E8F0;
-  font-weight: 700;
-  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: #F5F5F7;
+  font-weight: 600;
+  font-size: 0.68rem;
   padding: 2px 8px;
-  border-radius: var(--radius-xs);
-  letter-spacing: 0.06em;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .live-dot {
-  width: 6px;
-  height: 6px;
-  background-color: #22C55E;
+  width: 5px;
+  height: 5px;
+  background-color: var(--srm-apple-green);
   border-radius: 50%;
-  box-shadow: 0 0 6px #22C55E;
+  box-shadow: 0 0 6px var(--srm-apple-green);
   display: inline-block;
 }
 
@@ -143,15 +152,15 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #CBD5E1;
+  color: #86868B;
 }
 
 .utility-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #CBD5E1;
-  transition: color 0.2s;
+  color: #86868B;
+  transition: color 0.18s;
 }
 
 .utility-link:hover {
@@ -159,34 +168,35 @@ button {
 }
 
 .phone-link strong {
-  color: #FFFFFF;
+  color: #F5F5F7;
   letter-spacing: 0.02em;
 }
 
 .portal-link {
   padding-left: 14px;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
-  color: #94A3B8;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  color: #86868B;
 }
 
 /* ==========================================================================
-   Navigation Bar
+   Navigation Bar - Apple Frosted Glass Floating Dock
    ========================================================================== */
 .srm-navbar {
-  background-color: var(--srm-dark-surface);
+  background: rgba(6, 8, 14, 0.72);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
   color: #FFFFFF;
   position: sticky;
   top: 0;
   z-index: 150;
-  border-bottom: 1px solid var(--srm-dark-border);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .srm-nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 64px;
 }
 
 .srm-brand-logo {
@@ -196,17 +206,17 @@ button {
 }
 
 .brand-crest {
-  background: linear-gradient(135deg, var(--srm-red-accent) 0%, #B71C1C 100%);
+  background: linear-gradient(135deg, #FF375F 0%, #D62848 100%);
   color: #FFFFFF;
   font-family: var(--srm-font-display);
-  font-size: 1.15rem;
-  font-weight: 700;
-  padding: 6px 10px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  padding: 5px 9px;
   border-radius: var(--radius-sm);
-  box-shadow: 0 2px 8px var(--srm-red-glow);
+  box-shadow: 0 2px 10px rgba(255, 55, 95, 0.35);
   position: relative;
   overflow: hidden;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
 
 .crest-accent {
@@ -216,7 +226,7 @@ button {
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0 10px 10px 0;
+  border-width: 0 8px 8px 0;
   border-color: transparent rgba(255,255,255,0.4) transparent transparent;
 }
 
@@ -227,88 +237,95 @@ button {
 
 .company-name {
   font-family: var(--srm-font-display);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.01em;
   color: #FFFFFF;
   line-height: 1.15;
 }
 
 .company-descriptor {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  color: #94A3B8;
-  letter-spacing: 0.08em;
+  color: #86868B;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .srm-nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 8px;
 }
 
 .nav-anchor {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #CBD5E1;
-  padding: 6px 0;
-  position: relative;
-  transition: color 0.2s;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #86868B;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-anchor:hover,
+.nav-anchor:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.06);
+}
+
 .nav-anchor.active {
   color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .nav-anchor.active::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--srm-red-accent);
+  display: none;
 }
 
 .srm-wa-btn {
-  background-color: var(--srm-wa-green);
-  color: #FFFFFF;
+  background-color: var(--srm-apple-green);
+  color: #000000;
   border: none;
-  border-radius: var(--radius-sm);
-  padding: 9px 16px;
-  font-size: 0.88rem;
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  font-size: 0.82rem;
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: background-color 0.2s, transform 0.1s;
-  box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(48, 209, 88, 0.3);
 }
 
 .srm-wa-btn:hover {
-  background-color: var(--srm-wa-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(48, 209, 88, 0.45);
 }
 
 .srm-wa-btn:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .srm-back-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #E2E8F0;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  padding: 8px 14px;
-  border-radius: var(--radius-sm);
-  font-size: 0.86rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: #F5F5F7;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s ease;
+}
+
+.srm-back-button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateX(-2px);
 }
 
 .srm-back-button:hover {
@@ -426,20 +443,20 @@ button {
 }
 
 /* ==========================================================================
-   Hero: Authoritative Wholesale Parts Masthead
+   Hero: Apple Keynote Style Spares Masthead
    ========================================================================== */
 .srm-terminal-hero {
-  background-color: #0A0F1D;
+  background: transparent;
   color: #FFFFFF;
-  padding: 44px 0 52px;
+  padding: 56px 0 64px;
   position: relative;
-  border-bottom: 1px solid #1E293B;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .srm-hero-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 36px;
+  gap: 40px;
   align-items: center;
   position: relative;
   z-index: 10;
@@ -447,7 +464,7 @@ button {
 
 @media (min-width: 992px) {
   .srm-hero-grid {
-    grid-template-columns: 1.35fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
     gap: 48px;
   }
 }
@@ -456,47 +473,49 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #E2E8F0;
-  font-size: 0.72rem;
-  font-weight: 700;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #F5F5F7;
+  font-size: 0.70rem;
+  font-weight: 600;
   letter-spacing: 0.06em;
-  padding: 5px 12px;
+  padding: 5px 14px;
   border-radius: var(--radius-pill);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .badge-pulse-dot {
   width: 6px;
   height: 6px;
-  background-color: #22C55E;
+  background-color: var(--srm-apple-green);
   border-radius: 50%;
-  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+  box-shadow: 0 0 8px rgba(48, 209, 88, 0.8);
 }
 
 .srm-hero-title {
   font-family: var(--srm-font-display);
-  font-size: 2.35rem;
+  font-size: 2.75rem;
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   color: #FFFFFF;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .srm-hero-subtitle {
   display: block;
-  font-size: 1.55rem;
+  font-size: 1.65rem;
   font-weight: 600;
-  color: #94A3B8;
-  letter-spacing: -0.01em;
-  margin-top: 6px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #FFFFFF 20%, #86868B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 8px;
 }
 
 @media (max-width: 640px) {
   .srm-hero-title {
-    font-size: 1.85rem;
+    font-size: 2rem;
   }
   .srm-hero-subtitle {
     font-size: 1.25rem;
@@ -504,38 +523,41 @@ button {
 }
 
 .srm-hero-lead {
-  font-size: 0.98rem;
-  color: #CBD5E1;
+  font-size: 0.95rem;
+  color: #86868B;
   line-height: 1.6;
-  margin-bottom: 22px;
+  margin-bottom: 26px;
   max-width: 640px;
 }
 
-/* Command Style Instant Search Input */
+/* macOS Spotlight / Raycast Style Search Terminal */
 .srm-search-terminal {
   max-width: 580px;
-  margin-bottom: 22px;
+  margin-bottom: 26px;
 }
 
 .srm-search-input-frame {
   display: flex;
   align-items: center;
-  background: #FFFFFF;
-  border-radius: var(--radius-sm);
-  padding: 3px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  transition: border-color 0.15s, box-shadow 0.15s;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-pill);
+  padding: 5px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .srm-search-input-frame:focus-within {
-  border-color: #38BDF8;
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3), 0 4px 18px rgba(0, 0, 0, 0.35);
+  border-color: var(--srm-apple-blue);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(41, 151, 255, 0.35), 0 12px 36px rgba(0, 0, 0, 0.5);
 }
 
 .search-glyph {
-  color: #64748B;
-  margin-right: 10px;
+  color: #86868B;
+  margin-right: 12px;
   flex-shrink: 0;
 }
 
@@ -544,32 +566,37 @@ button {
   border: none;
   font-size: 0.92rem;
   font-family: inherit;
-  color: var(--srm-text-dark);
+  color: #FFFFFF;
+  background: transparent;
   padding: 10px 0;
   outline: none;
+}
+
+.srm-search-input-frame input::placeholder {
+  color: #6E6E73;
 }
 
 .srm-clear-btn {
   background: none;
   border: none;
-  color: #94A3B8;
+  color: #86868B;
   font-size: 1.3rem;
   cursor: pointer;
   padding: 0 6px;
 }
 
 .srm-clear-btn:hover {
-  color: #0F172A;
+  color: #FFFFFF;
 }
 
 .search-key-badge {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #64748B;
-  background: #F1F5F9;
-  border: 1px solid #CBD5E1;
-  border-radius: var(--radius-xs);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", monospace;
+  font-size: 0.70rem;
+  font-weight: 600;
+  color: #A1A1A6;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
   padding: 2px 7px;
   margin-left: 6px;
   line-height: 1.2;
@@ -577,19 +604,20 @@ button {
 }
 
 .srm-search-status {
-  font-size: 0.8rem;
-  color: #94A3B8;
+  font-size: 0.78rem;
+  color: #86868B;
   margin-top: 8px;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 /* Operational Capabilities Row */
 .srm-capabilities-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px 18px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 12px 20px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 @media (max-width: 500px) {
@@ -604,24 +632,26 @@ button {
   align-items: center;
   gap: 8px;
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #CBD5E1;
 }
 
 .capability-item svg {
-  color: #22C55E;
+  color: var(--srm-apple-green);
   flex-shrink: 0;
 }
 
 /* ==========================================================================
-   Hero Quick Quote Form Widget (Shadcn/UI Style Card)
+   Hero Quick Quote Form Widget (Apple Vision Glass Card)
    ========================================================================== */
 .srm-hero-widget-card {
-  background: #111827;
-  border: 1px solid #1F2937;
-  border-radius: var(--radius-md);
-  padding: 24px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-radius: var(--radius-xl);
+  padding: 26px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
 }
 
@@ -634,10 +664,10 @@ button {
 }
 
 .widget-kicker {
-  font-size: 0.7rem;
-  font-weight: 800;
+  font-size: 0.68rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
-  color: #94A3B8;
+  color: var(--srm-apple-blue);
   text-transform: uppercase;
 }
 
@@ -651,18 +681,18 @@ button {
 .widget-badge-online {
   font-size: 0.68rem;
   font-weight: 700;
-  color: #22C55E;
-  background: rgba(34, 197, 94, 0.1);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  padding: 2px 8px;
-  border-radius: var(--radius-xs);
-  letter-spacing: 0.06em;
+  color: var(--srm-apple-green);
+  background: rgba(48, 209, 88, 0.12);
+  border: 1px solid rgba(48, 209, 88, 0.28);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.04em;
 }
 
 .widget-subtext {
-  font-size: 0.84rem;
-  color: #94A3B8;
-  line-height: 1.4;
+  font-size: 0.82rem;
+  color: #86868B;
+  line-height: 1.45;
   margin-bottom: 18px;
 }
 
@@ -679,10 +709,10 @@ button {
 }
 
 .form-field label {
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 600;
   text-transform: uppercase;
-  color: #CBD5E1;
+  color: #A1A1A6;
   letter-spacing: 0.04em;
 }
 
@@ -693,56 +723,63 @@ button {
 .select-frame select,
 .form-field input {
   width: 100%;
-  background: #0B0F19;
-  border: 1px solid #374151;
-  color: #F9FAFB;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #F5F5F7;
   padding: 10px 14px;
   font-size: 0.88rem;
   border-radius: var(--radius-sm);
   outline: none;
   font-family: inherit;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: all 0.2s;
+}
+
+.select-frame select option {
+  background-color: #0A0F1D;
+  color: #FFFFFF;
 }
 
 .select-frame select:focus,
 .form-field input:focus {
-  border-color: #60A5FA;
-  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25);
+  border-color: var(--srm-apple-blue);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 0 2px rgba(41, 151, 255, 0.3);
 }
 
 .widget-submit-btn {
   margin-top: 4px;
-  background-color: var(--srm-wa-green);
-  color: #FFFFFF;
+  background-color: var(--srm-apple-green);
+  color: #000000;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
   padding: 11px 18px;
-  font-size: 0.90rem;
+  font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
-  transition: background-color 0.18s, transform 0.1s;
+  box-shadow: 0 4px 16px rgba(48, 209, 88, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .widget-submit-btn:hover {
-  background-color: var(--srm-wa-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(48, 209, 88, 0.5);
 }
 
 .widget-submit-btn:active {
-  transform: scale(0.99);
+  transform: scale(0.98);
 }
 
 /* ==========================================================================
-   Component Strip (Interactive System Navigator)
+   Component Strip (Apple Segmented Dynamic Island Dock)
    ========================================================================== */
 .srm-component-strip {
-  background: #FFFFFF;
-  border-bottom: 1px solid var(--srm-card-border);
-  padding: 18px 0;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 24px 0 28px;
   position: relative;
 }
 
@@ -750,20 +787,20 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .strip-label {
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--srm-text-light);
+  font-size: 0.70rem;
+  font-weight: 700;
+  color: var(--srm-apple-blue);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .strip-note {
-  font-size: 0.8rem;
-  color: var(--srm-text-light);
+  font-size: 0.78rem;
+  color: #86868B;
 }
 
 .component-card-scroller {
@@ -795,9 +832,9 @@ button {
 .comp-pill {
   width: 100%;
   box-sizing: border-box;
-  background: #F8FAFC;
-  border: 1px solid var(--srm-card-border);
-  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
   padding: 10px 12px;
   min-height: 64px;
   text-align: left;
@@ -805,14 +842,16 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.18s ease, border-color 0.18s ease;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .comp-pill:hover {
-  background: #FFFFFF;
-  border-color: #94A3B8;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(15, 39, 68, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 .comp-pill:active {
@@ -820,10 +859,9 @@ button {
 }
 
 .comp-pill.active {
-  background: var(--srm-primary-navy);
-  border-color: var(--srm-primary-navy);
-  color: #FFFFFF;
-  box-shadow: 0 4px 16px rgba(15, 39, 68, 0.25);
+  background: linear-gradient(180deg, rgba(41, 151, 255, 0.2) 0%, rgba(41, 151, 255, 0.08) 100%);
+  border-color: var(--srm-apple-blue);
+  box-shadow: 0 0 24px rgba(41, 151, 255, 0.3);
 }
 
 .comp-pill .pill-icon {
@@ -833,14 +871,57 @@ button {
   width: 32px;
   height: 32px;
   border-radius: var(--radius-sm);
-  background: rgba(15, 23, 42, 0.06);
-  color: var(--srm-primary-navy);
-  transition: background-color 0.2s, color 0.2s;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--srm-apple-blue);
+  transition: all 0.2s;
   flex-shrink: 0;
 }
 
 .comp-pill.active .pill-icon {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(41, 151, 255, 0.25);
+  color: #FFFFFF;
+}
+
+.comp-pill:hover:not(.active) .pill-icon {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.comp-pill .pill-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.comp-pill .pill-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #F5F5F7;
+  line-height: 1.25;
+  white-space: normal;
+  word-break: normal;
+}
+
+.comp-pill.active .pill-title {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.comp-pill .pill-count {
+  font-size: 0.70rem;
+  color: #86868B;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.comp-pill.active .pill-count {
+  color: #93C5FD;
+}
   color: #60A5FA;
 }
 
@@ -899,11 +980,12 @@ button {
 .comp-pill.active .cat-rubber-icon { color: #CBD5E1 !important; }
 
 /* ==========================================================================
-   Main Distributor Showcase Grid
+   Main Distributor Showcase Grid - Apple Hardware Bento Showroom
    ========================================================================== */
 .srm-showcase-section {
-  padding: 44px 0 60px;
+  padding: 56px 0 72px;
   flex: 1;
+  background: transparent;
 }
 
 .showcase-title-row {
@@ -911,7 +993,7 @@ button {
   justify-content: space-between;
   align-items: flex-end;
   gap: 24px;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .showcase-title-left {
@@ -922,115 +1004,140 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #F1F5F9;
-  border: 1px solid #E2E8F0;
-  color: #334155;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #F5F5F7;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 6px 14px;
   border-radius: var(--radius-pill);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .badge-dot-green {
-  width: 7px;
-  height: 7px;
-  background-color: #16A34A;
+  width: 6px;
+  height: 6px;
+  background-color: var(--srm-apple-green);
   border-radius: 50%;
-  box-shadow: 0 0 6px rgba(22, 163, 74, 0.4);
+  box-shadow: 0 0 6px rgba(48, 209, 88, 0.8);
 }
 
 .section-kicker {
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.70rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--srm-red-accent);
+  color: var(--srm-apple-blue);
   text-transform: uppercase;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .section-title {
   font-family: var(--srm-font-display);
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--srm-text-dark);
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
 }
 
 .section-desc {
-  font-size: 0.95rem;
-  color: var(--srm-text-muted);
+  font-size: 0.94rem;
+  color: #86868B;
   max-width: 680px;
-  margin-top: 4px;
+  margin-top: 6px;
+  line-height: 1.5;
 }
 
-/* The Brand Grid - 4 Columns on Desktop with Spacious Card Width */
+/* 4 Columns on Desktop with Spacious Apple Bento Proportions */
 .srm-brand-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 18px;
+  gap: 20px;
 }
 
 @media (min-width: 600px) {
   .srm-brand-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 20px;
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 880px) {
   .srm-brand-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    gap: 20px;
   }
 }
 
 @media (min-width: 1100px) {
   .srm-brand-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    gap: 20px;
   }
 }
 
-/* Individual Brand Card - SHOWCASING THE LOGOS */
+/* Individual Brand Card - Apple Hardware Bento Tile */
 .brand-card {
-  background: var(--srm-card-bg);
-  border: 1px solid var(--srm-card-border);
-  border-radius: var(--radius-md);
-  box-shadow: 0 1px 3px rgba(11, 17, 30, 0.05), 0 1px 2px rgba(11, 17, 30, 0.03);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
-  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+/* Interactive Cursor-Reactive Spotlight Sheen */
+.brand-spotlight-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08), transparent 60%);
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.brand-card:hover .brand-spotlight-layer {
+  opacity: 1;
 }
 
 .brand-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px -4px rgba(15, 39, 68, 0.10), 0 4px 8px -2px rgba(15, 39, 68, 0.05);
-  border-color: #CBD5E1;
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 0 24px rgba(41, 151, 255, 0.14);
 }
 
-/* Precision Showroom Stage for High-Res Manufacturer Logos (Enlarged) */
+/* The Floating Ceramic Showroom Pedestal */
 .brand-logo-container {
-  height: 190px;
-  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
-  padding: 14px 16px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  margin: 10px 10px 0;
+  height: 180px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #E2E8F0;
   position: relative;
-  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   text-decoration: none;
+  overflow: hidden;
+  z-index: 2;
+  transition: transform 0.25s ease;
 }
 
 .brand-stage-watermark {
   position: absolute;
-  top: 10px;
-  left: 12px;
-  font-size: 0.60rem;
-  font-weight: 700;
+  top: 8px;
+  left: 10px;
+  font-size: 0.58rem;
+  font-weight: 800;
   letter-spacing: 0.06em;
   color: #94A3B8;
   text-transform: uppercase;
@@ -1038,23 +1145,22 @@ button {
 }
 
 .brand-logo-img {
-  max-width: 92%;
-  max-height: 155px;
+  max-width: 90%;
+  max-height: 145px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 5px rgba(15, 23, 42, 0.08));
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   image-rendering: -webkit-optimize-contrast;
 }
 
 .brand-card:hover .brand-logo-img {
-  transform: scale(1.05);
-  filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.12));
+  transform: scale(1.06);
 }
 
 @media (max-width: 640px) {
   .brand-logo-container {
     height: 165px;
-    padding: 12px 14px;
+    padding: 10px 14px;
   }
   .brand-logo-img {
     max-height: 130px;
@@ -1067,6 +1173,7 @@ button {
   display: flex;
   flex-direction: column;
   flex: 1;
+  z-index: 2;
 }
 
 .brand-card-header {
@@ -1079,53 +1186,53 @@ button {
 
 .brand-category-badge {
   display: inline-block;
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 2px 7px;
-  border-radius: var(--radius-xs);
-  background: #F1F5F9;
-  color: #334155;
-  border: 1px solid #E2E8F0;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  color: #CBD5E1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .brand-verified-chip {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: 0.62rem;
+  font-size: 0.60rem;
   font-weight: 600;
-  color: #15803D;
-  background: #F0FDF4;
-  border: 1px solid #BBF7D0;
-  padding: 2px 6px;
-  border-radius: var(--radius-xs);
+  color: var(--srm-apple-green);
+  background: rgba(48, 209, 88, 0.1);
+  border: 1px solid rgba(48, 209, 88, 0.2);
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
 }
 
 .brand-title {
   font-family: var(--srm-font-display);
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--srm-text-dark);
-  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  line-height: 1.25;
   margin-bottom: 5px;
 }
 
 .brand-title a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.15s;
+  transition: color 0.18s;
 }
 
 .brand-title a:hover {
-  color: var(--srm-primary-navy);
-  text-decoration: underline;
+  color: var(--srm-apple-blue);
 }
 
 .brand-description {
   font-size: 0.78rem;
-  color: var(--srm-text-muted);
+  color: #86868B;
   line-height: 1.45;
   margin-bottom: 12px;
   flex: 1;
@@ -1140,8 +1247,8 @@ button {
   flex-direction: column;
   gap: 6px;
   margin-top: auto;
-  padding-top: 12px;
-  border-top: 1px solid #F1F5F9;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .btn-view-parts {
@@ -1149,25 +1256,28 @@ button {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background-color: var(--srm-primary-navy);
+  background: rgba(255, 255, 255, 0.07);
   color: #FFFFFF;
-  min-height: 38px;
-  padding: 8px 12px;
-  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  min-height: 36px;
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
   font-size: 0.78rem;
   font-weight: 600;
-  transition: background-color 0.15s, transform 0.15s;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
 }
 
 .btn-view-parts svg {
-  width: 14px;
-  height: 14px;
-  transition: transform 0.15s;
+  width: 13px;
+  height: 13px;
+  transition: transform 0.2s;
 }
 
 .btn-view-parts:hover {
-  background-color: #0A192F;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
 }
 
 .btn-view-parts:hover svg {
@@ -1179,16 +1289,16 @@ button {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background-color: #FFFFFF;
-  border: 1px solid #CBD5E1;
-  color: #15803D;
+  background: rgba(37, 211, 102, 0.12);
+  color: #25D366;
+  border: 1px solid rgba(37, 211, 102, 0.28);
   min-height: 36px;
   padding: 7px 12px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
   font-size: 0.76rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-quick-wa svg {
@@ -1197,19 +1307,21 @@ button {
 }
 
 .btn-quick-wa:hover {
-  background-color: #F0FDF4;
-  border-color: #86EFAC;
-  color: #166534;
+  background: #25D366;
+  color: #000000;
+  border-color: #25D366;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  font-weight: 700;
 }
 
 /* ==========================================================================
    Supplier / Brand Page Hero
    ========================================================================== */
 .supplier-brand-hero {
-  background: #0A0F1D;
+  background: transparent;
   color: #FFFFFF;
-  padding: 36px 0;
-  border-bottom: 1px solid #1E293B;
+  padding: 44px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .supplier-brand-container {
@@ -1221,13 +1333,12 @@ button {
 
 .brand-logo-frame {
   background: #FFFFFF;
-  border-radius: var(--radius-md);
+  border-radius: 16px;
   padding: 20px 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #E2E8F0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
   min-width: 220px;
   height: 135px;
 }
@@ -1244,26 +1355,28 @@ button {
 }
 
 .brand-badge-tag {
-  font-size: 0.72rem;
+  font-size: 0.70rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #94A3B8;
+  letter-spacing: 0.08em;
+  color: var(--srm-apple-blue);
 }
 
 .brand-hero-name {
   font-family: var(--srm-font-display);
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  line-height: 1.2;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
   margin: 4px 0 8px;
+  color: #FFFFFF;
 }
 
 .brand-hero-desc {
-  font-size: 0.95rem;
-  color: #CBD5E1;
+  font-size: 0.94rem;
+  color: #86868B;
   max-width: 650px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .brand-hero-tagline {
@@ -1271,7 +1384,7 @@ button {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #94A3B8;
+  color: #86868B;
   margin-bottom: 6px;
 }
 
@@ -1279,19 +1392,19 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #E2E8F0;
-  padding: 3px 8px;
-  border-radius: var(--radius-xs);
-  font-size: 0.72rem;
+  background: rgba(48, 209, 88, 0.1);
+  border: 1px solid rgba(48, 209, 88, 0.2);
+  color: var(--srm-apple-green);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.70rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .oem-seal-badge svg {
-  color: #22C55E;
+  color: var(--srm-apple-green);
 }
 
 .brand-hero-meta {
@@ -1301,13 +1414,13 @@ button {
 }
 
 .meta-tag {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #CBD5E1;
   padding: 3px 10px;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-pill);
   letter-spacing: 0.03em;
 }
 
@@ -1315,21 +1428,21 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--srm-wa-green);
-  color: #FFFFFF;
+  background-color: var(--srm-apple-green);
+  color: #000000;
   border: none;
-  border-radius: var(--radius-sm);
-  padding: 11px 18px;
-  font-size: 0.88rem;
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
+  font-size: 0.86rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.18s, transform 0.1s;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(48, 209, 88, 0.35);
 }
 
 .srm-brand-quote-btn:hover {
-  background-color: var(--srm-wa-hover);
   transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(48, 209, 88, 0.5);
 }
 
 .srm-brand-quote-btn:active {
@@ -1340,12 +1453,14 @@ button {
    Filter Bar (Supplier Page)
    ========================================================================== */
 .catalogue-filter-bar {
-  background: #FFFFFF;
-  border-bottom: 1px solid var(--srm-card-border);
+  background: rgba(6, 8, 14, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   position: sticky;
-  top: 68px;
+  top: 64px;
   z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .filter-bar-container {
@@ -1370,21 +1485,28 @@ button {
 }
 
 .filter-search {
-  background: #F8FAFC;
-  border: 1px solid var(--srm-card-border);
-  border-radius: var(--radius-sm);
-  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill);
+  padding: 0 14px;
   flex: 1;
   max-width: 440px;
   display: flex;
   align-items: center;
   gap: 6px;
+  transition: all 0.2s;
+}
+
+.filter-search:focus-within {
+  border-color: var(--srm-apple-blue);
+  box-shadow: 0 0 0 2px rgba(41, 151, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .search-clear-btn {
   background: none;
   border: none;
-  color: #94A3B8;
+  color: #86868B;
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
@@ -1398,8 +1520,7 @@ button {
 }
 
 .search-clear-btn:hover {
-  background: #E2E8F0;
-  color: #0F172A;
+  color: #FFFFFF;
 }
 
 .filter-search input {
@@ -1407,38 +1528,51 @@ button {
   border: none;
   background: transparent;
   padding: 10px 8px;
-  font-size: 0.92rem;
+  font-size: 0.90rem;
   font-family: inherit;
+  color: #FFFFFF;
   outline: none;
 }
 
+.filter-search input::placeholder {
+  color: #6E6E73;
+}
+
 .corporate-select {
-  padding: 10px 14px;
-  border: 1px solid var(--srm-card-border);
-  border-radius: var(--radius-sm);
-  font-size: 0.92rem;
-  background: #FFFFFF;
-  color: var(--srm-text-dark);
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill);
+  font-size: 0.90rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: #F5F5F7;
   min-width: 260px;
   width: 100%;
   font-family: inherit;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.corporate-select option {
+  background-color: #0A0F1D;
+  color: #FFFFFF;
 }
 
 .corporate-select:focus {
-  outline: 2px solid var(--srm-primary-navy);
+  outline: none;
+  border-color: var(--srm-apple-blue);
+  box-shadow: 0 0 0 2px rgba(41, 151, 255, 0.3);
 }
 
 .filter-results-count {
-  font-size: 0.88rem;
-  color: var(--srm-text-muted);
+  font-size: 0.84rem;
+  color: #86868B;
   font-weight: 500;
   white-space: nowrap;
 }
 
 .count-num {
-  font-weight: 800;
-  color: var(--srm-primary-navy);
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -1469,19 +1603,22 @@ button {
 }
 
 .part-card {
-  background: #FFFFFF;
-  border: 1px solid var(--srm-card-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .part-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(41, 151, 255, 0.12);
 }
 
 .part-image-box {
@@ -1489,7 +1626,7 @@ button {
   width: 100%;
   padding-top: 75%; /* 4:3 */
   background: #FFFFFF;
-  border-bottom: 1px solid #EDF2F7;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   cursor: pointer;
   overflow: hidden;
 }
@@ -1503,7 +1640,7 @@ button {
   object-fit: contain;
   padding: 12px;
   display: block;
-  transition: transform 0.25s;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .part-card:hover .part-image-box img {
@@ -1520,7 +1657,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--srm-text-light);
+  color: #64748B;
   font-size: 0.85rem;
   padding: 16px;
   text-align: center;
@@ -1547,21 +1684,21 @@ button {
 
 .part-name {
   font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--srm-text-dark);
+  font-weight: 700;
+  color: #FFFFFF;
   line-height: 1.35;
   margin-bottom: 8px;
 }
 
 .part-name-muted {
-  color: var(--srm-text-light);
+  color: #86868B;
 }
 
 .part-vehicles-label {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--srm-text-light);
+  color: #86868B;
   letter-spacing: 0.05em;
   margin-bottom: 6px;
 }
@@ -1574,25 +1711,25 @@ button {
 }
 
 .vehicle-chip {
-  background: #F1F5F9;
-  border: 1px solid #E2E8F0;
-  border-radius: var(--radius-xs);
-  padding: 2px 7px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #334155;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  padding: 2px 8px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: #CBD5E1;
 }
 
 .vehicle-chip-more {
-  background: #E2E8F0;
-  color: #0F172A;
-  font-weight: 800;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  font-weight: 700;
   cursor: pointer;
-  border: 1px dashed #CBD5E1;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
 }
 
 .vehicle-chip-more:hover {
-  background: #CBD5E1;
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .part-footer {
@@ -1601,40 +1738,42 @@ button {
 }
 
 .contact-part-btn {
-  background-color: var(--srm-wa-green);
-  color: #FFFFFF;
+  background-color: var(--srm-apple-green);
+  color: #000000;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
   width: 100%;
-  height: 42px;
-  font-size: 0.88rem;
+  height: 40px;
+  font-size: 0.84rem;
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: background-color 0.2s;
+  box-shadow: 0 4px 14px rgba(48, 209, 88, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .contact-part-btn:hover {
-  background-color: var(--srm-wa-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(48, 209, 88, 0.45);
 }
 
 /* ==========================================================================
-   Trade Strip
+   Trade Strip - Apple Hardware Highlights Bento Row
    ========================================================================== */
 .srm-trade-strip {
-  background: #FFFFFF;
-  border-top: 1px solid var(--srm-card-border);
-  border-bottom: 1px solid var(--srm-card-border);
-  padding: 36px 0;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 44px 0;
 }
 
 .trade-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
 @media (min-width: 600px) {
@@ -1650,17 +1789,30 @@ button {
 }
 
 .trade-feature {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 20px;
   display: flex;
   gap: 14px;
   align-items: flex-start;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+
+.trade-feature:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
 }
 
 .feature-icon-frame {
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-sm);
-  background: #F1F5F9;
-  color: var(--srm-primary-navy);
+  border-radius: 12px;
+  background: rgba(41, 151, 255, 0.12);
+  color: var(--srm-apple-blue);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1669,14 +1821,14 @@ button {
 
 .feature-content h4 {
   font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--srm-text-dark);
+  font-weight: 600;
+  color: #FFFFFF;
   margin-bottom: 4px;
 }
 
 .feature-content p {
   font-size: 0.82rem;
-  color: var(--srm-text-muted);
+  color: #86868B;
   line-height: 1.45;
 }
 
