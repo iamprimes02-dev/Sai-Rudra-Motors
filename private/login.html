@@ -4,55 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dealer Login — Sai Rudra Motors</title>
-  <link rel="stylesheet" href="/css/admin.css?v=3.3">
-  <script src="/js/theme.js?v=3.3"></script>
+  <link rel="stylesheet" href="/css/admin.css?v=3.4">
+  <script src="/js/theme.js?v=3.4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body class="login-body">
+  <!-- Minimalist Floating Top Dock -->
+  <header class="login-nav-header">
+    <a href="/" class="login-nav-back" aria-label="Return to customer catalogue">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      <span>Customer Catalogue</span>
+    </a>
+    <div class="login-nav-actions">
+      <!-- Apple Theme Toggle Button (Light / Dark) -->
+      <button class="srm-theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Theme">
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Ambient Light Mesh Background -->
   <div class="login-wrapper">
     <div class="srm-ambient-mesh" aria-hidden="true">
       <div class="ambient-orb orb-blue"></div>
       <div class="ambient-orb orb-indigo"></div>
     </div>
 
+    <!-- Precision Dealer Terminal HUD Card -->
     <div class="login-card">
       <div class="login-header">
-        <div class="brand-crest" style="margin: 0 auto 16px auto; display: inline-flex;">
+        <div class="brand-crest login-brand-crest">
           <span class="crest-monogram">SRM</span>
           <span class="crest-accent"></span>
         </div>
+        <div class="login-status-badge">
+          <span class="badge-pulse-dot"></span>
+          <span>AUTHORIZED DEALER ACCESS</span>
+        </div>
         <h1 class="login-title">Dealer Portal</h1>
-        <p class="login-subtitle">Sai Rudra Motors Inventory Management</p>
+        <p class="login-subtitle">Sai Rudra Motors &bull; Inventory &amp; Dispatch Terminal</p>
       </div>
 
       <form id="loginForm" novalidate>
         <div class="form-group">
-          <label for="password">Admin Password</label>
-          <div class="password-input-group">
-            <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Enter password" autofocus>
-            <button type="button" class="toggle-pwd-btn" id="togglePwd" aria-label="Toggle password visibility">👁️</button>
+          <label for="password" class="login-field-label">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>Admin Master Key</span>
+          </label>
+          <div class="password-input-frame">
+            <svg class="field-icon-lead" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Enter admin password..." autofocus>
+            <button type="button" class="toggle-pwd-btn" id="togglePwd" aria-label="Toggle password visibility" title="Show/Hide Password">
+              <svg class="pwd-eye-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <svg class="pwd-eye-off-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+            </button>
           </div>
           <div class="field-error" id="passwordError"></div>
         </div>
         <div class="field-error" id="generalError" style="margin-bottom:16px;"></div>
-        <button type="submit" class="btn-primary" id="loginBtn" style="width:100%;height:46px;font-size:0.95rem;font-weight:700;">Sign In to Dashboard</button>
+        <button type="submit" class="btn-primary login-submit-btn" id="loginBtn">
+          <span>Authenticate &amp; Enter Dashboard</span>
+          <svg class="btn-arrow-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
       </form>
-    </div>
 
-    <a href="/" class="back-to-site">&larr; Return to Customer Catalogue</a>
+      <div class="login-security-footer">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <span>256-Bit Encrypted Session &bull; Karnataka Hub</span>
+      </div>
+    </div>
   </div>
 
-  <script src="/js/admin.js?v=3.2"></script>
+  <script src="/js/admin.js?v=3.4"></script>
   <script>
     const togglePwd = document.getElementById('togglePwd');
     const pwdInput = document.getElementById('password');
+    const eyeIcon = togglePwd ? togglePwd.querySelector('.pwd-eye-icon') : null;
+    const eyeOffIcon = togglePwd ? togglePwd.querySelector('.pwd-eye-off-icon') : null;
     if (togglePwd && pwdInput) {
       togglePwd.addEventListener('click', () => {
         const isPwd = pwdInput.type === 'password';
         pwdInput.type = isPwd ? 'text' : 'password';
-        togglePwd.textContent = isPwd ? '🔒' : '👁️';
+        if (eyeIcon && eyeOffIcon) {
+          eyeIcon.style.display = isPwd ? 'none' : 'block';
+          eyeOffIcon.style.display = isPwd ? 'block' : 'none';
+        }
       });
     }
   </script>

@@ -159,25 +159,15 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(PRIVATE_DIR, 'admin.html'));
 });
 
-// Serve admin static assets (CSS, JS) under /admin
-app.use('/admin', (req, res, next) => {
-  const sessionToken = req.cookies.session;
-  const session = sessionToken ? verifySession(sessionToken) : null;
-  const isAdmin = !!(session && session.admin);
+// Serve admin static assets (CSS, JS) under /css, /js, or /admin
+app.get(['/css/admin.css', '/admin/css/admin.css'], (req, res) => {
+  res.setHeader('Content-Type', 'text/css');
+  res.sendFile(path.join(PRIVATE_DIR, 'css', 'admin.css'));
+});
 
-  const url = req.url;
-  if (url.endsWith('admin.js') || url.endsWith('admin.css')) {
-    if (!isAdmin) {
-      return res.status(401).json({ error: 'Admin login required.' });
-    }
-  }
-
-  const filePath = path.join(PRIVATE_DIR, url.replace('/admin/', ''));
-  res.sendFile(filePath, (err) => {
-    if (err) {
-      res.status(404).send('Asset not found.');
-    }
-  });
+app.get(['/js/admin.js', '/admin/js/admin.js'], (req, res) => {
+  res.setHeader('Content-Type', 'application/javascript');
+  res.sendFile(path.join(PRIVATE_DIR, 'js', 'admin.js'));
 });
 
 // Serve customer static assets (CSS, JS)

@@ -1036,10 +1036,46 @@ html[data-theme="dark"] .theme-icon-moon {
    Login Page Styles (Precision Depot HUD)
    ========================================================================== */
 .login-body {
-  background: var(--color-bg);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+}
+
+/* Minimalist Floating Top Dock */
+.login-nav-header {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+}
+
+.login-nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.login-nav-back:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateX(-3px);
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.15);
 }
 
 .login-wrapper {
@@ -1048,22 +1084,36 @@ html[data-theme="dark"] .theme-icon-moon {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 24px;
+  padding: 80px 24px 32px;
   position: relative;
   z-index: 2;
 }
 
 .login-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   background: var(--color-surface);
   border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--admin-card-shadow-hover);
-  padding: 36px 32px;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px -12px rgba(0, 102, 255, 0.18), 0 0 32px rgba(255, 42, 60, 0.08);
+  padding: 40px 36px 32px;
   position: relative;
   z-index: 10;
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Top Flowing Racing Gradient Hairline */
+.login-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FF2A3C 0%, #0066FF 100%);
 }
 
 .login-header {
@@ -1071,63 +1121,169 @@ html[data-theme="dark"] .theme-icon-moon {
   margin-bottom: 28px;
 }
 
-.login-title {
-  font-size: 1.5rem;
+.login-brand-crest {
+  margin: 0 auto 14px auto;
+  display: inline-flex;
+  font-size: 1.35rem;
   font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(255, 42, 60, 0.35);
+  letter-spacing: -0.02em;
+}
+
+.login-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 14px;
+}
+
+.login-status-badge .badge-pulse-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10B981;
+  animation: srmPulse 2s infinite ease-in-out;
+}
+
+.login-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--color-text);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .login-subtitle {
   font-size: 0.88rem;
   color: var(--color-text-muted);
+  line-height: 1.4;
 }
 
-.password-input-group {
+.login-field-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.password-input-frame {
   position: relative;
   display: flex;
   align-items: center;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.password-input-group input {
+.password-input-frame:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.18);
+}
+
+.password-input-frame .field-icon-lead {
+  position: absolute;
+  left: 14px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.password-input-frame input {
   width: 100%;
-  padding-right: 48px;
+  border: none;
+  background: transparent;
+  padding: 13px 44px 13px 42px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  outline: none;
+}
+
+.password-input-frame input::placeholder {
+  color: var(--color-text-muted);
+  font-weight: 400;
+  opacity: 0.7;
 }
 
 .toggle-pwd-btn {
   position: absolute;
-  right: 8px;
+  right: 10px;
   background: none;
   border: none;
   color: var(--color-text-muted);
   cursor: pointer;
-  font-size: 1.15rem;
-  padding: 6px 8px;
+  padding: 6px;
   border-radius: 6px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .toggle-pwd-btn:hover {
-  color: var(--color-text);
-}
-
-.back-to-site {
-  display: block;
-  text-align: center;
-  margin-top: 24px;
-  font-size: 0.88rem;
-  color: var(--color-text-muted);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s;
-  position: relative;
-  z-index: 10;
-}
-
-.back-to-site:hover {
   color: var(--color-primary);
+  background: rgba(0, 102, 255, 0.08);
+}
+
+.login-submit-btn {
+  width: 100%;
+  height: 48px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0066FF 0%, #0047B3 100%);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.35);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.login-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 102, 255, 0.45);
+}
+
+.login-submit-btn .btn-arrow-icon {
+  transition: transform 0.2s ease;
+}
+
+.login-submit-btn:hover .btn-arrow-icon {
+  transform: translateX(4px);
+}
+
+.login-security-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-top: 24px;
+  letter-spacing: 0.02em;
 }
 
 /* Atmospheric Ambient Mesh & Light Orbs */
@@ -1147,9 +1303,9 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .orb-blue {
-  width: 520px;
-  height: 520px;
-  top: -80px;
+  width: 580px;
+  height: 580px;
+  top: -100px;
   left: 5%;
   background: radial-gradient(circle, rgba(0, 102, 255, 0.35) 0%, rgba(0, 102, 255, 0.10) 50%, transparent 70%);
 }
@@ -1163,7 +1319,7 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 html[data-theme="dark"] .orb-blue {
-  background: radial-gradient(circle, rgba(0, 102, 255, 0.45) 0%, rgba(0, 102, 255, 0.15) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.48) 0%, rgba(0, 102, 255, 0.16) 50%, transparent 70%);
   filter: blur(95px);
 }
 
