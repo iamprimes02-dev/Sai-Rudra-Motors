@@ -40,21 +40,6 @@ async function setDefaultSettings() {
   }
 }
 
-/**
- * Ensure the suppliers.logo column exists (run once on startup).
- * Fails silently if the column already exists.
- */
-async function ensureLogoColumn() {
-  try {
-    await supabase.rpc('exec_sql', {
-      sql: 'ALTER TABLE suppliers ADD COLUMN IF NOT EXISTS logo TEXT;',
-    });
-  } catch {
-    // Column may already exist or rpc may not be enabled - that's OK.
-    // The column can be added manually via Supabase SQL Editor.
-  }
-}
-
 const DEFAULT_SUPPLIERS = [
   { id: 1, name: 'Sangsin Brakes', logo: '01_sangsin_brakes.png', category: 'Brakes', description: 'Brake pads, brake shoes, and commercial brake linings.', partCount: 0 },
   { id: 2, name: 'Autolek Filters', logo: '02_autolek_filters.png', category: 'Filters', description: 'Engine oil, air, AC cabin, and fuel filters.', partCount: 0 },
@@ -84,12 +69,9 @@ async function ensureDefaultSuppliers() {
   }
 }
 
-// Initialize defaults, logo column, and suppliers.
+// Initialize defaults and suppliers.
 setDefaultSettings().catch((err) => {
   console.error('DB initialization warning (settings):', err.message);
-});
-ensureLogoColumn().catch((err) => {
-  console.error('DB initialization warning (logo column):', err.message);
 });
 ensureDefaultSuppliers().catch((err) => {
   console.error('DB initialization warning (suppliers seed):', err.message);
@@ -126,27 +108,35 @@ const stmt = {
         return DEFAULT_SUPPLIERS;
       }
       const suppliers = data;
-      const result = await Promise.all(
-        suppliers.map(async (s) => {
-          const { count } = await supabase
-            .from('parts')
-            .select('*', { count: 'exact', head: true })
-            .eq('supplier_id', s.id);
-          const defaultMatch = DEFAULT_SUPPLIERS.find(d => 
-            d.name.toLowerCase() === s.name.toLowerCase() ||
-            (d.name === 'HL Mando' && s.name.toLowerCase().includes('hl mando'))
-          );
-          return {
-            id: s.id,
-            name: defaultMatch ? defaultMatch.name : s.name,
-            logo: s.logo || (defaultMatch ? defaultMatch.logo : null),
-            category: (defaultMatch && defaultMatch.category) || 'Auto Spares',
-            description: (defaultMatch && defaultMatch.description) || '',
-            partCount: count !== null ? count : _inMemoryParts.filter(p => p.supplier_id === s.id).length,
-            created_at: s.created_at,
-          };
-        })
-      );
+
+      // Count parts per supplier with a single aggregated query (avoids N+1 queries)
+      const { data: partRows } = await supabase
+        .from('parts')
+        .select('supplier_id');
+
+      const countMap = {};
+      if (partRows) {
+        for (const row of partRows) {
+          countMap[row.supplier_id] = (countMap[row.supplier_id] || 0) + 1;
+        }
+      }
+
+      const result = suppliers.map((s) => {
+        const defaultMatch = DEFAULT_SUPPLIERS.find(d => 
+          d.name.toLowerCase() === s.name.toLowerCase() ||
+          (d.name === 'HL Mando' && s.name.toLowerCase().includes('hl mando'))
+        );
+        const count = countMap[s.id];
+        return {
+          id: s.id,
+          name: defaultMatch ? defaultMatch.name : s.name,
+          logo: s.logo || (defaultMatch ? defaultMatch.logo : null),
+          category: (defaultMatch && defaultMatch.category) || 'Auto Spares',
+          description: (defaultMatch && defaultMatch.description) || '',
+          partCount: count !== undefined ? count : _inMemoryParts.filter(p => p.supplier_id === s.id).length,
+          created_at: s.created_at,
+        };
+      });
       return result.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'accent' }));
     } catch {
       return DEFAULT_SUPPLIERS;
@@ -327,17 +317,6 @@ const stmt = {
     if (idx !== -1) _inMemoryParts.splice(idx, 1);
   },
 
-  // --- Image storage ---
-  async getImageByPartId(id) {
-    const { data, error } = await supabase
-      .from('parts')
-      .select('image_key')
-      .eq('id', id)
-      .single();
-    if (error || !data) return null;
-    return data;
-  },
-
   // --- Vehicle suggestions ---
   async vehicleSuggest(query) {
     const { data, error } = await supabase.from('parts').select('vehicles');
@@ -357,20 +336,6 @@ const stmt = {
       }
     }
     return results;
-  },
-
-  // --- Login attempts (in-memory, per serverless invocation) ---
-  // Note: In production on Vercel, each function invocation is separate.
-  // For a single admin, this is acceptable. Use Supabase table if needed.
-  _loginAttempts: new Map(),
-  async getLoginAttempt(ip) {
-    return this._loginAttempts.get(ip) || null;
-  },
-  async setLoginAttempt(ip, failedCount, windowStart) {
-    this._loginAttempts.set(ip, { count: failedCount, firstAttempt: windowStart });
-  },
-  async deleteLoginAttempt(ip) {
-    this._loginAttempts.delete(ip);
   },
 };
 

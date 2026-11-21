@@ -4,7 +4,6 @@
 'use strict';
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('node:path');
 const fs = require('node:fs');
 
@@ -78,44 +77,55 @@ app.use((req, res, next) => {
 });
 
 // --- Body parsing ---
-// Capture raw body for multipart/form-data requests (needed for file uploads).
-// bodyParser skips multipart requests.
+// Capture raw body for multipart/form-data requests with strict max size guard (5 MB).
+const MAX_UPLOAD_SIZE = 5 * 1024 * 1024; // 5 MB
+
 app.use((req, res, next) => {
   const ct = req.headers['content-type'] || '';
   if (ct.includes('multipart/form-data')) {
+    const cl = Number(req.headers['content-length']);
+    if (cl && cl > MAX_UPLOAD_SIZE) {
+      return res.status(413).json({ error: 'File too large. Maximum size is 5 MB.' });
+    }
     const chunks = [];
-    req.on('data', (chunk) => chunks.push(chunk));
+    let bytesReceived = 0;
+    req.on('data', (chunk) => {
+      bytesReceived += chunk.length;
+      if (bytesReceived > MAX_UPLOAD_SIZE) {
+        req.destroy();
+        return res.status(413).json({ error: 'File too large. Maximum size is 5 MB.' });
+      }
+      chunks.push(chunk);
+    });
     req.on('end', () => {
-      req.rawBody = Buffer.concat(chunks);
-      next();
+      if (!res.headersSent) {
+        req.rawBody = Buffer.concat(chunks);
+        next();
+      }
+    });
+    req.on('error', (err) => {
+      if (!res.headersSent) {
+        next(err);
+      }
     });
   } else {
     next();
   }
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // --- Sessions (signed cookie, serverless-compatible) ---
 app.use((req, res, next) => {
   req.session = null;
-
-  const cookie = req.headers.cookie || '';
-  const match = cookie.match(/session=([^;]+)/);
-  if (match) {
-    const session = verifySession(match[1]);
+  const sessionToken = req.cookies.session;
+  if (sessionToken) {
+    const session = verifySession(sessionToken);
     if (session) {
       req.session = session;
     }
   }
-
-  // Save session on response (for login which creates a new session)
-  const originalJson = res.json;
-  res.json = function (body) {
-    // If this is a login response with a Set-Cookie header, the cookie was already set
-    return originalJson.call(this, body);
-  };
 
   next();
 });
@@ -141,14 +151,9 @@ app.get('/admin/login', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-  const cookie = req.headers.cookie || '';
-  const match = cookie.match(/session=([^;]+)/);
-  let isAdmin = false;
-  if (match) {
-    const session = verifySession(match[1]);
-    isAdmin = session && session.admin;
-  }
-  if (!isAdmin) {
+  const sessionToken = req.cookies.session;
+  const session = sessionToken ? verifySession(sessionToken) : null;
+  if (!session || !session.admin) {
     return res.redirect('/admin/login');
   }
   res.sendFile(path.join(PRIVATE_DIR, 'admin.html'));
@@ -156,13 +161,9 @@ app.get('/admin', (req, res) => {
 
 // Serve admin static assets (CSS, JS) under /admin
 app.use('/admin', (req, res, next) => {
-  const cookie = req.headers.cookie || '';
-  const match = cookie.match(/session=([^;]+)/);
-  let isAdmin = false;
-  if (match) {
-    const session = verifySession(match[1]);
-    isAdmin = session && session.admin;
-  }
+  const sessionToken = req.cookies.session;
+  const session = sessionToken ? verifySession(sessionToken) : null;
+  const isAdmin = !!(session && session.admin);
 
   const url = req.url;
   if (url.endsWith('admin.js') || url.endsWith('admin.css')) {

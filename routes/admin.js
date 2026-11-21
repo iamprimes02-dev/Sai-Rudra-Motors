@@ -29,8 +29,8 @@ const {
   validateImageBuffer,
   saveImageFile,
   deleteImageFile,
+  deleteImageFiles,
   getImageUrl,
-  multerErrorStatus: multerErrorStatusFallback,
 } = require('../lib/uploads');
 const crypto = require('node:crypto');
 
@@ -90,14 +90,8 @@ router.post('/logout', (req, res) => {
 
 // Middleware: load session from cookie
 function loadSession(req, res, next) {
-  const cookie = req.headers.cookie || '';
-  const match = cookie.match(/session=([^;]+)/);
-  if (match) {
-    const session = verifySession(match[1]);
-    req.session = session;
-  } else {
-    req.session = null;
-  }
+  const sessionToken = (req.cookies && req.cookies.session) || (req.headers.cookie || '').match(/session=([^;]+)/)?.[1];
+  req.session = sessionToken ? verifySession(sessionToken) : null;
   next();
 }
 
@@ -168,12 +162,11 @@ router.delete('/suppliers/:id', adminWriteMiddleware, async (req, res) => {
     return res.status(404).json({ error: 'Supplier not found.' });
   }
 
-  // Delete Supabase Storage images of all parts first
+  // Delete Supabase Storage images of all parts in a single batch
   const parts = await stmt.listPartsBySupplier(id);
-  for (const part of parts) {
-    if (part.image_key) {
-      await deleteImageFile(part.image_key);
-    }
+  const imageKeys = parts.map((p) => p.image_key).filter(Boolean);
+  if (imageKeys.length > 0) {
+    await deleteImageFiles(imageKeys);
   }
 
   await stmt.deleteSupplier(id);
@@ -352,7 +345,7 @@ router.get('/vehicles/suggest', loadSession, async (req, res) => {
   }
   const q = req.query.q || '';
   const suggestions = await stmt.vehicleSuggest(q);
-  return res.json(suggestions.map((r) => r.vehicle));
+  return res.json(suggestions);
 });
 
 // GET /api/admin/settings
@@ -387,17 +380,6 @@ router.put('/settings', adminWriteMiddleware, async (req, res) => {
     businessName: businessNameValidation.value,
     whatsappNumber: whatsappValidation.value,
   });
-});
-
-// --- Multer error handler for admin routes ---
-router.use((err, req, res, next) => {
-  if (err) {
-    let status = 500;
-    if (err.message === 'UNSUPPORTED_TYPE') status = 415;
-    if (err.code === 'LIMIT_FILE_SIZE') status = 413;
-    return res.status(status).json({ error: err.message || 'Upload failed.' });
-  }
-  next();
 });
 
 module.exports = router;

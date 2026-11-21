@@ -107,6 +107,40 @@ test('POST /api/admin/suppliers without CSRF returns 403', async () => {
   assert.strictEqual(r.status, 403);
 });
 
+test('GET /api/admin/vehicles/suggest returns string suggestions', async () => {
+  const r = await request('GET', base + '/api/admin/vehicles/suggest?q=');
+  assert.strictEqual(r.status, 200);
+  assert.ok(Array.isArray(r.body));
+  // Every item must be a non-null string, not null/undefined
+  r.body.forEach((item) => {
+    assert.strictEqual(typeof item, 'string');
+    assert.notStrictEqual(item, null);
+  });
+});
+
+test('admin supplier CRUD and settings workflow', async () => {
+  // Create supplier
+  const createRes = await request('POST', base + '/api/admin/suppliers', { name: 'Test Brand OEM', logo: null }, { 'X-CSRF-Token': adminCsrf });
+  assert.strictEqual(createRes.status, 201);
+  const supplierId = createRes.body.id;
+  assert.ok(supplierId);
+
+  // Patch supplier
+  const patchRes = await request('PATCH', base + `/api/admin/suppliers/${supplierId}`, { name: 'Test Brand Updated' }, { 'X-CSRF-Token': adminCsrf });
+  assert.strictEqual(patchRes.status, 200);
+  assert.strictEqual(patchRes.body.name, 'Test Brand Updated');
+
+  // Update settings
+  const putSettingsRes = await request('PUT', base + '/api/admin/settings', { businessName: 'Sai Rudra Motors Test', whatsappNumber: '918660957903' }, { 'X-CSRF-Token': adminCsrf });
+  assert.strictEqual(putSettingsRes.status, 200);
+  assert.strictEqual(putSettingsRes.body.businessName, 'Sai Rudra Motors Test');
+
+  // Delete supplier
+  const delRes = await request('DELETE', base + `/api/admin/suppliers/${supplierId}`, {}, { 'X-CSRF-Token': adminCsrf });
+  assert.strictEqual(delRes.status, 200);
+  assert.strictEqual(delRes.body.ok, true);
+});
+
 test('POST /api/admin/logout', async () => {
   const s = await request('GET', base + '/api/admin/session');
   adminCsrf = s.body.csrfToken;

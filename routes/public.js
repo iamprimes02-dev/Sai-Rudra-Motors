@@ -39,21 +39,13 @@ router.get('/suppliers/:id/parts', async (req, res) => {
     return res.status(404).json({ error: 'Supplier not found.' });
   }
 
-  const parts = await stmt.listPartsBySupplier(supplierId, vehicle);
-  const partsWithUrl = parts.map((p) => ({
-    ...p,
-    imageUrl: getImageUrl(p.image_key),
-  }));
+  // Fetch all parts for this supplier once
+  const allParts = await stmt.listPartsBySupplier(supplierId);
 
-  // Distinct vehicles for filter dropdown
-  const { data: allParts } = await stmt.supabase
-    .from('parts')
-    .select('vehicles')
-    .eq('supplier_id', supplierId);
-
+  // Distinct vehicles extracted from parts in memory (no duplicate query)
   const seen = new Set();
   const vehicles = [];
-  for (const p of allParts || []) {
+  for (const p of allParts) {
     const arr = Array.isArray(p.vehicles) ? p.vehicles : JSON.parse(p.vehicles || '[]');
     for (const v of arr) {
       if (!seen.has(v)) {
@@ -64,32 +56,22 @@ router.get('/suppliers/:id/parts', async (req, res) => {
   }
   vehicles.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'accent' }));
 
+  // Filter if vehicle query param is given
+  let parts = allParts;
+  if (vehicle) {
+    const vLower = vehicle.toLowerCase();
+    parts = allParts.filter((p) => {
+      const arr = Array.isArray(p.vehicles) ? p.vehicles : JSON.parse(p.vehicles || '[]');
+      return arr.some((v) => v.toLowerCase() === vLower);
+    });
+  }
+
+  const partsWithUrl = parts.map((p) => ({
+    ...p,
+    imageUrl: getImageUrl(p.image_key),
+  }));
+
   res.json({ supplier, vehicles, parts: partsWithUrl });
-});
-
-// GET /uploads/:id - serve image from Supabase Storage proxied through the server
-router.get('/uploads/:id', async (req, res) => {
-  const partId = Number(req.params.id);
-  const imageData = await stmt.getImageByPartId(partId);
-  if (!imageData || !imageData.image_key) {
-    return res.status(404).json({ error: 'Image not found.' });
-  }
-
-  // image_key is a Supabase Storage path like 'part-images/<uuid>.jpg'
-  // Fetch from Supabase Storage and stream to client
-  const { data, error } = await stmt.supabase.storage.from('part-images').download(imageData.image_key);
-  if (error || !data) {
-    return res.status(404).json({ error: 'Image not found.' });
-  }
-
-  // Convert Blob to Buffer
-  const arrayBuffer = await data.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-
-  const contentType = data.type || 'application/octet-stream';
-  res.set('Content-Type', contentType);
-  res.set('Cache-Control', 'public, max-age=31536000, immutable');
-  res.send(buffer);
 });
 
 module.exports = router;
