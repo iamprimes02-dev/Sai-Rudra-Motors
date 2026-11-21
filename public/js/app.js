@@ -12,8 +12,8 @@ const OFFICIAL_DISTRIBUTORS = [
     name: 'Sangsin Brakes',
     logo: '01_sangsin_brakes.png',
     category: 'braking',
-    categoryLabel: 'Braking Systems',
-    description: 'Leading OEM & OES brake pads, brake shoes, and commercial friction materials.',
+    categoryLabel: 'Brakes',
+    description: 'Brake pads, brake shoes, and commercial brake linings.',
     partCount: 0,
     logoUrl: '/logos/01_sangsin_brakes.png'
   },
@@ -22,8 +22,8 @@ const OFFICIAL_DISTRIBUTORS = [
     name: 'Autolek Filters',
     logo: '02_autolek_filters.png',
     category: 'filtration',
-    categoryLabel: 'Filtration Systems',
-    description: 'High-performance engine oil, air, cabin, and fuel filtration elements.',
+    categoryLabel: 'Filters',
+    description: 'Engine oil, air, AC cabin, and fuel filters.',
     partCount: 0,
     logoUrl: '/logos/02_autolek_filters.png'
   },
@@ -32,8 +32,8 @@ const OFFICIAL_DISTRIBUTORS = [
     name: 'Rotex Brake Discs',
     logo: '03_rotex_brake_discs.png',
     category: 'braking',
-    categoryLabel: 'Braking Systems',
-    description: 'Ventilated and solid precision brake discs and rotors with superior heat dissipation.',
+    categoryLabel: 'Brakes',
+    description: 'Solid and ventilated brake discs and rotors.',
     partCount: 0,
     logoUrl: '/logos/03_rotex_brake_discs.png'
   },
@@ -42,8 +42,8 @@ const OFFICIAL_DISTRIBUTORS = [
     name: 'MX Mark Xtralife',
     logo: '04_mx_mark_xtralife.png',
     category: 'electrical',
-    categoryLabel: 'Auto Components',
-    description: 'Long-life, high-reliability automotive electrical, ignition, and mechanical spares.',
+    categoryLabel: 'Auto Spares',
+    description: 'Electrical, ignition, and mechanical replacement parts.',
     partCount: 0,
     logoUrl: '/logos/04_mx_mark_xtralife.png'
   },
@@ -53,7 +53,7 @@ const OFFICIAL_DISTRIBUTORS = [
     logo: '05_ceekay_exedy_clutches.png',
     category: 'clutch',
     categoryLabel: 'Clutch & Transmission',
-    description: 'Genuine OEM clutch plates, clutch cover assemblies, and release bearings.',
+    description: 'Clutch plates, cover assemblies, and release bearings.',
     partCount: 0,
     logoUrl: '/logos/05_ceekay_exedy_clutches.png'
   },
@@ -62,8 +62,8 @@ const OFFICIAL_DISTRIBUTORS = [
     name: 'Mavrod Suspension',
     logo: '06_mavrod_suspension.png',
     category: 'suspension',
-    categoryLabel: 'Suspension & Steering',
-    description: 'Gas-charged shock absorbers, strut assemblies, and heavy-duty suspension kits.',
+    categoryLabel: 'Suspension',
+    description: 'Shock absorbers, strut assemblies, and suspension kits.',
     partCount: 0,
     logoUrl: '/logos/06_mavrod_suspension.png'
   },
@@ -72,8 +72,8 @@ const OFFICIAL_DISTRIBUTORS = [
     name: 'TVS Coolants',
     logo: '07_tvs_coolants.png',
     category: 'fluids',
-    categoryLabel: 'Fluids & Lubricants',
-    description: 'High-grade anti-freeze engine radiator coolants and heat-transfer fluids.',
+    categoryLabel: 'Oils & Coolants',
+    description: 'Engine radiator coolants and anti-freeze fluids.',
     partCount: 0,
     logoUrl: '/logos/07_tvs_coolants.png'
   },
@@ -82,18 +82,18 @@ const OFFICIAL_DISTRIBUTORS = [
     name: 'MB Techno Rubber',
     logo: '08_mb_techno_rubber.png',
     category: 'rubber',
-    categoryLabel: 'Rubber Components',
-    description: 'Anti-vibration suspension bushings, engine mounts, bellows, and steering boots.',
+    categoryLabel: 'Rubber Parts',
+    description: 'Suspension bushes, engine mounts, bellows, and steering boots.',
     partCount: 0,
     logoUrl: '/logos/08_mb_techno_rubber.png'
   },
   {
     id: 9,
-    name: 'HL Mando Suspension & Brakes',
+    name: 'HL Mando',
     logo: '09_hl_mando_suspension_brakes.png',
     category: 'suspension',
     categoryLabel: 'Steering & Suspension',
-    description: 'OEM steering gearboxes, steering columns, shock absorbers, and calipers.',
+    description: 'Steering racks, columns, shock absorbers, and brake calipers.',
     partCount: 0,
     logoUrl: '/logos/09_hl_mando_suspension_brakes.png'
   },
@@ -102,8 +102,8 @@ const OFFICIAL_DISTRIBUTORS = [
     name: 'Delphi Engine Oils',
     logo: '10_delphi_engine_oils.png',
     category: 'fluids',
-    categoryLabel: 'Fluids & Lubricants',
-    description: 'Advanced fully synthetic and semi-synthetic motor oils for petrol & diesel engines.',
+    categoryLabel: 'Oils & Coolants',
+    description: 'Synthetic and semi-synthetic engine oils for petrol and diesel vehicles.',
     partCount: 0,
     logoUrl: '/logos/10_delphi_engine_oils.png'
   },
@@ -113,7 +113,7 @@ const OFFICIAL_DISTRIBUTORS = [
     logo: '11_delphi_driveshafts.png',
     category: 'clutch',
     categoryLabel: 'Drivetrain & Axles',
-    description: 'Complete constant velocity (CV) drive axles, CV joints, and heavy-duty boots.',
+    description: 'Complete CV axles, CV joints, and axle boots.',
     partCount: 0,
     logoUrl: '/logos/11_delphi_driveshafts.png'
   }
@@ -137,29 +137,29 @@ let whatsappNumber = '918660957903';
 
 function buildGeneralMessage() {
   return (
-    'Hello Sai Rudra Motors Distributors,\n' +
-    'I would like to inquire about automotive spare parts availability.\n' +
-    'Please connect me with the sales depot.'
+    'Hello Sai Rudra Motors,\n' +
+    'I want to check availability and rates for auto spare parts.\n' +
+    'Please connect me with your counter.'
   );
 }
 
 function buildBrandInquiryMessage(brandName) {
   return (
-    'Hello Sai Rudra Motors Distributors,\n' +
-    'I would like to inquire about genuine parts for ' + brandName + '.\n' +
-    'Please let me know about current stock and dispatch availability for my vehicle.'
+    'Hello Sai Rudra Motors,\n' +
+    'I want to check stock and rates for ' + brandName + '.\n' +
+    'Please let me know availability and dispatch.'
   );
 }
 
 function buildPartMessage(supplier, partNameOrRef, vehicles) {
   const vehicleList = Array.isArray(vehicles) ? vehicles.join(', ') : String(vehicles || '');
   return (
-    'Hello Sai Rudra Motors Distributors,\n' +
-    'I would like to check availability for this part:\n\n' +
+    'Hello Sai Rudra Motors,\n' +
+    'I want to check stock and rates for this part:\n\n' +
     '• Brand: ' + supplier + '\n' +
     '• Part: ' + partNameOrRef + '\n' +
     '• Compatible Vehicles: ' + vehicleList + '\n\n' +
-    'Please advise availability and dispatch time. Thank you.'
+    'Please confirm availability and dispatch. Thank you.'
   );
 }
 
@@ -292,7 +292,7 @@ function initHomePage() {
 
     if (emptyState) emptyState.classList.add('hidden');
     if (searchCountEl) {
-      searchCountEl.textContent = `Showing ${list.length} of ${brandList.length} authorized distributor lines`;
+      searchCountEl.textContent = `Showing ${list.length} of ${brandList.length} authorized brands`;
     }
 
     list.forEach((s, idx) => {
@@ -300,7 +300,7 @@ function initHomePage() {
       card.className = 'brand-card';
 
       const logoUrl = s.logoUrl || (s.logo ? `/logos/${s.logo}` : '/logos/01_sangsin_brakes.png');
-      const categoryLabel = s.categoryLabel || s.category || 'Automotive Spares';
+      const categoryLabel = s.categoryLabel || s.category || 'Auto Spares';
       const description = s.description || 'Genuine factory replacement components and assemblies.';
       const catClass = `cat-${s.category || 'automotive'}`;
       const lineNum = String(idx + 1).padStart(2, '0');
@@ -314,9 +314,9 @@ function initHomePage() {
         <div class="brand-card-body">
           <div class="brand-card-header">
             <span class="brand-category-badge ${catClass}">${escapeHtml(categoryLabel)}</span>
-            <span class="brand-verified-chip" title="Direct Authorized OEM / OES Supply">
+            <span class="brand-verified-chip" title="100% Genuine Company Stock">
               <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              OEM Direct
+              100% Genuine
             </span>
           </div>
           <h3 class="brand-title"><a href="/supplier/${s.id}">${escapeHtml(s.name)}</a></h3>
@@ -326,9 +326,9 @@ function initHomePage() {
               <span>View Catalogue</span>
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <button type="button" class="btn-quick-wa" data-brand="${escapeAttr(s.name)}" aria-label="WhatsApp Inquiry">
+            <button type="button" class="btn-quick-wa" data-brand="${escapeAttr(s.name)}" aria-label="Ask for Stock">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.87-.2-.5-.42-.43-.57-.44l-.49-.01c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.23.9 2.42 1.02 2.59.12.17 1.77 2.7 4.28 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              <span>Inquire</span>
+              <span>Ask for Stock</span>
             </button>
           </div>
         </div>
@@ -392,11 +392,15 @@ function initHomePage() {
       if (Array.isArray(data) && data.length > 0) {
         // Merge API data with official enriched list
         brandList = data.map((item) => {
-          const match = OFFICIAL_DISTRIBUTORS.find(d => d.name.toLowerCase() === item.name.toLowerCase());
+          const match = OFFICIAL_DISTRIBUTORS.find(d => 
+            d.name.toLowerCase() === item.name.toLowerCase() ||
+            (d.name === 'HL Mando' && item.name.toLowerCase().includes('hl mando'))
+          );
           return {
             ...item,
+            name: match ? match.name : item.name,
             category: (match && match.category) || 'automotive',
-            categoryLabel: (match && match.categoryLabel) || 'Automotive Component',
+            categoryLabel: (match && match.categoryLabel) || 'Auto Spares',
             description: (match && match.description) || 'Genuine factory replacement components and assemblies.',
             logoUrl: item.logoUrl || (match && match.logoUrl) || (item.logo ? `/logos/${item.logo}` : null),
           };
@@ -475,12 +479,12 @@ function initHomePage() {
         }
 
         const message = 
-          'Hello Sai Rudra Motors Distributors,\n' +
-          'I would like to check availability and wholesale price quote for:\n\n' +
-          '• Manufacturer / Brand: ' + brand + '\n' +
-          '• Vehicle Model & Year: ' + vehicle + '\n' +
-          '• Component Required: ' + part + '\n\n' +
-          'Please confirm stock availability and dispatch time. Thank you.';
+          'Hello Sai Rudra Motors,\n' +
+          'I want to check stock and price for:\n\n' +
+          '• Brand: ' + brand + '\n' +
+          '• Vehicle & Year: ' + vehicle + '\n' +
+          '• Part Needed: ' + part + '\n\n' +
+          'Please confirm availability and dispatch. Thank you.';
 
         const link = buildContactLink(whatsappNumber, message);
         if (link) window.open(link, '_blank', 'noopener,noreferrer');

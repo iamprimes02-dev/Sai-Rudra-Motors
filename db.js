@@ -56,17 +56,17 @@ async function ensureLogoColumn() {
 }
 
 const DEFAULT_SUPPLIERS = [
-  { id: 1, name: 'Sangsin Brakes', logo: '01_sangsin_brakes.png', category: 'Braking Systems', description: 'OEM Brake Pads, Brake Shoes & Commercial Linings', partCount: 0 },
-  { id: 2, name: 'Autolek Filters', logo: '02_autolek_filters.png', category: 'Filtration', description: 'High-Efficiency Oil, Air, Cabin & Fuel Filters', partCount: 0 },
-  { id: 3, name: 'Rotex Brake Discs', logo: '03_rotex_brake_discs.png', category: 'Braking Systems', description: 'Ventilated & Solid Precision Brake Rotors', partCount: 0 },
-  { id: 4, name: 'MX Mark Xtralife', logo: '04_mx_mark_xtralife.png', category: 'Electrical & Parts', description: 'Heavy-Duty Automotive Electrical & Mechanical Spares', partCount: 0 },
-  { id: 5, name: 'Ceekay Exedy Clutches', logo: '05_ceekay_exedy_clutches.png', category: 'Clutch & Transmission', description: 'Clutch Plates, Cover Assemblies & Release Bearings', partCount: 0 },
-  { id: 6, name: 'Mavrod Suspension', logo: '06_mavrod_suspension.png', category: 'Suspension & Steering', description: 'Gas-Charged Shock Absorbers & Suspension Struts', partCount: 0 },
-  { id: 7, name: 'TVS Coolants', logo: '07_tvs_coolants.png', category: 'Fluids & Lubricants', description: 'Radiator Coolants, Anti-Freeze & Thermal Fluids', partCount: 0 },
-  { id: 8, name: 'MB Techno Rubber', logo: '08_mb_techno_rubber.png', category: 'Rubber Components', description: 'Molded Rubber Bushings, Engine Mounts & Boots', partCount: 0 },
-  { id: 9, name: 'HL Mando Suspension & Brakes', logo: '09_hl_mando_suspension_brakes.png', category: 'Steering & Suspension', description: 'OEM Steering Racks, Dampers & Brake Calipers', partCount: 0 },
-  { id: 10, name: 'Delphi Engine Oils', logo: '10_delphi_engine_oils.png', category: 'Fluids & Lubricants', description: 'Full Synthetic & Semi-Synthetic Premium Motor Oils', partCount: 0 },
-  { id: 11, name: 'Delphi Driveshafts', logo: '11_delphi_driveshafts.png', category: 'Drivetrain & Axles', description: 'Constant Velocity Axles, CV Joints & Shafts', partCount: 0 },
+  { id: 1, name: 'Sangsin Brakes', logo: '01_sangsin_brakes.png', category: 'Brakes', description: 'Brake pads, brake shoes, and commercial brake linings.', partCount: 0 },
+  { id: 2, name: 'Autolek Filters', logo: '02_autolek_filters.png', category: 'Filters', description: 'Engine oil, air, AC cabin, and fuel filters.', partCount: 0 },
+  { id: 3, name: 'Rotex Brake Discs', logo: '03_rotex_brake_discs.png', category: 'Brakes', description: 'Solid and ventilated brake discs and rotors.', partCount: 0 },
+  { id: 4, name: 'MX Mark Xtralife', logo: '04_mx_mark_xtralife.png', category: 'Auto Spares', description: 'Electrical, ignition, and mechanical replacement parts.', partCount: 0 },
+  { id: 5, name: 'Ceekay Exedy Clutches', logo: '05_ceekay_exedy_clutches.png', category: 'Clutch & Transmission', description: 'Clutch plates, cover assemblies, and release bearings.', partCount: 0 },
+  { id: 6, name: 'Mavrod Suspension', logo: '06_mavrod_suspension.png', category: 'Suspension', description: 'Shock absorbers, strut assemblies, and suspension kits.', partCount: 0 },
+  { id: 7, name: 'TVS Coolants', logo: '07_tvs_coolants.png', category: 'Oils & Coolants', description: 'Engine radiator coolants and anti-freeze fluids.', partCount: 0 },
+  { id: 8, name: 'MB Techno Rubber', logo: '08_mb_techno_rubber.png', category: 'Rubber Parts', description: 'Suspension bushes, engine mounts, bellows, and steering boots.', partCount: 0 },
+  { id: 9, name: 'HL Mando', logo: '09_hl_mando_suspension_brakes.png', category: 'Steering & Suspension', description: 'Steering racks, columns, shock absorbers, and brake calipers.', partCount: 0 },
+  { id: 10, name: 'Delphi Engine Oils', logo: '10_delphi_engine_oils.png', category: 'Oils & Coolants', description: 'Synthetic and semi-synthetic engine oils for petrol and diesel vehicles.', partCount: 0 },
+  { id: 11, name: 'Delphi Driveshafts', logo: '11_delphi_driveshafts.png', category: 'Drivetrain & Axles', description: 'Complete CV axles, CV joints, and axle boots.', partCount: 0 },
 ];
 
 /**
@@ -132,12 +132,15 @@ const stmt = {
             .from('parts')
             .select('*', { count: 'exact', head: true })
             .eq('supplier_id', s.id);
-          const defaultMatch = DEFAULT_SUPPLIERS.find(d => d.name.toLowerCase() === s.name.toLowerCase());
+          const defaultMatch = DEFAULT_SUPPLIERS.find(d => 
+            d.name.toLowerCase() === s.name.toLowerCase() ||
+            (d.name === 'HL Mando' && s.name.toLowerCase().includes('hl mando'))
+          );
           return {
             id: s.id,
-            name: s.name,
+            name: defaultMatch ? defaultMatch.name : s.name,
             logo: s.logo || (defaultMatch ? defaultMatch.logo : null),
-            category: (defaultMatch && defaultMatch.category) || 'Automotive Spares',
+            category: (defaultMatch && defaultMatch.category) || 'Auto Spares',
             description: (defaultMatch && defaultMatch.description) || '',
             partCount: count !== null ? count : _inMemoryParts.filter(p => p.supplier_id === s.id).length,
             created_at: s.created_at,
@@ -157,11 +160,15 @@ const stmt = {
         .eq('id', id)
         .single();
       if (!error && data) {
-        const defaultMatch = DEFAULT_SUPPLIERS.find(d => d.name.toLowerCase() === data.name.toLowerCase());
+        const defaultMatch = DEFAULT_SUPPLIERS.find(d => 
+          d.name.toLowerCase() === data.name.toLowerCase() ||
+          (d.name === 'HL Mando' && data.name.toLowerCase().includes('hl mando'))
+        );
         return {
           ...data,
+          name: defaultMatch ? defaultMatch.name : data.name,
           logo: data.logo || (defaultMatch ? defaultMatch.logo : null),
-          category: (defaultMatch && defaultMatch.category) || 'Automotive Spares',
+          category: (defaultMatch && defaultMatch.category) || 'Auto Spares',
           description: (defaultMatch && defaultMatch.description) || '',
         };
       }
