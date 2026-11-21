@@ -10,6 +10,7 @@ const supplierId = pathTokens[pathTokens.length - 1];
 const partGrid = document.getElementById('partGrid');
 const vehicleFilter = document.getElementById('vehicleFilter');
 const partSearch = document.getElementById('partSearch');
+const clearPartSearchBtn = document.getElementById('clearPartSearchBtn');
 const shownCountEl = document.getElementById('shownCount');
 const totalCountEl = document.getElementById('totalCount');
 const emptyState = document.getElementById('emptyState');
@@ -17,6 +18,8 @@ const supplierTitleEl = document.getElementById('supplierTitle');
 const supplierLogoEl = document.getElementById('supplierLogo');
 const supplierDescEl = document.getElementById('supplierDescription');
 const supplierPartsCountHeader = document.getElementById('supplierPartsCount');
+const breadcrumbBrand = document.getElementById('breadcrumbBrand');
+const supplierInquireBtn = document.getElementById('supplierInquireBtn');
 
 let allParts = [];
 let supplierData = null;
@@ -51,6 +54,7 @@ async function loadSupplierAndParts() {
 
     // Populate Header Elements
     if (supplierTitleEl) supplierTitleEl.textContent = supplierData.name;
+    if (breadcrumbBrand) breadcrumbBrand.textContent = supplierData.name;
     document.title = `${supplierData.name} Parts - Sai Rudra Motors`;
 
     const logoSrc = supplierData.logoUrl || (supplierData.logo ? `/logos/${supplierData.logo}` : null);
@@ -121,6 +125,10 @@ function populateVehicleFilter(vehicles) {
 function applyFilters() {
   const selectedVehicle = vehicleFilter ? vehicleFilter.value.trim().toLowerCase() : '';
   const searchKeywords = partSearch ? partSearch.value.trim().toLowerCase() : '';
+
+  if (clearPartSearchBtn) {
+    clearPartSearchBtn.style.display = searchKeywords ? 'block' : 'none';
+  }
 
   const filtered = allParts.filter((part) => {
     const partName = (part.name || '').toLowerCase();
@@ -246,6 +254,25 @@ if (vehicleFilter) {
 
 if (partSearch) {
   partSearch.addEventListener('input', applyFilters);
+}
+
+if (clearPartSearchBtn) {
+  clearPartSearchBtn.addEventListener('click', () => {
+    if (partSearch) {
+      partSearch.value = '';
+      applyFilters();
+      partSearch.focus();
+    }
+  });
+}
+
+if (supplierInquireBtn) {
+  supplierInquireBtn.addEventListener('click', () => {
+    const bName = supplierData ? supplierData.name : 'this brand';
+    const msg = buildBrandInquiryMessage(bName);
+    const link = buildContactLink(whatsappNumber, msg);
+    if (link) window.open(link, '_blank', 'noopener,noreferrer');
+  });
 }
 
 document.addEventListener('DOMContentLoaded', loadSupplierAndParts);

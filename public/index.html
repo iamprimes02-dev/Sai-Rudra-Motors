@@ -49,19 +49,34 @@
         </div>
       </a>
 
-      <nav class="srm-nav-links hide-mobile">
+      <nav class="srm-nav-links hide-mobile" id="desktopNav">
         <a href="#brandsSection" class="nav-anchor active">Authorized Brands</a>
         <a href="#componentLines" class="nav-anchor">Product Lines</a>
         <a href="#quickInquiry" class="nav-anchor">Workshop Quote</a>
         <a href="#depotInfo" class="nav-anchor">Depot Contact</a>
       </nav>
 
-      <div class="srm-nav-cta">
+      <div class="srm-nav-actions">
         <button class="srm-wa-btn" data-contact-btn="header" aria-label="Instant WhatsApp Enquiry">
           <svg class="wa-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.87-.2-.5-.42-.43-.57-.44l-.49-.01c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.23.9 2.42 1.02 2.59.12.17 1.77 2.7 4.28 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
           <span class="btn-caption">WhatsApp Depot</span>
         </button>
+        <button class="srm-mobile-menu-toggle hide-desktop" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
       </div>
+    </div>
+    <!-- Mobile Drawer Navigation -->
+    <div class="srm-mobile-drawer" id="mobileDrawer">
+      <div class="drawer-inner">
+        <a href="#brandsSection" class="drawer-link">Authorized Brands (11)</a>
+        <a href="#componentLines" class="drawer-link">Component Systems</a>
+        <a href="#quickInquiry" class="drawer-link">Quick Workshop Quote</a>
+        <a href="#depotInfo" class="drawer-link">Depot & Wholesale Info</a>
+        <a href="tel:+918660957903" class="drawer-link phone-drawer-link">Call Depot: +91 86609 57903</a>
+        <a href="/admin" class="drawer-link portal-drawer-link">Dealer Admin Portal</a>
+      </div>
+    </div>
     </div>
   </header>
 
@@ -88,6 +103,7 @@
           <div class="srm-search-input-frame">
             <svg class="search-glyph" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input type="text" id="supplierSearch" placeholder="Search brands (e.g. Sangsin, Rotex, Ceekay, Delphi, Autolek)..." aria-label="Search distributor brands">
+            <span class="search-key-badge hide-mobile" title="Press / to search">/</span>
             <button type="button" id="clearSearchBtn" class="srm-clear-btn" style="display:none;" aria-label="Clear search input">&times;</button>
           </div>
           <div class="srm-search-status" id="supplierSearchCount">Showing all 11 authorized distributor lines</div>
@@ -176,33 +192,68 @@
         <span class="strip-note">Select an assembly to filter authorized partner lines</span>
       </div>
       <div class="component-card-scroller" id="componentPills">
-        <button class="comp-pill active" data-category="all">
-          <span class="pill-title">All Lines (11)</span>
-          <span class="pill-count">Complete Range</span>
+        <button class="comp-pill active" data-category="all" aria-label="Filter by all component lines">
+          <span class="pill-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          </span>
+          <span class="pill-text-wrap">
+            <span class="pill-title">All Lines (11)</span>
+            <span class="pill-count">Complete Range</span>
+          </span>
         </button>
-        <button class="comp-pill" data-category="braking">
-          <span class="pill-title">Braking Systems</span>
-          <span class="pill-count">Sangsin &bull; Rotex</span>
+        <button class="comp-pill" data-category="braking" aria-label="Filter by braking systems">
+          <span class="pill-icon cat-braking-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M12 3v3m0 12v3M3 12h3m12 0h3"></path></svg>
+          </span>
+          <span class="pill-text-wrap">
+            <span class="pill-title">Braking Systems</span>
+            <span class="pill-count">Sangsin &bull; Rotex</span>
+          </span>
         </button>
-        <button class="comp-pill" data-category="clutch">
-          <span class="pill-title">Clutch & Transmission</span>
-          <span class="pill-count">Ceekay Exedy &bull; Delphi</span>
+        <button class="comp-pill" data-category="clutch" aria-label="Filter by clutch and transmission">
+          <span class="pill-icon cat-clutch-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </span>
+          <span class="pill-text-wrap">
+            <span class="pill-title">Clutch & Transmission</span>
+            <span class="pill-count">Ceekay Exedy &bull; Delphi</span>
+          </span>
         </button>
-        <button class="comp-pill" data-category="filtration">
-          <span class="pill-title">Filtration Systems</span>
-          <span class="pill-count">Autolek Filters</span>
+        <button class="comp-pill" data-category="filtration" aria-label="Filter by filtration systems">
+          <span class="pill-icon cat-filtration-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+          </span>
+          <span class="pill-text-wrap">
+            <span class="pill-title">Filtration Systems</span>
+            <span class="pill-count">Autolek Filters</span>
+          </span>
         </button>
-        <button class="comp-pill" data-category="suspension">
-          <span class="pill-title">Suspension & Steering</span>
-          <span class="pill-count">HL Mando &bull; Mavrod</span>
+        <button class="comp-pill" data-category="suspension" aria-label="Filter by suspension and steering">
+          <span class="pill-icon cat-suspension-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v3m0 14v3M7 7h10M8 11h8M7 15h10M12 5c-3 0-5 2-5 5s2 4 5 4 5-2 5-4-2-5-5-5z"></path></svg>
+          </span>
+          <span class="pill-text-wrap">
+            <span class="pill-title">Suspension & Steering</span>
+            <span class="pill-count">HL Mando &bull; Mavrod</span>
+          </span>
         </button>
-        <button class="comp-pill" data-category="fluids">
-          <span class="pill-title">Fluids & Lubricants</span>
-          <span class="pill-count">Delphi Oils &bull; TVS</span>
+        <button class="comp-pill" data-category="fluids" aria-label="Filter by fluids and lubricants">
+          <span class="pill-icon cat-fluids-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+          </span>
+          <span class="pill-text-wrap">
+            <span class="pill-title">Fluids & Lubricants</span>
+            <span class="pill-count">Delphi Oils &bull; TVS</span>
+          </span>
         </button>
-        <button class="comp-pill" data-category="rubber">
-          <span class="pill-title">Molded Rubber</span>
-          <span class="pill-count">MB Techno Rubber</span>
+        <button class="comp-pill" data-category="rubber" aria-label="Filter by molded rubber components">
+          <span class="pill-icon cat-rubber-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="4"></rect><line x1="8" y1="8" x2="8" y2="16"></line><line x1="16" y1="8" x2="16" y2="16"></line></svg>
+          </span>
+          <span class="pill-text-wrap">
+            <span class="pill-title">Molded Rubber</span>
+            <span class="pill-count">MB Techno Rubber</span>
+          </span>
         </button>
       </div>
     </div>
@@ -369,6 +420,11 @@
     <button class="close-viewer" id="closeViewer" aria-label="Close image">&times;</button>
     <img id="viewerImage" alt="Enlarged part view">
   </div>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" id="backToTopBtn" class="srm-back-to-top" aria-label="Scroll back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
 
   <div class="toast toast-success hidden" id="toast"></div>
 
