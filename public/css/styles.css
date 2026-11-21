@@ -2234,31 +2234,58 @@ html[data-theme="dark"] .meta-tag {
 
 .part-card {
   background: var(--srm-card-bg);
-  border: 1px solid var(--srm-card-border);
-  border-radius: 18px;
+  border: 1.5px solid var(--srm-card-border);
+  border-radius: 24px;
   box-shadow: var(--srm-card-shadow);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s;
+  position: relative;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.25s;
+}
+
+.part-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0071E3, #6366F1, #0071E3);
+  background-size: 200% 100%;
+  animation: gradientFlow 5s linear infinite;
+  z-index: 3;
+  opacity: 0.85;
 }
 
 .part-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.015);
   border-color: var(--srm-card-hover-border);
-  box-shadow: var(--srm-card-hover-shadow);
+  box-shadow: 0 20px 44px -8px rgba(0, 113, 227, 0.2), 0 0 20px rgba(99, 102, 241, 0.12);
+}
+
+html[data-theme="dark"] .part-card:hover {
+  box-shadow: 0 24px 48px -10px rgba(0, 0, 0, 0.75), 0 0 24px rgba(41, 151, 255, 0.2);
 }
 
 .part-image-box {
   position: relative;
-  width: 100%;
-  padding-top: 75%; /* 4:3 */
+  margin: 10px 10px 0;
+  border-radius: 16px;
+  border: 1px solid var(--srm-pedestal-border);
+  padding-top: 70%; /* 4:3 */
   background: #FFFFFF;
-  border-bottom: 1px solid var(--srm-border-light);
   cursor: pointer;
   overflow: hidden;
+  box-shadow: var(--srm-pedestal-shadow);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.part-card:hover .part-image-box {
+  border-color: rgba(0, 113, 227, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 113, 227, 0.12);
 }
 
 .part-image-box img {

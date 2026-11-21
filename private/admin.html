@@ -3,103 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - Sai Rudra Motors</title>
+  <title>Admin Dashboard — Sai Rudra Motors</title>
   <link rel="stylesheet" href="/css/admin.css">
-  <style>
-    .admin-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    @media (min-width: 640px) {
-      .admin-stats-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    .stat-card {
-      background: #FFFFFF;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    .stat-icon {
-      font-size: 2rem;
-      background: #EFF6FF;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-    }
-    .stat-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      letter-spacing: 0.05em;
-    }
-    .stat-val {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--color-text);
-      display: block;
-      margin-top: 2px;
-    }
-    .admin-search-bar {
-      margin-bottom: 20px;
-    }
-    .admin-search-bar input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      font-size: 1rem;
-      background: #FFFFFF;
-      outline: none;
-      font-family: inherit;
-    }
-    .admin-search-bar input:focus {
-      border-color: var(--color-focus);
-    }
-    .dashboard-top {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-  </style>
+  <script src="/js/theme.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Top Bar -->
-  <div class="admin-topbar">
-    <div class="brand" style="display:flex;align-items:center;gap:10px;">
-      <span>🚗</span>
-      <span>Sai Rudra Motors &bull; Admin</span>
-    </div>
-    <div class="admin-nav">
+  <!-- Top Bar — Apple Frosted Glass Floating Dock -->
+  <header class="admin-topbar">
+    <a href="/admin" class="srm-brand-logo" style="text-decoration:none;display:flex;align-items:center;gap:12px;">
+      <div class="brand-crest">
+        <span class="crest-monogram">SRM</span>
+        <span class="crest-accent"></span>
+      </div>
+      <div class="brand-typography">
+        <span class="company-name" style="font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--color-text);letter-spacing:-0.02em;display:block;line-height:1.2;">Sai Rudra Motors</span>
+        <span class="company-descriptor" style="font-size:0.68rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;display:block;">Dealer Portal</span>
+      </div>
+    </a>
+    <nav class="admin-nav">
       <a href="#" class="nav-link active" data-view="dashboard">Suppliers</a>
       <a href="#" class="nav-link" data-view="inquiries">Enquiries &amp; Leads</a>
       <a href="#" class="nav-link" data-view="settings">Settings</a>
       <a href="/" target="_blank" class="view-site" title="Open customer website in new tab">View site &nearr;</a>
-      <button class="btn-logout" id="logoutBtn">Logout</button>
-    </div>
-  </div>
+      
+      <!-- Apple Theme Toggle Button (Light / Dark) -->
+      <button class="srm-theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Theme">
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
 
-  <div class="admin-container">
+      <button class="btn-logout" id="logoutBtn">Logout</button>
+    </nav>
+  </header>
+
+  <main class="admin-container">
     <!-- Dashboard view -->
-    <div id="viewDashboard" class="view active">
+    <section id="viewDashboard" class="view active">
       <div class="dashboard-top">
         <div>
-          <h1 style="margin-bottom:4px;">Brands & Suppliers</h1>
-          <p style="color:var(--color-text-muted);font-size:0.95rem;">Manage automotive manufacturers, authorized brands, and their parts inventory.</p>
+          <h1>Brands &amp; Suppliers</h1>
+          <p style="color:var(--color-text-muted);font-size:0.95rem;margin:0;">Manage automotive manufacturers, authorized brands, and their parts inventory.</p>
         </div>
         <button class="btn-primary" id="addSupplierBtn">+ Add New Supplier</button>
       </div>
@@ -124,7 +70,7 @@
           <div class="stat-icon">💬</div>
           <div>
             <span class="stat-label">WhatsApp Contact</span>
-            <span class="stat-val" id="statWhatsappNum" style="font-size:1.1rem;color:var(--color-whatsapp);">Active</span>
+            <span class="stat-val" id="statWhatsappNum" style="font-size:1.15rem;color:var(--color-whatsapp);">Active</span>
           </div>
         </div>
         <div class="stat-card">
@@ -148,15 +94,15 @@
         <h2>No suppliers found.</h2>
         <p>Add your first supplier to get started.</p>
       </div>
-    </div>
+    </section>
 
     <!-- Add / Edit supplier form -->
-    <div id="viewSupplierForm" class="view hidden">
+    <section id="viewSupplierForm" class="view hidden">
       <div style="display:flex;align-items:center;gap:var(--spacing-12);margin-bottom:var(--spacing-20);">
         <button class="btn-secondary" id="backToDashboardFromSupplierForm">&larr; Back to suppliers</button>
-        <h1 id="supplierFormTitle">Add supplier</h1>
+        <h1 id="supplierFormTitle" style="margin:0;">Add supplier</h1>
       </div>
-      <form id="supplierForm" novalidate class="form-panel" style="max-width:550px;">
+      <form id="supplierForm" novalidate class="form-panel" style="max-width:580px;">
         <div class="form-group">
           <label for="supplierName">Supplier Name (required)</label>
           <input type="text" id="supplierName" name="name" required maxlength="60" placeholder="e.g. Sangsin Brakes">
@@ -168,14 +114,15 @@
           <select id="supplierLogo" name="logo">
             <option value="">No logo</option>
           </select>
+          <!-- The Genuine Pedestal Rule for Logos -->
           <div class="logo-preview" id="logoPreview" style="margin-top:var(--spacing-12);display:none;">
-            <img id="previewLogo" alt="Logo preview" style="max-width:140px;height:auto;border-radius:var(--radius);border:1px solid var(--color-border);padding:8px;background:#FFFFFF;">
+            <img id="previewLogo" alt="Logo preview" style="max-width:140px;height:auto;border-radius:var(--radius-sm);border:1.5px solid var(--color-border);padding:10px;background:#FFFFFF;">
           </div>
           <div class="field-error" id="supplierLogoError"></div>
         </div>
 
         <div class="field-error" id="supplierFormError"></div>
-        <div style="display:flex;gap:var(--spacing-12);margin-top:var(--spacing-16);">
+        <div style="display:flex;gap:var(--spacing-12);margin-top:var(--spacing-20);">
           <button type="submit" class="btn-primary" id="supplierFormSaveBtn">Save Supplier</button>
           <button type="button" class="btn-secondary" id="supplierFormCancelBtn">Cancel</button>
           <input type="hidden" id="supplierFormId">
@@ -183,14 +130,14 @@
       </form>
       <button class="btn-danger" id="deleteSupplierBtn" style="display:none;margin-top:var(--spacing-20);">Delete Supplier</button>
       <div class="field-error" id="deleteSupplierError"></div>
-    </div>
+    </section>
 
     <!-- Supplier parts view -->
-    <div id="viewSupplierParts" class="view hidden">
+    <section id="viewSupplierParts" class="view hidden">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--spacing-12);margin-bottom:var(--spacing-24);">
         <div style="display:flex;align-items:center;gap:var(--spacing-12);">
           <button class="btn-secondary" id="backToDashboard">&larr; Back to suppliers</button>
-          <h1 id="partsPageTitle">Parts</h1>
+          <h1 id="partsPageTitle" style="margin:0;">Parts</h1>
         </div>
         <button class="btn-primary" id="addPartBtn">+ Add Part</button>
       </div>
@@ -201,25 +148,25 @@
         <h2>No parts listed for this supplier yet.</h2>
         <p>Add your first part with a photo and compatible vehicles.</p>
       </div>
-    </div>
+    </section>
 
     <!-- Add / Edit part form -->
-    <div id="viewPartForm" class="view hidden">
+    <section id="viewPartForm" class="view hidden">
       <div style="display:flex;align-items:center;gap:var(--spacing-12);margin-bottom:var(--spacing-24);">
         <button class="btn-secondary" id="backToParts">&larr; Back to parts</button>
-        <h1 id="partFormTitle">Add part</h1>
+        <h1 id="partFormTitle" style="margin:0;">Add part</h1>
       </div>
-      <form id="partForm" novalidate class="form-panel" style="max-width:650px;">
+      <form id="partForm" novalidate class="form-panel" style="max-width:680px;">
         <div class="form-group">
           <label>Photo (required)</label>
-          <div class="image-picker" id="imagePicker" style="border:2px dashed var(--color-border);padding:24px;text-align:center;border-radius:var(--radius);cursor:pointer;background:#FAFAFA;">
+          <div class="image-picker" id="imagePicker">
             <input type="file" id="partImage" accept="image/jpeg,image/png,image/webp" style="display:none;">
             <div style="font-size:2rem;margin-bottom:8px;">📷</div>
-            <p style="font-weight:600;margin-bottom:4px;">Tap or drag & drop to choose a photo</p>
+            <p style="font-weight:700;color:var(--color-text);">Tap or drag &amp; drop to choose a photo</p>
             <p style="font-size:0.85rem;color:var(--color-text-muted);">JPG, PNG or WebP, up to 5 MB</p>
           </div>
-          <div class="image-preview" id="imagePreview" style="margin-top:12px;display:none;">
-            <img id="previewImage" alt="Photo preview" style="max-width:200px;height:auto;border-radius:var(--radius);border:1px solid var(--color-border);">
+          <div class="image-preview" id="imagePreview">
+            <img id="previewImage" alt="Photo preview">
           </div>
           <button type="button" class="btn-secondary" id="changePhotoBtn" style="display:none;margin-top:8px;">Change photo</button>
           <div class="field-error" id="imageError"></div>
@@ -232,7 +179,7 @@
           </div>
           <div id="tagSuggestions" class="tag-suggestions"></div>
           <div class="field-error" id="vehiclesError"></div>
-          <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:var(--spacing-4);">Press Enter or Comma after typing each vehicle name.</p>
+          <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:var(--spacing-6);">Press Enter or Comma after typing each vehicle name.</p>
         </div>
 
         <div class="form-group">
@@ -242,7 +189,7 @@
         </div>
 
         <div class="field-error" id="partFormError"></div>
-        <div style="display:flex;gap:var(--spacing-12);margin-top:var(--spacing-16);">
+        <div style="display:flex;gap:var(--spacing-12);margin-top:var(--spacing-20);">
           <button type="submit" class="btn-primary" id="partFormSaveBtn">Save Part</button>
           <button type="button" class="btn-secondary" id="partFormCancelBtn">Cancel</button>
           <input type="hidden" id="partFormId">
@@ -251,29 +198,29 @@
       </form>
       <button class="btn-danger" id="deletePartBtn" style="display:none;margin-top:var(--spacing-20);">Delete Part</button>
       <div class="field-error" id="deletePartError"></div>
-    </div>
+    </section>
 
     <!-- Inquiries / Leads view -->
-    <div id="viewInquiries" class="view hidden">
+    <section id="viewInquiries" class="view hidden">
       <div class="dashboard-top">
         <div>
-          <h1 style="margin-bottom:4px;">Stock Enquiries &amp; Customer Leads</h1>
-          <p style="color:var(--color-text-muted);font-size:0.95rem;">Live customer requirements captured from the website Stock Check box.</p>
+          <h1>Stock Enquiries &amp; Customer Leads</h1>
+          <p style="color:var(--color-text-muted);font-size:0.95rem;margin:0;">Live customer requirements captured from the website Stock Check box.</p>
         </div>
-        <button class="btn-secondary" id="refreshInquiriesBtn" style="padding:8px 14px;border-radius:var(--radius);cursor:pointer;">&#8635; Refresh</button>
+        <button class="btn-secondary" id="refreshInquiriesBtn">&#8635; Refresh Leads</button>
       </div>
 
-      <div class="inquiries-list" id="inquiriesList" style="display:flex;flex-direction:column;gap:12px;">
+      <div class="inquiries-list" id="inquiriesList" style="display:flex;flex-direction:column;gap:14px;">
         <!-- Inquiries injected here -->
       </div>
       <div class="empty-state hidden" id="inquiriesEmpty">
         <h2>No enquiries yet.</h2>
         <p>Customer submissions from the website Stock Check &amp; Price form will automatically appear here.</p>
       </div>
-    </div>
+    </section>
 
     <!-- Settings view -->
-    <div id="viewSettings" class="view hidden">
+    <section id="viewSettings" class="view hidden">
       <h1 style="margin-bottom:20px;">Business Settings</h1>
       <form id="settingsForm" novalidate>
         <div class="settings-grid">
@@ -287,7 +234,7 @@
           </div>
           <div class="form-panel">
             <h2>WhatsApp Contact Number</h2>
-            <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:var(--spacing-12);">Used for customer inquiry links. Digits only, with country code (e.g. 918660957903).</p>
+            <p style="font-size:0.88rem;color:var(--color-text-muted);margin-bottom:var(--spacing-16);">Used for customer inquiry links. Digits only, with country code (e.g. 918660957903).</p>
             <div class="form-group">
               <label for="whatsappNumber">WhatsApp Number</label>
               <input type="text" id="whatsappNumber" name="whatsappNumber" placeholder="918660957903" maxlength="15">
@@ -298,8 +245,8 @@
         <div class="field-error" id="settingsError"></div>
         <button type="submit" class="btn-primary" style="margin-top:20px;">Save Settings</button>
       </form>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <!-- Confirm dialog -->
   <div class="modal-overlay" id="confirmOverlay">
