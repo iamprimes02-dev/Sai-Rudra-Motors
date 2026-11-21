@@ -148,6 +148,29 @@
         <p class="widget-subtext">Send your requirement straight to our counter for availability and rates.</p>
         
         <form id="heroQuickQuoteForm" class="widget-form" novalidate>
+          <div class="form-row-2col">
+            <div class="form-field">
+              <label for="widgetNameInput">Name</label>
+              <input type="text" id="widgetNameInput" placeholder="Your Name / Workshop" required>
+            </div>
+            <div class="form-field">
+              <label for="widgetPhoneInput">Phone Number</label>
+              <input type="tel" id="widgetPhoneInput" placeholder="e.g. 98765 43210" required>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="widgetEnquiryTypeSelect">Enquiry Type</label>
+            <div class="select-frame">
+              <select id="widgetEnquiryTypeSelect" required>
+                <option value="">Select enquiry type...</option>
+                <option value="Retail Enquiry">Retail Enquiry</option>
+                <option value="Wholesale Enquiry">Wholesale Enquiry</option>
+                <option value="Brand And Availability Enquiry">Brand And Availability Enquiry</option>
+              </select>
+            </div>
+          </div>
+
           <div class="form-field">
             <label for="widgetBrandSelect">Brand</label>
             <div class="select-frame">

@@ -463,10 +463,28 @@ function initHomePage() {
     if (quoteForm) {
       quoteForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        const name = document.getElementById('widgetNameInput')?.value.trim();
+        const phone = document.getElementById('widgetPhoneInput')?.value.trim();
+        const enquiryType = document.getElementById('widgetEnquiryTypeSelect')?.value.trim();
         const brand = document.getElementById('widgetBrandSelect')?.value.trim();
         const vehicle = document.getElementById('widgetVehicleInput')?.value.trim();
         const part = document.getElementById('widgetPartInput')?.value.trim() || 'Genuine Replacement Parts';
 
+        if (!name) {
+          showToast('Please enter your name', 'error');
+          document.getElementById('widgetNameInput')?.focus();
+          return;
+        }
+        if (!phone) {
+          showToast('Please enter your phone number', 'error');
+          document.getElementById('widgetPhoneInput')?.focus();
+          return;
+        }
+        if (!enquiryType) {
+          showToast('Please select an enquiry type', 'error');
+          document.getElementById('widgetEnquiryTypeSelect')?.focus();
+          return;
+        }
         if (!brand) {
           showToast('Please select a brand from the list', 'error');
           document.getElementById('widgetBrandSelect')?.focus();
@@ -480,11 +498,14 @@ function initHomePage() {
 
         const message = 
           'Hello Sai Rudra Motors,\n' +
-          'I want to check stock and price for:\n\n' +
+          'I want to check stock and rates:\n\n' +
+          '• Name: ' + name + '\n' +
+          '• Phone: ' + phone + '\n' +
+          '• Enquiry Type: ' + enquiryType + '\n' +
           '• Brand: ' + brand + '\n' +
           '• Vehicle & Year: ' + vehicle + '\n' +
           '• Part Needed: ' + part + '\n\n' +
-          'Please confirm availability and dispatch. Thank you.';
+          'Please confirm availability and rates. Thank you.';
 
         const link = buildContactLink(whatsappNumber, message);
         if (link) window.open(link, '_blank', 'noopener,noreferrer');

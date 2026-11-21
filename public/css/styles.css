@@ -936,6 +936,19 @@ html[data-theme="dark"] .srm-hero-widget-card {
   gap: 12px;
 }
 
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
