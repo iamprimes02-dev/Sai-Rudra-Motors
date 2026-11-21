@@ -576,6 +576,10 @@ html[data-theme="dark"] .theme-icon-moon {
   border: 1px solid transparent;
 }
 
+.admin-action-btn * {
+  pointer-events: none;
+}
+
 .btn-parts {
   background: rgba(0, 102, 255, 0.08);
   color: var(--color-primary);
@@ -1272,11 +1276,11 @@ html[data-theme="dark"] .theme-icon-moon {
    View Switching
    ========================================================================== */
 .view {
-  display: none;
+  display: none !important;
 }
 
 .view.active {
-  display: block;
+  display: block !important;
 }
 
 /* ==========================================================================

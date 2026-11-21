@@ -13,6 +13,15 @@ let partImageFile = null; // File object for the current part form
 let currentPartImage = null; // Existing image name (for edit)
 let tags = []; // Current vehicle tags
 
+// Global bridge for inline event handlers (declared upfront)
+window.app = {
+  openSupplierParts: (id) => openSupplierParts(id),
+  editSupplier: (id, btn) => editSupplier(id, btn),
+  deleteSupplier: (id) => deleteSupplier(id),
+  editPart: (id) => openPartForm(id),
+  deletePart: (id) => deletePart(id),
+};
+
 // --- DOM elements ---
 const views = {
   dashboard: document.getElementById('viewDashboard'),
@@ -254,14 +263,26 @@ function confirmDialog(title, message) {
 }
 
 function switchView(viewName) {
-  Object.values(views).forEach((v) => v.classList.remove('active'));
+  Object.values(views).forEach((v) => {
+    if (v) {
+      v.classList.remove('active');
+      v.classList.add('hidden');
+      v.style.display = 'none';
+    }
+  });
   navLinks.forEach((l) => l.classList.remove('active'));
   const link = document.querySelector('.nav-link[data-view="' + viewName + '"]');
   if (link) link.classList.add('active');
-  views[viewName].classList.add('active');
+  const target = views[viewName];
+  if (target) {
+    target.classList.remove('hidden');
+    target.classList.add('active');
+    target.style.display = 'block';
+  }
 
   // Scroll to top
-  document.querySelector('.admin-container').scrollTop = 0;
+  const container = document.querySelector('.admin-container');
+  if (container) container.scrollTop = 0;
 }
 
 // --- Dashboard ---
@@ -546,22 +567,39 @@ async function deleteSupplier(id) {
 
 async function openSupplierParts(id) {
   currentSupplierId = id;
+  switchView('supplierParts');
+
+  const titleEl = document.getElementById('partsPageTitle');
+  const grid = document.getElementById('partsGrid');
+  const empty = document.getElementById('partsEmpty');
+
+  if (titleEl) titleEl.textContent = 'Loading parts...';
+  if (grid) grid.innerHTML = '';
+  if (empty) {
+    empty.classList.add('hidden');
+    empty.style.display = 'none';
+  }
+
   try {
     const res = await apiRequest('/api/admin/suppliers/' + id + '/parts');
     const data = await res.json();
 
-    document.getElementById('partsPageTitle').textContent = data.supplier.name + ' parts';
-    const grid = document.getElementById('partsGrid');
-    const empty = document.getElementById('partsEmpty');
-    grid.innerHTML = '';
+    if (titleEl) {
+      titleEl.textContent = (data.supplier && data.supplier.name ? data.supplier.name : 'Supplier') + ' parts';
+    }
 
     if (!data.parts || data.parts.length === 0) {
-      empty.classList.remove('hidden');
-      empty.style.display = 'block';
+      if (empty) {
+        empty.classList.remove('hidden');
+        empty.style.display = 'block';
+      }
       return;
     }
-    empty.classList.add('hidden');
-    empty.style.display = 'none';
+
+    if (empty) {
+      empty.classList.add('hidden');
+      empty.style.display = 'none';
+    }
 
     data.parts.forEach((part) => {
       const vehicles = typeof part.vehicles === 'string' ? JSON.parse(part.vehicles) : part.vehicles;
@@ -589,9 +627,11 @@ async function openSupplierParts(id) {
         </div>`;
       grid.appendChild(card);
     });
-
-    switchView('supplierParts');
   } catch (err) {
+    console.error('Load parts failed:', err);
+    showToastMessage('Failed to load parts.', 'danger');
+  }
+}
     console.error('Load parts failed:', err);
     showToastMessage('Failed to load parts.', 'danger');
   }
