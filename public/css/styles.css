@@ -1404,21 +1404,10 @@ html[data-theme="dark"] .curve-wave-fill-footer {
   padding: 4px 0 8px;
 }
 
-@media (min-width: 640px) and (max-width: 1099px) {
+@media (min-width: 769px) and (max-width: 1099px) {
   .component-card-scroller {
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-  }
-}
-
-@media (max-width: 639px) {
-  .component-card-scroller {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-
-  .comp-pill[data-category="all"] {
-    grid-column: span 2;
   }
 }
 
@@ -3058,68 +3047,134 @@ html[data-theme="dark"] .feature-icon-frame {
     height: 38px !important;
   }
 
-  /* Category Component Capsules: Horizontal Swipe Rail */
+  /* ========================================================================
+     Browse by Category: Precision Mobile Bento Grid
+     Master "All Brands" Pill on Top + Balanced 2-Column Subsystem Cards
+     ======================================================================== */
   .srm-component-strip {
-    padding: 18px 0 8px;
+    padding: 16px 0 6px;
   }
 
   .strip-header {
     margin-bottom: 12px;
   }
 
-  .component-card-scroller {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 8px;
-    padding: 4px 4px 10px 4px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    margin: 0 -16px;
-    padding-left: 16px;
-    padding-right: 16px;
+  .strip-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
   }
 
-  .component-card-scroller::-webkit-scrollbar {
-    display: none;
+  .strip-note {
+    font-size: 0.74rem;
+  }
+
+  .component-card-scroller {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* "All Brands" Master Header Pill */
+  .comp-pill[data-category="all"] {
+    grid-column: span 2 !important;
+    min-height: 48px !important;
+    height: 48px !important;
+    padding: 8px 16px !important;
+    border-radius: 14px !important;
+    background: var(--srm-card-bg);
   }
 
   .comp-pill {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    min-height: 48px;
-    padding: 8px 14px;
-    border-radius: var(--radius-pill);
-    gap: 8px;
+    width: 100% !important;
+    min-height: 56px !important;
+    height: auto !important;
+    padding: 8px 10px !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    text-align: left !important;
+    background: var(--srm-card-bg);
+    border: 1.5px solid var(--srm-card-border);
+    backdrop-filter: blur(16px);
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
   }
 
   .comp-pill:hover {
-    transform: none; /* Disable desktop hover lift on mobile touch */
+    transform: none !important;
   }
 
   .comp-pill:active {
-    transform: scale(0.97);
+    transform: scale(0.97) !important;
+  }
+
+  .comp-pill.active {
+    background: linear-gradient(135deg, #0066FF 0%, #0047B3 100%) !important;
+    border-color: #0066FF !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 16px rgba(0, 102, 255, 0.4) !important;
+  }
+
+  .comp-pill.active .pill-title {
+    color: #FFFFFF !important;
+  }
+
+  .comp-pill.active .pill-count {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .comp-pill.active .pill-icon {
+    background: rgba(255, 255, 255, 0.22) !important;
+    color: #FFFFFF !important;
   }
 
   .pill-icon {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    border-radius: 8px;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
   }
 
   .pill-icon svg {
-    width: 14px;
-    height: 14px;
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .pill-text-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    justify-content: center !important;
   }
 
   .pill-title {
-    font-size: 0.82rem;
-    white-space: nowrap;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    color: var(--srm-text-heading);
   }
 
   .pill-count {
-    display: none; /* Keep chips ultra-clean and legible on mobile */
+    display: block !important;
+    font-size: 0.68rem !important;
+    font-weight: 600 !important;
+    color: var(--srm-text-muted) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin-top: 2px !important;
   }
 
   /* Brands Showcase Section */
