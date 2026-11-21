@@ -9,3 +9,8 @@ server.err
 server.out
 test-login.json
 .wrangler/
+.impeccable/config.local.json
+.impeccable/questions/
+.impeccable/mocks/
+.impeccable/review/
+
