@@ -285,21 +285,36 @@ function renderAdminSuppliers(suppliers) {
     const card = document.createElement('div');
     card.className = 'supplier-card-admin';
     const logoHtml = s.logo
-      ? `<img src="/logos/${escapeAttr(s.logo)}" alt="${escapeHtml(s.name)} logo" style="max-height:36px;max-width:60px;object-fit:contain;margin-right:12px;vertical-align:middle;">`
-      : '';
-    card.innerHTML =
-      '<div class="info" style="display:flex;align-items:center;">' +
-      logoHtml +
-      '<div>' +
-      '<h2 style="margin:0 0 4px 0;font-size:1.15rem;">' + escapeHtml(s.name) + '</h2>' +
-      '<p style="margin:0;color:var(--color-text-muted);font-size:0.875rem;">' + s.partCount + ' part' + (s.partCount !== 1 ? 's' : '') + ' &bull; created ' + formatDate(s.created_at) + '</p>' +
-      '</div>' +
-      '</div>' +
-      '<div class="actions">' +
-      '<button class="btn-icon" title="View parts" onclick="app.openSupplierParts(' + s.id + ')">&#128065; Parts</button>' +
-      '<button class="btn-icon" title="Edit name" onclick="app.editSupplier(' + s.id + ', this)">&#9998; Edit</button>' +
-      '<button class="btn-icon" title="Delete" style="color:var(--color-danger);" onclick="app.deleteSupplier(' + s.id + ')">&#10006; Delete</button>' +
-      '</div>';
+      ? `<div class="admin-logo-pedestal"><img src="/logos/${escapeAttr(s.logo)}" alt="${escapeHtml(s.name)} logo"></div>`
+      : `<div class="admin-logo-pedestal admin-logo-fallback"><span>${escapeHtml(s.name.slice(0, 2).toUpperCase())}</span></div>`;
+    card.innerHTML = `
+      <div class="info" style="display:flex;align-items:center;gap:16px;">
+        ${logoHtml}
+        <div>
+          <h2 style="margin:0 0 4px 0;font-size:1.15rem;font-weight:700;">${escapeHtml(s.name)}</h2>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="admin-part-count-badge">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              ${s.partCount} ${s.partCount === 1 ? 'part' : 'parts'}
+            </span>
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">&bull; Added ${formatDate(s.created_at)}</span>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="admin-action-btn btn-parts" title="View Parts Inventory" onclick="app.openSupplierParts(${s.id})">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <span>Parts</span>
+        </button>
+        <button class="admin-action-btn btn-edit" title="Edit Brand Details" onclick="app.editSupplier(${s.id}, this)">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          <span>Edit</span>
+        </button>
+        <button class="admin-action-btn btn-delete" title="Delete Supplier" onclick="app.deleteSupplier(${s.id})">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          <span>Delete</span>
+        </button>
+      </div>`;
     list.appendChild(card);
   });
 }
@@ -553,18 +568,25 @@ async function openSupplierParts(id) {
       const card = document.createElement('div');
       card.className = 'admin-part-card';
       const imageUrl = part.imageUrl;
-      card.innerHTML =
-        '<div>' +
-        '<img src="' + escapeAttr(imageUrl) + '" alt="Part photo" onerror="this.src=\'\';this.style.background=\'var(--color-bg)\';this.textContent=\'No image\'">' +
-        '</div>' +
-        '<div class="info">' +
-        '<h3>' + escapeHtml(part.name || 'Part #' + part.id) + '</h3>' +
-        '<p>' + vehicles.join(', ') + '</p>' +
-        '</div>' +
-        '<div class="actions">' +
-        '<button class="btn-icon" title="Edit" onclick="app.editPart(' + part.id + ')">&#9998;</button>' +
-        '<button class="btn-icon" title="Delete" style="color:var(--color-danger);" onclick="app.deletePart(' + part.id + ')">&#10006;</button>' +
-        '</div>';
+      const vehicleTagsHtml = (vehicles || []).map(v => `<span class="admin-vehicle-pill">${escapeHtml(v)}</span>`).join('');
+      card.innerHTML = `
+        <div class="admin-part-pedestal">
+          <img src="${escapeAttr(imageUrl)}" alt="Part photo" onerror="this.src='';this.style.background='var(--color-bg)';this.textContent='No image'">
+        </div>
+        <div class="info">
+          <h3>${escapeHtml(part.name || 'Part #' + part.id)}</h3>
+          <div class="admin-part-vehicles-wrap">${vehicleTagsHtml}</div>
+        </div>
+        <div class="actions">
+          <button class="admin-action-btn btn-edit" title="Edit Part" onclick="app.editPart(${part.id})">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <span>Edit</span>
+          </button>
+          <button class="admin-action-btn btn-delete" title="Delete Part" onclick="app.deletePart(${part.id})">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            <span>Delete</span>
+          </button>
+        </div>`;
       grid.appendChild(card);
     });
 
@@ -905,7 +927,10 @@ async function loadInquiries() {
           </p>
         </div>
         <div class="actions" style="margin-left:16px;">
-          <button class="btn-icon" title="Delete enquiry" style="color:var(--color-danger);font-size:1.1rem;background:none;border:none;cursor:pointer;" onclick="app.deleteInquiry(${item.id})">&#10006;</button>
+          <button class="admin-action-btn btn-delete" title="Delete enquiry" onclick="app.deleteInquiry(${item.id})">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            <span>Delete</span>
+          </button>
         </div>
       `;
       container.appendChild(card);

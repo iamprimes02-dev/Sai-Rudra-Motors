@@ -173,6 +173,30 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   font-family: inherit;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.admin-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+@media (max-width: 900px) {
+  .admin-live-badge {
+    display: none;
+  }
 }
 
 .admin-nav a:hover,
@@ -320,8 +344,26 @@ html[data-theme="dark"] .theme-icon-moon {
   align-items: center;
   gap: 16px;
   box-shadow: var(--admin-card-shadow);
+  position: relative;
+  overflow: hidden;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
 }
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.stat-brands::before { background: linear-gradient(90deg, #0066FF, #388BFD); }
+.stat-parts::before { background: linear-gradient(90deg, #0284C7, #38BDF8); }
+.stat-whatsapp::before { background: linear-gradient(90deg, #10B981, #34D399); }
+.stat-leads::before { background: linear-gradient(90deg, #FF2A3C, #F43F5E); }
 
 .stat-card:hover {
   transform: translateY(-3px);
@@ -329,10 +371,11 @@ html[data-theme="dark"] .theme-icon-moon {
   box-shadow: var(--admin-card-shadow-hover);
 }
 
+.stat-card:hover::before {
+  opacity: 1;
+}
+
 .stat-icon {
-  font-size: 1.6rem;
-  background: var(--color-surface-subtle);
-  border: 1px solid var(--color-border);
   width: 52px;
   height: 52px;
   display: flex;
@@ -340,6 +383,35 @@ html[data-theme="dark"] .theme-icon-moon {
   justify-content: center;
   border-radius: var(--radius-md);
   flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.icon-blue {
+  background: rgba(0, 102, 255, 0.08);
+  border: 1.5px solid rgba(0, 102, 255, 0.22);
+  color: #0066FF;
+}
+
+.icon-cyan {
+  background: rgba(2, 132, 199, 0.08);
+  border: 1.5px solid rgba(2, 132, 199, 0.22);
+  color: #0284C7;
+}
+
+.icon-emerald {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1.5px solid rgba(16, 185, 129, 0.22);
+  color: #10B981;
+}
+
+.icon-red {
+  background: rgba(255, 42, 60, 0.08);
+  border: 1.5px solid rgba(255, 42, 60, 0.22);
+  color: #FF2A3C;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.06);
 }
 
 .stat-label {
@@ -362,15 +434,25 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 /* ==========================================================================
-   Search Bar
+   Search Bar (Precision Depot HUD)
    ========================================================================== */
-.admin-search-bar {
+.admin-search-wrapper {
+  position: relative;
   margin-bottom: 24px;
+  display: flex;
+  align-items: center;
 }
 
-.admin-search-bar input {
+.search-lead-icon {
+  position: absolute;
+  left: 18px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.admin-search-wrapper input {
   width: 100%;
-  padding: 14px 20px;
+  padding: 13px 20px 13px 48px;
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-pill);
   font-size: 0.95rem;
@@ -382,9 +464,9 @@ html[data-theme="dark"] .theme-icon-moon {
   transition: all 0.2s ease;
 }
 
-.admin-search-bar input:focus {
-  border-color: var(--color-focus);
-  box-shadow: 0 0 0 3.5px rgba(0, 113, 227, 0.18);
+.admin-search-wrapper input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3.5px rgba(0, 102, 255, 0.18);
 }
 
 /* ==========================================================================
@@ -477,6 +559,64 @@ html[data-theme="dark"] .theme-icon-moon {
   border-color: var(--color-danger);
 }
 
+/* ==========================================================================
+   Admin Action Button Pills
+   ========================================================================== */
+.admin-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+}
+
+.btn-parts {
+  background: rgba(0, 102, 255, 0.08);
+  color: var(--color-primary);
+  border-color: rgba(0, 102, 255, 0.22);
+}
+
+.btn-parts:hover {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.25);
+}
+
+.btn-edit {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}
+
+.btn-edit:hover {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background: rgba(255, 42, 60, 0.08);
+  color: var(--color-danger);
+  border-color: rgba(255, 42, 60, 0.22);
+}
+
+.btn-delete:hover {
+  background: var(--color-danger);
+  color: #FFFFFF;
+  border-color: var(--color-danger);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 42, 60, 0.25);
+}
+
 .btn-icon {
   background: none;
   border: none;
@@ -508,7 +648,7 @@ html[data-theme="dark"] .theme-icon-moon {
   background: var(--color-surface);
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 20px 24px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -521,6 +661,49 @@ html[data-theme="dark"] .theme-icon-moon {
   transform: translateY(-2px);
   border-color: var(--color-border-hover);
   box-shadow: var(--admin-card-shadow-hover);
+}
+
+/* Genuine Pedestal Platform for Brand Logos */
+.admin-logo-pedestal {
+  width: 62px;
+  height: 44px;
+  background: #FFFFFF !important; /* The Genuine Pedestal Rule */
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.admin-logo-pedestal img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: #FFFFFF;
+}
+
+.admin-logo-fallback {
+  background: var(--color-surface-subtle) !important;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--color-primary);
+}
+
+.admin-part-count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: rgba(0, 102, 255, 0.08);
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
 }
 
 .supplier-card-admin .info {
@@ -574,6 +757,19 @@ html[data-theme="dark"] .theme-icon-moon {
   border-radius: var(--radius-xl);
 }
 
+.empty-state-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-surface-subtle);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-muted);
+  margin: 0 auto 16px auto;
+}
+
 .empty-state h2 {
   font-size: 1.25rem;
   font-weight: 700;
@@ -587,7 +783,7 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 /* ==========================================================================
-   Form Panel
+   Form Panel (Bento Card with Motorsport Hairline)
    ========================================================================== */
 .form-panel {
   background: var(--color-surface);
@@ -596,6 +792,18 @@ html[data-theme="dark"] .theme-icon-moon {
   padding: 32px;
   margin-bottom: 24px;
   box-shadow: var(--admin-card-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, #FF2A3C 0%, #0066FF 100%);
 }
 
 .form-panel h2 {
@@ -674,7 +882,20 @@ html[data-theme="dark"] .theme-icon-moon {
 
 .image-picker:hover {
   border-color: var(--color-primary);
-  background: rgba(0, 113, 227, 0.03);
+  background: rgba(0, 102, 255, 0.04);
+}
+
+.picker-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(0, 102, 255, 0.08);
+  border: 1.5px solid rgba(0, 102, 255, 0.2);
+  color: var(--color-primary);
+}
 }
 
 .image-picker input[type="file"] {
@@ -806,7 +1027,7 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 /* ==========================================================================
-   Part Cards (Admin Supplier View)
+   Part Cards (Admin Supplier View — High-Performance Motorsport Bento)
    ========================================================================== */
 .admin-parts-grid {
   display: grid;
@@ -831,16 +1052,26 @@ html[data-theme="dark"] .theme-icon-moon {
   box-shadow: var(--admin-card-shadow-hover);
 }
 
-/* Pedestal for Part Image */
-.admin-part-card img {
-  width: 88px;
-  height: 66px;
-  object-fit: contain;
-  border-radius: var(--radius-sm);
+/* Genuine Pedestal Platform for Part Images */
+.admin-part-pedestal {
+  width: 92px;
+  height: 68px;
   background: #FFFFFF !important; /* The Genuine Pedestal Rule */
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px;
-  border: 1px solid var(--color-border);
   flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.admin-part-pedestal img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: #FFFFFF;
 }
 
 .admin-part-card .info {
@@ -850,14 +1081,27 @@ html[data-theme="dark"] .theme-icon-moon {
 .admin-part-card .info h3 {
   font-size: 1.05rem;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   color: var(--color-text);
 }
 
-.admin-part-card .info p {
-  font-size: 0.88rem;
-  color: var(--color-text-muted);
-  margin-bottom: 0;
+.admin-part-vehicles-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.admin-vehicle-pill {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 2px 8px;
+  display: inline-block;
+  line-height: 1.3;
 }
 
 .admin-part-card .actions {
@@ -876,11 +1120,10 @@ html[data-theme="dark"] .theme-icon-moon {
     justify-content: flex-end;
     margin-top: 12px;
   }
-  .admin-part-card img {
+  .admin-part-pedestal {
     width: 100%;
     max-width: 180px;
-    height: auto;
-    aspect-ratio: 4/3;
+    height: 120px;
   }
 }
 
@@ -1386,6 +1629,38 @@ html[data-theme="dark"] .orb-indigo {
 
   .stat-card .stat-val {
     font-size: 1.4rem;
+  }
+
+  .supplier-card-admin {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .supplier-card-admin .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+    padding-top: 10px;
+  }
+
+  .admin-part-card {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .admin-part-card .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+    padding-top: 10px;
   }
 
   /* Login screen on mobile */

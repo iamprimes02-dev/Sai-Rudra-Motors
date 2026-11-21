@@ -3,39 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard — Sai Rudra Motors</title>
-  <link rel="stylesheet" href="/css/admin.css?v=3.6">
-  <script src="/js/theme.js?v=3.6"></script>
+  <title>Dealer Terminal — Sai Rudra Motors</title>
+  <link rel="stylesheet" href="/css/admin.css?v=3.8">
+  <script src="/js/theme.js?v=3.8"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="admin-body">
+  <!-- Atmospheric Ambient Light Mesh & Orbs -->
+  <div class="srm-ambient-mesh" aria-hidden="true">
+    <div class="ambient-orb orb-blue"></div>
+    <div class="ambient-orb orb-indigo"></div>
+  </div>
+
   <!-- Top Bar — Apple Frosted Glass Floating Dock -->
   <header class="admin-topbar">
-    <a href="/admin" class="srm-brand-logo" style="text-decoration:none;display:flex;align-items:center;gap:12px;">
-      <div class="brand-crest">
-        <span class="crest-monogram">SRM</span>
-        <span class="crest-accent"></span>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/admin" class="srm-brand-logo" style="text-decoration:none;display:flex;align-items:center;gap:12px;">
+        <div class="brand-crest">
+          <span class="crest-monogram">SRM</span>
+          <span class="crest-accent"></span>
+        </div>
+        <div class="brand-typography">
+          <span class="company-name" style="font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--color-text);letter-spacing:-0.02em;display:block;line-height:1.2;">Sai Rudra Motors</span>
+          <span class="company-descriptor" style="font-size:0.68rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;display:block;">Dealer Terminal</span>
+        </div>
+      </a>
+      <div class="login-status-badge admin-live-badge">
+        <span class="badge-pulse-dot"></span>
+        <span>AUTHORIZED DEALER ACCESS</span>
       </div>
-      <div class="brand-typography">
-        <span class="company-name" style="font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--color-text);letter-spacing:-0.02em;display:block;line-height:1.2;">Sai Rudra Motors</span>
-        <span class="company-descriptor" style="font-size:0.68rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;display:block;">Dealer Portal</span>
-      </div>
-    </a>
+    </div>
+
     <nav class="admin-nav">
-      <a href="#" class="nav-link active" data-view="dashboard">Suppliers</a>
-      <a href="#" class="nav-link" data-view="inquiries">Enquiries &amp; Leads</a>
-      <a href="#" class="nav-link" data-view="settings">Settings</a>
-      <a href="/" target="_blank" class="view-site" title="Open customer website in new tab">View site &nearr;</a>
+      <a href="#" class="nav-link active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Brands &amp; Suppliers</span>
+      </a>
+      <a href="#" class="nav-link" data-view="inquiries">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        <span>Stock Leads</span>
+      </a>
+      <a href="#" class="nav-link" data-view="settings">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        <span>Settings</span>
+      </a>
+      <a href="/" target="_blank" class="view-site" title="Open customer website in new tab">
+        <span>Customer Site</span>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
       
-      <!-- Apple Theme Toggle Button (Light / Dark) -->
+      <!-- Theme Toggle Button (Light / Dark) -->
       <button class="srm-theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Theme">
         <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
 
-      <button class="btn-logout" id="logoutBtn">Logout</button>
+      <button class="btn-logout" id="logoutBtn" title="Exit Dealer Portal">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <span>Logout</span>
+      </button>
     </nav>
   </header>
 
@@ -45,61 +73,79 @@
       <div class="dashboard-top">
         <div>
           <h1>Brands &amp; Suppliers</h1>
-          <p style="color:var(--color-text-muted);font-size:0.95rem;margin:0;">Manage automotive manufacturers, authorized brands, and their parts inventory.</p>
+          <p style="color:var(--color-text-muted);font-size:0.95rem;margin:0;">Manage automotive manufacturers, genuine brands, and parts catalogs.</p>
         </div>
-        <button class="btn-primary" id="addSupplierBtn">+ Add New Supplier</button>
+        <button class="btn-primary" id="addSupplierBtn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Add New Supplier</span>
+        </button>
       </div>
 
-      <!-- Quick Metrics -->
+      <!-- Quick Metrics Bento Grid -->
       <div class="admin-stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon">🏢</div>
-          <div>
+        <div class="stat-card stat-brands">
+          <div class="stat-icon icon-blue">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M9 15h2M13 11h2M13 15h2"></path></svg>
+          </div>
+          <div class="stat-details">
             <span class="stat-label">Total Brands</span>
             <span class="stat-val" id="statSupplierCount">0</span>
           </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon">⚙️</div>
-          <div>
+        <div class="stat-card stat-parts">
+          <div class="stat-icon icon-cyan">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </div>
+          <div class="stat-details">
             <span class="stat-label">Total Parts</span>
             <span class="stat-val" id="statPartCount">0</span>
           </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon">💬</div>
-          <div>
-            <span class="stat-label">WhatsApp Contact</span>
+        <div class="stat-card stat-whatsapp">
+          <div class="stat-icon icon-emerald">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">WhatsApp Telemetry</span>
             <span class="stat-val" id="statWhatsappNum" style="font-size:1.15rem;color:var(--color-whatsapp);">Active</span>
           </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon">📋</div>
-          <div>
+        <div class="stat-card stat-leads">
+          <div class="stat-icon icon-red">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 12h6M9 16h4"></path></svg>
+          </div>
+          <div class="stat-details">
             <span class="stat-label">Stock Leads</span>
             <span class="stat-val" id="statInquiryCount">0</span>
           </div>
         </div>
       </div>
 
-      <!-- Search in Admin -->
-      <div class="admin-search-bar">
-        <input type="text" id="adminSupplierSearch" placeholder="Filter suppliers by name..." aria-label="Filter suppliers">
+      <!-- Precision Search Bar -->
+      <div class="admin-search-wrapper">
+        <svg class="search-lead-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="adminSupplierSearch" placeholder="Filter suppliers by name or component lines..." aria-label="Filter suppliers">
       </div>
 
       <div class="supplier-list" id="supplierList">
         <!-- Supplier cards injected here -->
       </div>
       <div class="empty-state hidden" id="dashboardEmpty">
+        <div class="empty-state-icon">
+          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M9 15h2M13 11h2M13 15h2"></path></svg>
+        </div>
         <h2>No suppliers found.</h2>
-        <p>Add your first supplier to get started.</p>
+        <p>Add your first supplier to populate the dealer catalogue.</p>
       </div>
     </section>
 
     <!-- Add / Edit supplier form -->
     <section id="viewSupplierForm" class="view hidden">
       <div style="display:flex;align-items:center;gap:var(--spacing-12);margin-bottom:var(--spacing-20);">
-        <button class="btn-secondary" id="backToDashboardFromSupplierForm">&larr; Back to suppliers</button>
+        <button class="btn-secondary" id="backToDashboardFromSupplierForm">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back to suppliers</span>
+        </button>
         <h1 id="supplierFormTitle" style="margin:0;">Add supplier</h1>
       </div>
       <form id="supplierForm" novalidate class="form-panel" style="max-width:580px;">
@@ -116,7 +162,9 @@
           </select>
           <!-- The Genuine Pedestal Rule for Logos -->
           <div class="logo-preview" id="logoPreview" style="margin-top:var(--spacing-12);display:none;">
-            <img id="previewLogo" alt="Logo preview" style="max-width:140px;height:auto;border-radius:var(--radius-sm);border:1.5px solid var(--color-border);padding:10px;background:#FFFFFF;">
+            <div class="admin-logo-pedestal" style="width:140px;height:70px;margin:0;">
+              <img id="previewLogo" alt="Logo preview">
+            </div>
           </div>
           <div class="field-error" id="supplierLogoError"></div>
         </div>
@@ -135,16 +183,25 @@
     <!-- Supplier parts view -->
     <section id="viewSupplierParts" class="view hidden">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--spacing-12);margin-bottom:var(--spacing-24);">
-        <div style="display:flex;align-items:center;gap:var(--spacing-12);">
-          <button class="btn-secondary" id="backToDashboard">&larr; Back to suppliers</button>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="btn-secondary" id="backToDashboard">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            <span>Back to suppliers</span>
+          </button>
           <h1 id="partsPageTitle" style="margin:0;">Parts</h1>
         </div>
-        <button class="btn-primary" id="addPartBtn">+ Add Part</button>
+        <button class="btn-primary" id="addPartBtn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Add Part</span>
+        </button>
       </div>
       <div class="admin-parts-grid" id="partsGrid">
         <!-- Part cards injected here -->
       </div>
       <div class="empty-state hidden" id="partsEmpty">
+        <div class="empty-state-icon">
+          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </div>
         <h2>No parts listed for this supplier yet.</h2>
         <p>Add your first part with a photo and compatible vehicles.</p>
       </div>
@@ -152,8 +209,11 @@
 
     <!-- Add / Edit part form -->
     <section id="viewPartForm" class="view hidden">
-      <div style="display:flex;align-items:center;gap:var(--spacing-12);margin-bottom:var(--spacing-24);">
-        <button class="btn-secondary" id="backToParts">&larr; Back to parts</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--spacing-24);">
+        <button class="btn-secondary" id="backToParts">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Back to parts</span>
+        </button>
         <h1 id="partFormTitle" style="margin:0;">Add part</h1>
       </div>
       <form id="partForm" novalidate class="form-panel" style="max-width:680px;">
@@ -161,10 +221,13 @@
           <label>Photo (required)</label>
           <div class="image-picker" id="imagePicker">
             <input type="file" id="partImage" accept="image/jpeg,image/png,image/webp" style="display:none;">
-            <div style="font-size:2rem;margin-bottom:8px;">📷</div>
-            <p style="font-weight:700;color:var(--color-text);">Tap or drag &amp; drop to choose a photo</p>
+            <div class="picker-icon-wrap">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            </div>
+            <p style="font-weight:700;color:var(--color-text);margin-top:8px;">Tap or drag &amp; drop to choose a photo</p>
             <p style="font-size:0.85rem;color:var(--color-text-muted);">JPG, PNG or WebP, up to 5 MB</p>
           </div>
+          <!-- Genuine Pedestal Platform for Admin Photo Preview -->
           <div class="image-preview" id="imagePreview">
             <img id="previewImage" alt="Photo preview">
           </div>
@@ -207,13 +270,19 @@
           <h1>Stock Enquiries &amp; Customer Leads</h1>
           <p style="color:var(--color-text-muted);font-size:0.95rem;margin:0;">Live customer requirements captured from the website Stock Check box.</p>
         </div>
-        <button class="btn-secondary" id="refreshInquiriesBtn">&#8635; Refresh Leads</button>
+        <button class="btn-secondary" id="refreshInquiriesBtn">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+          <span>Refresh Leads</span>
+        </button>
       </div>
 
       <div class="inquiries-list" id="inquiriesList" style="display:flex;flex-direction:column;gap:14px;">
         <!-- Inquiries injected here -->
       </div>
       <div class="empty-state hidden" id="inquiriesEmpty">
+        <div class="empty-state-icon">
+          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </div>
         <h2>No enquiries yet.</h2>
         <p>Customer submissions from the website Stock Check &amp; Price form will automatically appear here.</p>
       </div>
@@ -262,6 +331,6 @@
 
   <div class="toast toast-success hidden" id="toast"></div>
 
-  <script src="/js/admin.js?v=3.6"></script>
+  <script src="/js/admin.js?v=3.8"></script>
 </body>
 </html>
