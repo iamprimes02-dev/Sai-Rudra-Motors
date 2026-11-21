@@ -1,100 +1,100 @@
 /* ==========================================================================
-   SAI RUDRA MOTORS - HERITAGE AUTOMOTIVE OEM DESIGN SYSTEM
-   Theme: Deep Midnight Navy (#0E1E38) & Brembo Precision Racing Red (#D9232E)
-   Authentic German & Indian OEM Spares Depot Authority
+   SAI RUDRA MOTORS - HIGH-PERFORMANCE MOTORSPORT DESIGN SYSTEM
+   Theme: High-Octane Racing Red (#FF2A3C) & Precision Performance Blue (#0066FF)
+   Deep Carbon & Diamond White Surface Engineering
    ========================================================================== */
 
 :root {
-  /* --- Heritage Automotive OEM (Default Light) Tokens --- */
-  --srm-bg: #F4F6F9;
+  /* --- High-Performance Motorsport (Default Light) Tokens --- */
+  --srm-bg: #F5F7FB;
   --srm-bg-gradient: 
-    radial-gradient(1200px 500px at 50% -80px, rgba(14, 30, 56, 0.06) 0%, transparent 70%),
-    linear-gradient(180deg, #F4F6F9 0%, #FFFFFF 50%, #EEF2F6 100%);
+    radial-gradient(1200px 520px at 50% -90px, rgba(0, 102, 255, 0.08) 0%, transparent 70%),
+    linear-gradient(180deg, #F5F7FB 0%, #FFFFFF 40%, #EEF2F8 100%);
 
   --srm-surface: #FFFFFF;
-  --srm-surface-subtle: #EAEEF4;
+  --srm-surface-subtle: #F0F4FA;
   --srm-surface-elevated: #FFFFFF;
-  --srm-glass-dock: rgba(255, 255, 255, 0.94);
-  --srm-glass-blur: blur(20px) saturate(180%);
-  --srm-border: rgba(14, 30, 56, 0.12);
-  --srm-border-light: rgba(14, 30, 56, 0.06);
-  --srm-border-hover: rgba(14, 30, 56, 0.3);
+  --srm-glass-dock: rgba(255, 255, 255, 0.92);
+  --srm-glass-blur: blur(28px) saturate(190%);
+  --srm-border: rgba(0, 102, 255, 0.12);
+  --srm-border-light: rgba(0, 102, 255, 0.06);
+  --srm-border-hover: rgba(0, 102, 255, 0.35);
 
-  --srm-text-primary: #0F172A;
+  --srm-text-primary: #0A0F1D;
   --srm-text-secondary: #475569;
   --srm-text-muted: #64748B;
   --srm-text-subtle: #94A3B8;
-  --srm-text-heading: #0E1E38;
+  --srm-text-heading: #0A0F1D;
 
-  /* Primary Deep Midnight Navy (German & Indian OEM Distributor Authority) */
-  --srm-primary-navy: #0E1E38;
-  --srm-primary-navy-hover: #162C50;
-  --srm-apple-blue: #0E1E38;
-  --srm-apple-blue-hover: #162C50;
-  --srm-apple-indigo: #162C50;
-  --srm-apple-green: #16A34A;
+  /* Performance Blue & Motorsport Red */
+  --srm-primary-navy: #0A1628;
+  --srm-primary-navy-hover: #13223A;
+  --srm-apple-blue: #0066FF;
+  --srm-apple-blue-hover: #0052CC;
+  --srm-apple-indigo: #0052CC;
+  --srm-apple-green: #10B981;
   
-  /* Precision Racing Red (Brembo & Bosch Motorsport Accent) */
-  --srm-red-accent: #D9232E;
-  --srm-red-glow: rgba(217, 35, 46, 0.22);
+  /* Precision Racing Red (Brembo / Ducati / Motorsport Energy) */
+  --srm-red-accent: #FF2A3C;
+  --srm-red-glow: rgba(255, 42, 60, 0.32);
 
   --srm-card-bg: #FFFFFF;
-  --srm-card-border: rgba(14, 30, 56, 0.12);
-  --srm-card-hover-border: rgba(14, 30, 56, 0.28);
-  --srm-card-shadow: 0 4px 18px -2px rgba(14, 30, 56, 0.08);
-  --srm-card-hover-shadow: 0 16px 36px -6px rgba(14, 30, 56, 0.14), 0 2px 8px rgba(14, 30, 56, 0.06);
+  --srm-card-border: rgba(0, 102, 255, 0.12);
+  --srm-card-hover-border: rgba(0, 102, 255, 0.38);
+  --srm-card-shadow: 0 4px 20px -2px rgba(10, 15, 29, 0.07);
+  --srm-card-hover-shadow: 0 24px 50px -10px rgba(0, 102, 255, 0.2), 0 0 20px rgba(255, 42, 60, 0.12);
 
   --srm-pedestal-bg: #FFFFFF;
-  --srm-pedestal-border: rgba(14, 30, 56, 0.1);
-  --srm-pedestal-shadow: 0 2px 10px rgba(14, 30, 56, 0.05), inset 0 1px 0 #FFFFFF;
+  --srm-pedestal-border: rgba(0, 102, 255, 0.12);
+  --srm-pedestal-shadow: 0 4px 16px rgba(10, 15, 29, 0.05), inset 0 1px 0 #FFFFFF;
 
-  --srm-spotlight: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(14, 30, 56, 0.06), transparent 60%);
+  --srm-spotlight: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 102, 255, 0.08), transparent 60%);
 
-  --srm-hero-subtitle-gradient: linear-gradient(135deg, #0E1E38 0%, #D9232E 100%);
+  --srm-hero-subtitle-gradient: linear-gradient(135deg, #0A0F1D 0%, #FF2A3C 60%, #0066FF 100%);
   --srm-search-bg: #FFFFFF;
-  --srm-search-border: rgba(14, 30, 56, 0.18);
-  --srm-search-shadow: 0 4px 20px rgba(14, 30, 56, 0.06);
+  --srm-search-border: rgba(0, 102, 255, 0.22);
+  --srm-search-shadow: 0 6px 24px rgba(0, 102, 255, 0.08);
 
   --srm-comp-bg: #FFFFFF;
-  --srm-comp-border: rgba(14, 30, 56, 0.12);
-  --srm-comp-hover-bg: #F0F4FA;
-  --srm-comp-active-bg: linear-gradient(135deg, #0E1E38 0%, #162C50 100%);
+  --srm-comp-border: rgba(0, 102, 255, 0.12);
+  --srm-comp-hover-bg: #F0F6FF;
+  --srm-comp-active-bg: linear-gradient(135deg, #0066FF 0%, #0047B3 100%);
   --srm-comp-active-text: #FFFFFF;
-  --srm-comp-active-shadow: 0 4px 14px rgba(14, 30, 56, 0.25);
+  --srm-comp-active-shadow: 0 6px 20px rgba(0, 102, 255, 0.35);
 
   --srm-wa-green: #25D366;
   --srm-wa-hover: #20BA5A;
   --srm-wa-dark: #128C7E;
 
-  --srm-utility-bg: #07101E;
+  --srm-utility-bg: #070B14;
   --srm-utility-border: rgba(255, 255, 255, 0.08);
   --srm-utility-text: #94A3B8;
-  --srm-utility-pill-bg: rgba(217, 35, 46, 0.18);
+  --srm-utility-pill-bg: rgba(255, 42, 60, 0.2);
 
-  --srm-trade-strip-bg: linear-gradient(180deg, #E9EFF6 0%, #F2F6FB 100%);
-  --srm-footer-bg: #07101E;
-  --srm-footer-subline-bg: #040810;
+  --srm-trade-strip-bg: linear-gradient(180deg, #EBF1FA 0%, #F4F8FC 100%);
+  --srm-footer-bg: #070B14;
+  --srm-footer-subline-bg: #04060B;
   --srm-footer-text: #94A3B8;
 
-  /* Category Specific Accents (Authentic Automotive Subsystems) */
+  /* Category Specific Accents (Vibrant Automotive Subsystems) */
   --cat-braking-bg: #FEF2F2;
-  --cat-braking-border: rgba(217, 35, 46, 0.25);
-  --cat-braking-color: #D9232E;
+  --cat-braking-border: rgba(255, 42, 60, 0.28);
+  --cat-braking-color: #FF2A3C;
 
   --cat-clutch-bg: #F0F4FA;
-  --cat-clutch-border: rgba(14, 30, 56, 0.22);
-  --cat-clutch-color: #0E1E38;
+  --cat-clutch-border: rgba(0, 102, 255, 0.25);
+  --cat-clutch-color: #0066FF;
 
   --cat-filtration-bg: #F0F9FF;
   --cat-filtration-border: rgba(2, 132, 199, 0.25);
   --cat-filtration-color: #0284C7;
 
   --cat-suspension-bg: #F0FDF4;
-  --cat-suspension-border: rgba(22, 163, 74, 0.25);
-  --cat-suspension-color: #16A34A;
+  --cat-suspension-border: rgba(16, 185, 129, 0.28);
+  --cat-suspension-color: #10B981;
 
   --cat-fluids-bg: #FFFBEB;
-  --cat-fluids-border: rgba(217, 119, 6, 0.25);
+  --cat-fluids-border: rgba(245, 158, 11, 0.28);
   --cat-fluids-color: #D97706;
 
   --cat-rubber-bg: #F8FAFC;
@@ -119,10 +119,10 @@
   --radius-pill: 9999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(14, 30, 56, 0.08);
-  --shadow-md: 0 6px 20px rgba(14, 30, 56, 0.1);
-  --shadow-lg: 0 16px 36px rgba(14, 30, 56, 0.14);
-  --shadow-card: 0 4px 18px rgba(14, 30, 56, 0.07);
+  --shadow-sm: 0 1px 3px rgba(10, 15, 29, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 102, 255, 0.12);
+  --shadow-lg: 0 20px 48px rgba(0, 102, 255, 0.18);
+  --shadow-card: 0 4px 20px rgba(10, 15, 29, 0.07);
 
   /* Legacy aliases for backward compatibility */
   --srm-steel-bg: var(--srm-bg);
@@ -131,101 +131,103 @@
   --srm-dark-base: var(--srm-footer-bg);
 }
 
-/* --- Cast Iron Slate (Dark Mode) Tokens --- */
+/* --- High-Velocity Carbon Slate (Dark Mode) Tokens --- */
 html[data-theme="dark"] {
-  --srm-bg: #0B111B;
-  --srm-bg-gradient: radial-gradient(1200px 600px at 50% 0%, rgba(26, 45, 77, 0.25) 0%, transparent 60%);
-  --srm-surface: #131B28;
+  --srm-bg: #080B10;
+  --srm-bg-gradient: 
+    radial-gradient(1200px 600px at 50% 0%, rgba(0, 102, 255, 0.16) 0%, transparent 60%),
+    radial-gradient(800px 400px at 80% 30%, rgba(255, 42, 60, 0.08) 0%, transparent 60%);
+  --srm-surface: #101622;
   --srm-surface-subtle: rgba(255, 255, 255, 0.05);
-  --srm-surface-elevated: #1A2536;
-  --srm-glass-dock: rgba(11, 17, 27, 0.9);
+  --srm-surface-elevated: #161E2E;
+  --srm-glass-dock: rgba(8, 11, 16, 0.92);
   --srm-border: rgba(255, 255, 255, 0.09);
   --srm-border-light: rgba(255, 255, 255, 0.05);
-  --srm-border-hover: rgba(255, 255, 255, 0.22);
+  --srm-border-hover: rgba(0, 102, 255, 0.4);
 
   --srm-text-primary: #F8FAFC;
-  --srm-text-secondary: #94A3B8;
-  --srm-text-muted: #64748B;
-  --srm-text-subtle: #94A3B8;
+  --srm-text-secondary: #CBD5E1;
+  --srm-text-muted: #828F9E;
+  --srm-text-subtle: #A3AFBF;
   --srm-text-heading: #FFFFFF;
 
-  --srm-primary-navy: #3B82F6;
-  --srm-primary-navy-hover: #60A5FA;
-  --srm-apple-blue: #3B82F6;
-  --srm-apple-blue-hover: #60A5FA;
-  --srm-apple-green: #22C55E;
-  --srm-red-accent: #EF4444;
-  --srm-red-glow: rgba(239, 68, 68, 0.25);
+  --srm-primary-navy: #388BFD;
+  --srm-primary-navy-hover: #58A6FF;
+  --srm-apple-blue: #388BFD;
+  --srm-apple-blue-hover: #58A6FF;
+  --srm-apple-green: #10B981;
+  --srm-red-accent: #FF4757;
+  --srm-red-glow: rgba(255, 71, 87, 0.35);
 
-  --srm-card-bg: #131B28;
+  --srm-card-bg: #101622;
   --srm-card-border: rgba(255, 255, 255, 0.09);
-  --srm-card-hover-border: rgba(59, 130, 246, 0.35);
-  --srm-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --srm-card-hover-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.6), 0 0 16px rgba(59, 130, 246, 0.15);
+  --srm-card-hover-border: rgba(56, 139, 253, 0.45);
+  --srm-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --srm-card-hover-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.8), 0 0 24px rgba(56, 139, 253, 0.25);
 
   --srm-pedestal-bg: #FFFFFF;
-  --srm-pedestal-border: rgba(255, 255, 255, 0.1);
-  --srm-pedestal-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --srm-pedestal-border: rgba(255, 255, 255, 0.15);
+  --srm-pedestal-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 
-  --srm-spotlight: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.05), transparent 60%);
+  --srm-spotlight: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.07), transparent 60%);
 
-  --srm-hero-subtitle-gradient: linear-gradient(180deg, #FFFFFF 20%, #94A3B8 100%);
-  --srm-search-bg: #131B28;
+  --srm-hero-subtitle-gradient: linear-gradient(180deg, #FFFFFF 20%, #A3AFBF 100%);
+  --srm-search-bg: #101622;
   --srm-search-border: rgba(255, 255, 255, 0.15);
-  --srm-search-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --srm-search-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 
-  --srm-comp-bg: #131B28;
+  --srm-comp-bg: #101622;
   --srm-comp-border: rgba(255, 255, 255, 0.09);
-  --srm-comp-hover-bg: #1A2536;
-  --srm-comp-active-bg: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+  --srm-comp-hover-bg: #161E2E;
+  --srm-comp-active-bg: linear-gradient(135deg, #0066FF 0%, #0047B3 100%);
   --srm-comp-active-text: #FFFFFF;
-  --srm-comp-active-shadow: 0 0 16px rgba(59, 130, 246, 0.2);
+  --srm-comp-active-shadow: 0 0 20px rgba(0, 102, 255, 0.35);
 
-  --srm-utility-bg: #05080E;
+  --srm-utility-bg: #04060B;
   --srm-utility-border: rgba(255, 255, 255, 0.06);
-  --srm-utility-text: #64748B;
-  --srm-utility-pill-bg: rgba(217, 35, 46, 0.2);
+  --srm-utility-text: #828F9E;
+  --srm-utility-pill-bg: rgba(255, 42, 60, 0.22);
 
-  --srm-trade-strip-bg: #0B111B;
-  --srm-footer-bg: #05080E;
-  --srm-footer-subline-bg: #020408;
-  --srm-footer-text: #64748B;
+  --srm-trade-strip-bg: #0A0D14;
+  --srm-footer-bg: #04060B;
+  --srm-footer-subline-bg: #020306;
+  --srm-footer-text: #828F9E;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.7);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.8);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.5);
 
   --srm-steel-bg: var(--srm-bg);
   --srm-text-dark: var(--srm-text-primary);
   --srm-dark-base: var(--srm-footer-bg);
 
-  --cat-braking-bg: rgba(217, 35, 46, 0.1);
-  --cat-braking-border: rgba(217, 35, 46, 0.25);
-  --cat-braking-color: #F87171;
+  --cat-braking-bg: rgba(255, 42, 60, 0.12);
+  --cat-braking-border: rgba(255, 42, 60, 0.3);
+  --cat-braking-color: #FF6B7A;
 
-  --cat-clutch-bg: rgba(14, 30, 56, 0.4);
-  --cat-clutch-border: rgba(59, 130, 246, 0.25);
-  --cat-clutch-color: #93C5FD;
+  --cat-clutch-bg: rgba(0, 102, 255, 0.15);
+  --cat-clutch-border: rgba(56, 139, 253, 0.3);
+  --cat-clutch-color: #79B8FF;
 
-  --cat-filtration-bg: rgba(2, 132, 199, 0.1);
-  --cat-filtration-border: rgba(2, 132, 199, 0.25);
+  --cat-filtration-bg: rgba(2, 132, 199, 0.12);
+  --cat-filtration-border: rgba(2, 132, 199, 0.3);
   --cat-filtration-color: #7DD3FC;
 
-  --cat-suspension-bg: rgba(22, 163, 74, 0.1);
-  --cat-suspension-border: rgba(22, 163, 74, 0.25);
+  --cat-suspension-bg: rgba(16, 185, 129, 0.12);
+  --cat-suspension-border: rgba(16, 185, 129, 0.3);
   --cat-suspension-color: #86EFAC;
 
-  --cat-fluids-bg: rgba(217, 119, 6, 0.1);
-  --cat-fluids-border: rgba(217, 119, 6, 0.25);
+  --cat-fluids-bg: rgba(245, 158, 11, 0.12);
+  --cat-fluids-border: rgba(245, 158, 11, 0.3);
   --cat-fluids-color: #FCD34D;
 
-  --cat-rubber-bg: rgba(71, 85, 105, 0.1);
-  --cat-rubber-border: rgba(71, 85, 105, 0.25);
-  --cat-rubber-color: #CBD5E1;
+  --cat-rubber-bg: rgba(113, 128, 150, 0.12);
+  --cat-rubber-border: rgba(113, 128, 150, 0.3);
+  --cat-rubber-color: #E2E8F0;
 
-  --cat-electrical-bg: rgba(234, 88, 12, 0.1);
-  --cat-electrical-border: rgba(234, 88, 12, 0.25);
+  --cat-electrical-bg: rgba(234, 88, 12, 0.12);
+  --cat-electrical-border: rgba(234, 88, 12, 0.3);
   --cat-electrical-color: #FDBA74;
 }
 
@@ -393,14 +395,14 @@ button {
 }
 
 .brand-crest {
-  background: linear-gradient(135deg, #D9232E 0%, #B91C1C 100%);
+  background: linear-gradient(135deg, #FF2A3C 0%, #D01426 100%);
   color: #FFFFFF;
   font-family: var(--srm-font-display);
   font-size: 1.05rem;
   font-weight: 800;
   padding: 5px 9px;
   border-radius: var(--radius-sm);
-  box-shadow: 0 2px 10px rgba(217, 35, 46, 0.35);
+  box-shadow: 0 2px 12px rgba(255, 42, 60, 0.4);
   position: relative;
   overflow: hidden;
   letter-spacing: 0.04em;
@@ -975,43 +977,43 @@ html[data-theme="dark"] .capability-item {
    Hero Quick Quote Form Widget (High-Tech Floating HUD Terminal)
    ========================================================================== */
 .srm-hero-widget-card {
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 246, 249, 0.94) 100%);
-  border: 1.5px solid rgba(14, 30, 56, 0.16);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 248, 255, 0.94) 100%);
+  border: 1.5px solid rgba(0, 102, 255, 0.25);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
   border-radius: 28px;
   padding: 28px;
   position: relative;
   animation: levitateHud 7s ease-in-out infinite, hudAuraPulse 4s ease-in-out infinite;
-  transition: background-color 0.25s, border-color 0.25s, box-shadow 0.25s;
+  transition: all 0.25s ease;
 }
 
 html[data-theme="dark"] .srm-hero-widget-card {
-  background: rgba(19, 27, 40, 0.88);
-  border: 1.5px solid rgba(59, 130, 246, 0.25);
+  background: rgba(16, 22, 34, 0.92);
+  border: 1.5px solid rgba(56, 139, 253, 0.35);
   animation: levitateHud 7s ease-in-out infinite, hudAuraPulseDark 4s ease-in-out infinite;
 }
 
 @keyframes levitateHud {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-7px); }
+  50% { transform: translateY(-8px); }
 }
 
 @keyframes hudAuraPulse {
   0%, 100% {
-    box-shadow: 0 16px 36px -10px rgba(14, 30, 56, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 48px -10px rgba(0, 102, 255, 0.18), 0 0 20px rgba(255, 42, 60, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
   50% {
-    box-shadow: 0 24px 50px -10px rgba(14, 30, 56, 0.22), inset 0 1px 0 rgba(255, 255, 255, 1);
+    box-shadow: 0 28px 60px -8px rgba(0, 102, 255, 0.28), 0 0 32px rgba(255, 42, 60, 0.18), inset 0 1px 0 rgba(255, 255, 255, 1);
   }
 }
 
 @keyframes hudAuraPulseDark {
   0%, 100% {
-    box-shadow: 0 20px 44px -12px rgba(0, 0, 0, 0.7), 0 0 16px rgba(14, 30, 56, 0.3);
+    box-shadow: 0 20px 44px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 102, 255, 0.2);
   }
   50% {
-    box-shadow: 0 28px 56px -10px rgba(0, 0, 0, 0.8), 0 0 24px rgba(217, 35, 46, 0.15);
+    box-shadow: 0 28px 58px -10px rgba(0, 0, 0, 0.9), 0 0 32px rgba(255, 42, 60, 0.25);
   }
 }
 
@@ -1040,14 +1042,26 @@ html[data-theme="dark"] .srm-hero-widget-card {
 
 .widget-badge-online {
   font-size: 0.68rem;
-  font-weight: 700;
-  color: #15803D;
-  background: rgba(34, 197, 94, 0.14);
-  border: 1px solid rgba(34, 197, 94, 0.35);
+  font-weight: 800;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.35);
   padding: 4px 11px;
   border-radius: var(--radius-pill);
   letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   animation: stockBreathe 3s ease-in-out infinite;
+}
+
+.widget-badge-online::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
 }
 
 @keyframes stockBreathe {
@@ -1576,12 +1590,12 @@ html[data-theme="dark"] .showcase-badge-pill {
   top: 0;
   left: 0;
   right: 0;
-  height: 3.5px;
-  background: linear-gradient(90deg, #0E1E38 0%, #D9232E 50%, #0E1E38 100%);
+  height: 4px;
+  background: linear-gradient(90deg, #FF2A3C 0%, #0066FF 50%, #FF2A3C 100%);
   background-size: 200% 100%;
-  animation: gradientFlow 5s linear infinite;
+  animation: gradientFlow 4s linear infinite;
   z-index: 3;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 @keyframes gradientFlow {
@@ -1635,13 +1649,13 @@ html[data-theme="dark"] .brand-card::after {
 }
 
 .brand-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--srm-card-hover-border);
-  box-shadow: 0 18px 38px -6px rgba(14, 30, 56, 0.16), 0 2px 8px rgba(14, 30, 56, 0.06);
+  transform: translateY(-10px) scale(1.025);
+  border-color: rgba(0, 102, 255, 0.45);
+  box-shadow: 0 24px 50px -10px rgba(0, 102, 255, 0.22), 0 0 24px rgba(255, 42, 60, 0.16);
 }
 
 html[data-theme="dark"] .brand-card:hover {
-  box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.75), 0 0 20px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 26px 54px -10px rgba(0, 0, 0, 0.85), 0 0 28px rgba(0, 102, 255, 0.3);
 }
 
 /* The Floating Showroom Pedestal */
@@ -1664,8 +1678,8 @@ html[data-theme="dark"] .brand-card:hover {
 }
 
 .brand-card:hover .brand-logo-container {
-  border-color: rgba(0, 113, 227, 0.35);
-  box-shadow: 0 10px 28px rgba(0, 113, 227, 0.16);
+  border-color: rgba(0, 102, 255, 0.35);
+  box-shadow: 0 10px 28px rgba(0, 102, 255, 0.16);
   transform: translateY(-2px);
 }
 
@@ -2254,17 +2268,17 @@ html[data-theme="dark"] .meta-tag {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #0E1E38, #D9232E, #0E1E38);
+  background: linear-gradient(90deg, #FF2A3C 0%, #0066FF 50%, #FF2A3C 100%);
   background-size: 200% 100%;
-  animation: gradientFlow 5s linear infinite;
+  animation: gradientFlow 4s linear infinite;
   z-index: 3;
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
 .part-card:hover {
-  transform: translateY(-6px) scale(1.015);
+  transform: translateY(-8px) scale(1.02);
   border-color: var(--srm-card-hover-border);
-  box-shadow: 0 16px 36px -6px rgba(14, 30, 56, 0.15), 0 2px 8px rgba(14, 30, 56, 0.06);
+  box-shadow: 0 20px 44px -8px rgba(0, 102, 255, 0.22), 0 0 20px rgba(255, 42, 60, 0.15);
 }
 
 html[data-theme="dark"] .part-card:hover {

@@ -1,10 +1,9 @@
-// Sai Rudra Motors - Apple Theme Engine
-// Provides instantaneous light/dark mode switching with zero-FOUC state persistence.
+// Sai Rudra Motors - Theme Engine
+// Instant light/dark mode switching with zero-FOUC persistence and resilient event binding.
 
 (function () {
   'use strict';
 
-  // 1. Resolve and apply stored theme immediately (default: 'light')
   var currentTheme = 'light';
   try {
     var stored = localStorage.getItem('srm-theme');
@@ -15,18 +14,16 @@
 
   document.documentElement.setAttribute('data-theme', currentTheme);
 
-  // 2. Synchronize button state and accessibility labels
   function updateToggleButtons(theme) {
     var isDark = theme === 'dark';
-    var label = isDark ? 'Switch to Apple Light Mode' : 'Switch to Dark Mode';
-    var buttons = document.querySelectorAll('.srm-theme-toggle-btn');
+    var label = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    var buttons = document.querySelectorAll('.srm-theme-toggle-btn, #themeToggleBtn');
     buttons.forEach(function (btn) {
       btn.setAttribute('aria-label', label);
       btn.setAttribute('title', label);
     });
   }
 
-  // 3. Global toggle handler
   function toggleTheme() {
     var active = document.documentElement.getAttribute('data-theme') || 'light';
     var next = active === 'dark' ? 'light' : 'dark';
@@ -41,11 +38,25 @@
     var active = document.documentElement.getAttribute('data-theme') || 'light';
     updateToggleButtons(active);
 
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('.srm-theme-toggle-btn');
-      if (btn) {
+    // Direct event listeners on all toggle buttons
+    document.querySelectorAll('.srm-theme-toggle-btn, #themeToggleBtn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
         e.preventDefault();
+        e.stopPropagation();
         toggleTheme();
+      });
+    });
+
+    // Delegated fallback for dynamically inserted elements
+    document.addEventListener('click', function (e) {
+      var target = e.target;
+      while (target && target !== document) {
+        if (target.classList && target.classList.contains('srm-theme-toggle-btn')) {
+          e.preventDefault();
+          toggleTheme();
+          return;
+        }
+        target = target.parentNode;
       }
     });
   }
@@ -56,6 +67,5 @@
     init();
   }
 
-  // Expose toggle function globally for programmatic triggers
   window.srmToggleTheme = toggleTheme;
 })();
