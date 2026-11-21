@@ -1,26 +1,20 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-21T18:22:00.000Z",
-  "title": "Design System: Sai Rudra Motors — Precision Depot HUD",
+  "generatedAt": "2026-11-22T00:09:00.000Z",
+  "title": "Design System: Sai Rudra Motors — Heritage Automotive OEM",
   "extensions": {
     "colorMeta": {
       "primary": {
         "role": "primary",
-        "displayName": "Electric Cobalt",
-        "canonical": "#0071E3",
-        "tonalRamp": ["#E0F2FE", "#BAE6FD", "#38BDF8", "#0071E3", "#0056B3"]
+        "displayName": "Deep Midnight Navy",
+        "canonical": "#0E1E38",
+        "tonalRamp": ["#E8EEF8", "#C3D2E9", "#6A8EB8", "#0E1E38", "#07101E"]
       },
-      "indigo-accent": {
+      "accent-red": {
         "role": "secondary",
-        "displayName": "Electric Indigo",
-        "canonical": "#4F46E5",
-        "tonalRamp": ["#EEF2FF", "#C7D2FE", "#818CF8", "#4F46E5", "#3730A3"]
-      },
-      "crimson-accent": {
-        "role": "tertiary",
-        "displayName": "Crimson Energy",
-        "canonical": "#E11D48",
-        "tonalRamp": ["#FFE4E6", "#FDA4AF", "#FB7185", "#E11D48", "#9F1239"]
+        "displayName": "Precision Racing Red",
+        "canonical": "#D9232E",
+        "tonalRamp": ["#FEE2E2", "#FCA5A5", "#EF4444", "#D9232E", "#991B1B"]
       },
       "whatsapp-green": {
         "role": "action",
@@ -30,15 +24,15 @@
       },
       "bg-light": {
         "role": "neutral-bg",
-        "displayName": "Light Steel Canvas",
-        "canonical": "#EEF3F8",
-        "tonalRamp": ["#FFFFFF", "#F5F7FA", "#EEF3F8", "#E2E8F0"]
+        "displayName": "Industrial Steel Canvas",
+        "canonical": "#F4F6F9",
+        "tonalRamp": ["#FFFFFF", "#F8FAFC", "#F4F6F9", "#E2E8F0"]
       },
       "bg-dark": {
         "role": "neutral-dark",
-        "displayName": "Obsidian Theatre Canvas",
-        "canonical": "#06080E",
-        "tonalRamp": ["#0E131F", "#0B1120", "#06080E", "#000000"]
+        "displayName": "Cast Iron Slate Canvas",
+        "canonical": "#0B111B",
+        "tonalRamp": ["#1A2536", "#131B28", "#0B111B", "#05080E"]
       }
     },
     "typographyMeta": {
@@ -58,18 +52,18 @@
     "shadows": [
       {
         "name": "card-rest",
-        "value": "0 4px 20px -2px rgba(15, 23, 42, 0.07)",
+        "value": "0 4px 18px -2px rgba(14, 30, 56, 0.08)",
         "purpose": "Resting elevation for brand and category cards."
       },
       {
         "name": "card-hover",
-        "value": "0 26px 56px -10px rgba(0, 113, 227, 0.28), 0 0 28px rgba(99, 102, 241, 0.16)",
-        "purpose": "Dynamic 3D lift shadow with radiant cobalt/indigo glow."
+        "value": "0 18px 38px -6px rgba(14, 30, 56, 0.16)",
+        "purpose": "Authoritative lift shadow on hover."
       },
       {
         "name": "hud-aura",
-        "value": "0 28px 58px -10px rgba(0, 113, 227, 0.28), 0 0 36px rgba(99, 102, 241, 0.2)",
-        "purpose": "Pulsating atmospheric aura around the levitating Trade Counter HUD."
+        "value": "0 24px 50px -10px rgba(14, 30, 56, 0.22)",
+        "purpose": "Solid trade presence around the levitating Trade Counter HUD."
       }
     ],
     "motion": [
@@ -77,11 +71,6 @@
         "name": "hud-levitate",
         "value": "levitateHud 7s ease-in-out infinite",
         "purpose": "Continuous smooth 3D floating effect for the stock check HUD."
-      },
-      {
-        "name": "sheen-sweep",
-        "value": "sheenSweep 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "purpose": "Specular glare sweep shooting across brand cards on hover."
       },
       {
         "name": "radar-sonar",
@@ -98,68 +87,19 @@
   },
   "components": [
     {
-      "name": "Trade Counter HUD Card",
-      "kind": "card",
-      "refersTo": "widget-hud",
-      "description": "Floating terminal for workshop stock inquiries with live online badge.",
-      "html": "<div class=\"srm-hero-widget-card\"><div class=\"widget-header\"><h3>Check Stock & Price</h3><span class=\"widget-badge-online\">READY STOCK</span></div></div>",
-      "css": ".srm-hero-widget-card { border-radius: 28px; backdrop-filter: blur(32px); animation: levitateHud 7s ease-in-out infinite; }"
+      "name": "card-brand",
+      "category": "card",
+      "description": "Authorized brand pedestal card with flowing hairline and dual trade action pills."
     },
     {
-      "name": "Brand Showcase Tile",
-      "kind": "card",
-      "refersTo": "card-brand",
-      "description": "Hardware bento tile showcasing authorized brand logos on pure white pedestal.",
-      "html": "<article class=\"brand-card\"><div class=\"brand-logo-container\"><img src=\"/logos/01_sangsin_brakes.png\"></div></article>",
-      "css": ".brand-card { border-radius: 26px; transition: transform 0.32s; } .brand-card:hover { transform: translateY(-8px) scale(1.02); }"
+      "name": "widget-hud",
+      "category": "form",
+      "description": "Floating Trade Counter terminal with ready-stock radar badge and direct WhatsApp lead dispatch."
     },
     {
-      "name": "WhatsApp Counter Button",
-      "kind": "button",
-      "refersTo": "button-whatsapp",
-      "description": "High-contrast action button connecting workshops straight to parts counter.",
-      "html": "<button class=\"srm-wa-btn\">WhatsApp Us</button>",
-      "css": ".srm-wa-btn { background: #25D366; color: #fff; border-radius: 9999px; padding: 9px 18px; font-weight: 700; }"
+      "name": "button-whatsapp",
+      "category": "button",
+      "description": "Immediate trade inquiry dispatch button directing customers to WhatsApp."
     }
-  ],
-  "narrative": {
-    "northStar": "The Precision Depot HUD",
-    "overview": "The visual design system for Sai Rudra Motors embodies The Precision Depot HUD—where heavy-duty automotive trade authority intersects with Apple Keynote glassmorphism, floating HUD telemetry, and aerodynamic fluid curves.",
-    "keyCharacteristics": [
-      "Dual-engine Light (Electric Cobalt) and Dark (Obsidian Theatre) operating modes",
-      "Fluid aerodynamic SVG wave ribbons replacing flat divider lines",
-      "Pure white showcase pedestals isolating official brand logos",
-      "Zero public price display across all screens",
-      "3D levitation float physics and specular glare sheen sweeps"
-    ],
-    "rules": [
-      {
-        "name": "The Zero-Price Rule",
-        "body": "No price numerals, currency symbols, or rate tags may appear on any public-facing screen.",
-        "section": "Overview"
-      },
-      {
-        "name": "The Genuine Pedestal Rule",
-        "body": "Every authorized manufacturer brand logo rests on an isolated, immaculate pure-white showcase pedestal with unified contrast.",
-        "section": "Components"
-      },
-      {
-        "name": "The Aerodynamic Curve Rule",
-        "body": "Hard straight-edge dividers are forbidden between major sections; fluid SVG wave ribbons govern transitions.",
-        "section": "Layout"
-      }
-    ],
-    "dos": [
-      "Do maintain pure white pedestal backgrounds for all manufacturer logos",
-      "Do route part and stock inquiries to WhatsApp with pre-filled vehicle details",
-      "Do preserve high contrast across Light and Obsidian Dark modes",
-      "Do use super-ellipse squircles (20px to 28px) and aerodynamic wave dividers"
-    ],
-    "donts": [
-      "Don't display price numbers or currency symbols anywhere on public screens",
-      "Don't use generic corporate buzzwords or ungrounded marketing claims",
-      "Don't introduce flat 1px horizontal lines to divide sections",
-      "Don't use low-contrast text on workshop touch interfaces"
-    ]
-  }
+  ]
 }

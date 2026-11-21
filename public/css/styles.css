@@ -1,86 +1,89 @@
 /* ==========================================================================
-   SAI RUDRA MOTORS - APPLE DESIGN SYSTEM (DUAL LIGHT / DARK ENGINE)
-   Vibrant Light Mode: Rich Automotive Cobalt & Indigo Atmosphere, Colored Bento
-   Dark Mode: Apple Keynote Pro Obsidian Theatre Mode (html[data-theme="dark"])
+   SAI RUDRA MOTORS - HERITAGE AUTOMOTIVE OEM DESIGN SYSTEM
+   Theme: Deep Midnight Navy (#0E1E38) & Brembo Precision Racing Red (#D9232E)
+   Authentic German & Indian OEM Spares Depot Authority
    ========================================================================== */
 
 :root {
-  /* --- Apple Light Mode (Default) Tokens --- */
-  --srm-bg: #EEF3F8;
+  /* --- Heritage Automotive OEM (Default Light) Tokens --- */
+  --srm-bg: #F4F6F9;
   --srm-bg-gradient: 
-    radial-gradient(1100px 520px at 15% -60px, rgba(0, 113, 227, 0.18) 0%, transparent 70%),
-    radial-gradient(900px 480px at 85% -40px, rgba(99, 102, 241, 0.14) 0%, transparent 70%),
-    radial-gradient(750px 380px at 50% 320px, rgba(225, 29, 72, 0.06) 0%, transparent 65%),
-    linear-gradient(180deg, #EEF3F8 0%, #F5F7FA 100%);
+    radial-gradient(1200px 500px at 50% -80px, rgba(14, 30, 56, 0.06) 0%, transparent 70%),
+    linear-gradient(180deg, #F4F6F9 0%, #FFFFFF 50%, #EEF2F6 100%);
 
   --srm-surface: #FFFFFF;
-  --srm-surface-subtle: #F0F4F9;
+  --srm-surface-subtle: #EAEEF4;
   --srm-surface-elevated: #FFFFFF;
-  --srm-glass-dock: rgba(255, 255, 255, 0.88);
-  --srm-glass-blur: blur(28px) saturate(190%);
-  --srm-border: rgba(0, 113, 227, 0.12);
-  --srm-border-light: rgba(0, 113, 227, 0.06);
-  --srm-border-hover: rgba(0, 113, 227, 0.35);
+  --srm-glass-dock: rgba(255, 255, 255, 0.94);
+  --srm-glass-blur: blur(20px) saturate(180%);
+  --srm-border: rgba(14, 30, 56, 0.12);
+  --srm-border-light: rgba(14, 30, 56, 0.06);
+  --srm-border-hover: rgba(14, 30, 56, 0.3);
 
   --srm-text-primary: #0F172A;
   --srm-text-secondary: #475569;
   --srm-text-muted: #64748B;
   --srm-text-subtle: #94A3B8;
-  --srm-text-heading: #0F172A;
+  --srm-text-heading: #0E1E38;
 
-  --srm-apple-blue: #0071E3;
-  --srm-apple-blue-hover: #0077ED;
-  --srm-apple-indigo: #4F46E5;
+  /* Primary Deep Midnight Navy (German & Indian OEM Distributor Authority) */
+  --srm-primary-navy: #0E1E38;
+  --srm-primary-navy-hover: #162C50;
+  --srm-apple-blue: #0E1E38;
+  --srm-apple-blue-hover: #162C50;
+  --srm-apple-indigo: #162C50;
   --srm-apple-green: #16A34A;
-  --srm-red-accent: #E11D48;
-  --srm-red-glow: rgba(225, 29, 72, 0.25);
+  
+  /* Precision Racing Red (Brembo & Bosch Motorsport Accent) */
+  --srm-red-accent: #D9232E;
+  --srm-red-glow: rgba(217, 35, 46, 0.22);
 
   --srm-card-bg: #FFFFFF;
-  --srm-card-border: rgba(0, 113, 227, 0.12);
-  --srm-card-hover-border: rgba(0, 113, 227, 0.38);
-  --srm-card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.07);
-  --srm-card-hover-shadow: 0 20px 44px -8px rgba(0, 113, 227, 0.16), 0 4px 12px rgba(15, 23, 42, 0.06);
+  --srm-card-border: rgba(14, 30, 56, 0.12);
+  --srm-card-hover-border: rgba(14, 30, 56, 0.28);
+  --srm-card-shadow: 0 4px 18px -2px rgba(14, 30, 56, 0.08);
+  --srm-card-hover-shadow: 0 16px 36px -6px rgba(14, 30, 56, 0.14), 0 2px 8px rgba(14, 30, 56, 0.06);
 
   --srm-pedestal-bg: #FFFFFF;
-  --srm-pedestal-border: rgba(0, 113, 227, 0.1);
-  --srm-pedestal-shadow: 0 4px 16px rgba(15, 23, 42, 0.06), inset 0 1px 0 #FFFFFF;
+  --srm-pedestal-border: rgba(14, 30, 56, 0.1);
+  --srm-pedestal-shadow: 0 2px 10px rgba(14, 30, 56, 0.05), inset 0 1px 0 #FFFFFF;
 
-  --srm-spotlight: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 113, 227, 0.12), transparent 60%);
+  --srm-spotlight: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(14, 30, 56, 0.06), transparent 60%);
 
-  --srm-hero-subtitle-gradient: linear-gradient(135deg, #0071E3 0%, #4F46E5 50%, #0284C7 100%);
+  --srm-hero-subtitle-gradient: linear-gradient(135deg, #0E1E38 0%, #D9232E 100%);
   --srm-search-bg: #FFFFFF;
-  --srm-search-border: rgba(0, 113, 227, 0.22);
-  --srm-search-shadow: 0 8px 32px rgba(0, 113, 227, 0.08);
+  --srm-search-border: rgba(14, 30, 56, 0.18);
+  --srm-search-shadow: 0 4px 20px rgba(14, 30, 56, 0.06);
 
   --srm-comp-bg: #FFFFFF;
-  --srm-comp-border: rgba(0, 113, 227, 0.12);
-  --srm-comp-hover-bg: #F0F7FF;
-  --srm-comp-active-bg: linear-gradient(135deg, #0071E3 0%, #1D4ED8 100%);
+  --srm-comp-border: rgba(14, 30, 56, 0.12);
+  --srm-comp-hover-bg: #F0F4FA;
+  --srm-comp-active-bg: linear-gradient(135deg, #0E1E38 0%, #162C50 100%);
   --srm-comp-active-text: #FFFFFF;
-  --srm-comp-active-shadow: 0 6px 20px rgba(0, 113, 227, 0.35);
+  --srm-comp-active-shadow: 0 4px 14px rgba(14, 30, 56, 0.25);
 
   --srm-wa-green: #25D366;
   --srm-wa-hover: #20BA5A;
   --srm-wa-dark: #128C7E;
 
-  --srm-utility-bg: #0B1120;
+  --srm-utility-bg: #07101E;
   --srm-utility-border: rgba(255, 255, 255, 0.08);
   --srm-utility-text: #94A3B8;
-  --srm-utility-pill-bg: rgba(0, 113, 227, 0.2);
+  --srm-utility-pill-bg: rgba(217, 35, 46, 0.18);
 
-  --srm-trade-strip-bg: linear-gradient(180deg, #EBF2F9 0%, #F1F6FB 100%);
-  --srm-footer-bg: #0F172A;
-  --srm-footer-subline-bg: #090E1A;
+  --srm-trade-strip-bg: linear-gradient(180deg, #E9EFF6 0%, #F2F6FB 100%);
+  --srm-footer-bg: #07101E;
+  --srm-footer-subline-bg: #040810;
   --srm-footer-text: #94A3B8;
 
-  /* Category Specific Accents */
-  --cat-braking-bg: #FFF5F5;
-  --cat-braking-border: rgba(220, 38, 38, 0.25);
-  --cat-braking-color: #DC2626;
+  /* Category Specific Accents (Authentic Automotive Subsystems) */
+  --cat-braking-bg: #FEF2F2;
+  --cat-braking-border: rgba(217, 35, 46, 0.25);
+  --cat-braking-color: #D9232E;
 
-  --cat-clutch-bg: #F5F3FF;
-  --cat-clutch-border: rgba(79, 70, 229, 0.25);
-  --cat-clutch-color: #4F46E5;
+  --cat-clutch-bg: #F0F4FA;
+  --cat-clutch-border: rgba(14, 30, 56, 0.22);
+  --cat-clutch-color: #0E1E38;
 
   --cat-filtration-bg: #F0F9FF;
   --cat-filtration-border: rgba(2, 132, 199, 0.25);
@@ -102,23 +105,24 @@
   --cat-electrical-border: rgba(234, 88, 12, 0.25);
   --cat-electrical-color: #EA580C;
 
-  /* Typography - Apple Human Interface System Stack */
-  --srm-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
-  --srm-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  /* Typography */
+  --srm-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Plus Jakarta Sans", "Inter", "Helvetica Neue", sans-serif;
+  --srm-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Space Grotesk", "Plus Jakarta Sans", sans-serif;
 
-  /* Apple Squircle Radius */
+  /* Squircle Radius */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
-  --radius-xl: 24px;
+  --radius-xl: 26px;
+  --radius-hud: 28px;
   --radius-pill: 9999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
-  --shadow-md: 0 8px 24px rgba(0, 113, 227, 0.1);
-  --shadow-lg: 0 20px 48px rgba(0, 113, 227, 0.15);
-  --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.06);
+  --shadow-sm: 0 1px 3px rgba(14, 30, 56, 0.08);
+  --shadow-md: 0 6px 20px rgba(14, 30, 56, 0.1);
+  --shadow-lg: 0 16px 36px rgba(14, 30, 56, 0.14);
+  --shadow-card: 0 4px 18px rgba(14, 30, 56, 0.07);
 
   /* Legacy aliases for backward compatibility */
   --srm-steel-bg: var(--srm-bg);
@@ -127,99 +131,101 @@
   --srm-dark-base: var(--srm-footer-bg);
 }
 
-/* --- Apple Dark Mode (Obsidian / Space Black) Tokens --- */
+/* --- Cast Iron Slate (Dark Mode) Tokens --- */
 html[data-theme="dark"] {
-  --srm-bg: #06080E;
-  --srm-bg-gradient: radial-gradient(1200px 600px at 50% 0%, rgba(41, 151, 255, 0.12) 0%, transparent 60%), radial-gradient(800px 400px at 80% 30%, rgba(147, 51, 234, 0.05) 0%, transparent 60%);
-  --srm-surface: #0E131F;
+  --srm-bg: #0B111B;
+  --srm-bg-gradient: radial-gradient(1200px 600px at 50% 0%, rgba(26, 45, 77, 0.25) 0%, transparent 60%);
+  --srm-surface: #131B28;
   --srm-surface-subtle: rgba(255, 255, 255, 0.05);
-  --srm-surface-elevated: rgba(255, 255, 255, 0.05);
-  --srm-glass-dock: rgba(6, 8, 14, 0.75);
-  --srm-border: rgba(255, 255, 255, 0.08);
-  --srm-border-light: rgba(255, 255, 255, 0.04);
+  --srm-surface-elevated: #1A2536;
+  --srm-glass-dock: rgba(11, 17, 27, 0.9);
+  --srm-border: rgba(255, 255, 255, 0.09);
+  --srm-border-light: rgba(255, 255, 255, 0.05);
   --srm-border-hover: rgba(255, 255, 255, 0.22);
 
-  --srm-text-primary: #F5F5F7;
-  --srm-text-secondary: #CBD5E1;
-  --srm-text-muted: #86868B;
-  --srm-text-subtle: #A1A1A6;
+  --srm-text-primary: #F8FAFC;
+  --srm-text-secondary: #94A3B8;
+  --srm-text-muted: #64748B;
+  --srm-text-subtle: #94A3B8;
   --srm-text-heading: #FFFFFF;
 
-  --srm-apple-blue: #2997FF;
-  --srm-apple-blue-hover: #47A7FF;
-  --srm-apple-green: #30D158;
-  --srm-red-accent: #FF375F;
-  --srm-red-glow: rgba(255, 55, 95, 0.25);
+  --srm-primary-navy: #3B82F6;
+  --srm-primary-navy-hover: #60A5FA;
+  --srm-apple-blue: #3B82F6;
+  --srm-apple-blue-hover: #60A5FA;
+  --srm-apple-green: #22C55E;
+  --srm-red-accent: #EF4444;
+  --srm-red-glow: rgba(239, 68, 68, 0.25);
 
-  --srm-card-bg: rgba(255, 255, 255, 0.025);
-  --srm-card-border: rgba(255, 255, 255, 0.08);
-  --srm-card-hover-border: rgba(255, 255, 255, 0.22);
-  --srm-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  --srm-card-hover-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 0 24px rgba(41, 151, 255, 0.14);
+  --srm-card-bg: #131B28;
+  --srm-card-border: rgba(255, 255, 255, 0.09);
+  --srm-card-hover-border: rgba(59, 130, 246, 0.35);
+  --srm-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --srm-card-hover-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.6), 0 0 16px rgba(59, 130, 246, 0.15);
 
   --srm-pedestal-bg: #FFFFFF;
   --srm-pedestal-border: rgba(255, 255, 255, 0.1);
   --srm-pedestal-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 
-  --srm-spotlight: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08), transparent 60%);
+  --srm-spotlight: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.05), transparent 60%);
 
-  --srm-hero-subtitle-gradient: linear-gradient(180deg, #FFFFFF 20%, #86868B 100%);
-  --srm-search-bg: rgba(255, 255, 255, 0.05);
-  --srm-search-border: rgba(255, 255, 255, 0.12);
+  --srm-hero-subtitle-gradient: linear-gradient(180deg, #FFFFFF 20%, #94A3B8 100%);
+  --srm-search-bg: #131B28;
+  --srm-search-border: rgba(255, 255, 255, 0.15);
   --srm-search-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 
-  --srm-comp-bg: rgba(255, 255, 255, 0.03);
-  --srm-comp-border: rgba(255, 255, 255, 0.08);
-  --srm-comp-hover-bg: rgba(255, 255, 255, 0.06);
-  --srm-comp-active-bg: linear-gradient(180deg, rgba(41, 151, 255, 0.2) 0%, rgba(41, 151, 255, 0.08) 100%);
+  --srm-comp-bg: #131B28;
+  --srm-comp-border: rgba(255, 255, 255, 0.09);
+  --srm-comp-hover-bg: #1A2536;
+  --srm-comp-active-bg: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
   --srm-comp-active-text: #FFFFFF;
-  --srm-comp-active-shadow: 0 0 24px rgba(41, 151, 255, 0.3);
+  --srm-comp-active-shadow: 0 0 16px rgba(59, 130, 246, 0.2);
 
-  --srm-utility-bg: #000000;
+  --srm-utility-bg: #05080E;
   --srm-utility-border: rgba(255, 255, 255, 0.06);
-  --srm-utility-text: #86868B;
-  --srm-utility-pill-bg: rgba(255, 255, 255, 0.06);
+  --srm-utility-text: #64748B;
+  --srm-utility-pill-bg: rgba(217, 35, 46, 0.2);
 
-  --srm-trade-strip-bg: rgba(255, 255, 255, 0.02);
-  --srm-footer-bg: #000000;
-  --srm-footer-subline-bg: #070B14;
-  --srm-footer-text: #94A3B8;
+  --srm-trade-strip-bg: #0B111B;
+  --srm-footer-bg: #05080E;
+  --srm-footer-subline-bg: #020408;
+  --srm-footer-text: #64748B;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.6);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.4);
 
   --srm-steel-bg: var(--srm-bg);
   --srm-text-dark: var(--srm-text-primary);
   --srm-dark-base: var(--srm-footer-bg);
 
-  --cat-braking-bg: rgba(255, 255, 255, 0.03);
-  --cat-braking-border: rgba(255, 255, 255, 0.08);
+  --cat-braking-bg: rgba(217, 35, 46, 0.1);
+  --cat-braking-border: rgba(217, 35, 46, 0.25);
   --cat-braking-color: #F87171;
 
-  --cat-clutch-bg: rgba(255, 255, 255, 0.03);
-  --cat-clutch-border: rgba(255, 255, 255, 0.08);
-  --cat-clutch-color: #A5B4FC;
+  --cat-clutch-bg: rgba(14, 30, 56, 0.4);
+  --cat-clutch-border: rgba(59, 130, 246, 0.25);
+  --cat-clutch-color: #93C5FD;
 
-  --cat-filtration-bg: rgba(255, 255, 255, 0.03);
-  --cat-filtration-border: rgba(255, 255, 255, 0.08);
+  --cat-filtration-bg: rgba(2, 132, 199, 0.1);
+  --cat-filtration-border: rgba(2, 132, 199, 0.25);
   --cat-filtration-color: #7DD3FC;
 
-  --cat-suspension-bg: rgba(255, 255, 255, 0.03);
-  --cat-suspension-border: rgba(255, 255, 255, 0.08);
+  --cat-suspension-bg: rgba(22, 163, 74, 0.1);
+  --cat-suspension-border: rgba(22, 163, 74, 0.25);
   --cat-suspension-color: #86EFAC;
 
-  --cat-fluids-bg: rgba(255, 255, 255, 0.03);
-  --cat-fluids-border: rgba(255, 255, 255, 0.08);
+  --cat-fluids-bg: rgba(217, 119, 6, 0.1);
+  --cat-fluids-border: rgba(217, 119, 6, 0.25);
   --cat-fluids-color: #FCD34D;
 
-  --cat-rubber-bg: rgba(255, 255, 255, 0.03);
-  --cat-rubber-border: rgba(255, 255, 255, 0.08);
+  --cat-rubber-bg: rgba(71, 85, 105, 0.1);
+  --cat-rubber-border: rgba(71, 85, 105, 0.25);
   --cat-rubber-color: #CBD5E1;
 
-  --cat-electrical-bg: rgba(255, 255, 255, 0.03);
-  --cat-electrical-border: rgba(255, 255, 255, 0.08);
+  --cat-electrical-bg: rgba(234, 88, 12, 0.1);
+  --cat-electrical-border: rgba(234, 88, 12, 0.25);
   --cat-electrical-color: #FDBA74;
 }
 
@@ -387,14 +393,14 @@ button {
 }
 
 .brand-crest {
-  background: linear-gradient(135deg, #FF375F 0%, #D62848 100%);
+  background: linear-gradient(135deg, #D9232E 0%, #B91C1C 100%);
   color: #FFFFFF;
   font-family: var(--srm-font-display);
   font-size: 1.05rem;
   font-weight: 800;
   padding: 5px 9px;
   border-radius: var(--radius-sm);
-  box-shadow: 0 2px 10px rgba(255, 55, 95, 0.35);
+  box-shadow: 0 2px 10px rgba(217, 35, 46, 0.35);
   position: relative;
   overflow: hidden;
   letter-spacing: 0.04em;
@@ -657,7 +663,7 @@ html[data-theme="dark"] .theme-icon-moon {
   overflow: hidden;
 }
 
-/* Atmospheric Ambient Mesh & Floating Light Orbs */
+/* Atmospheric Mechanical Blueprint Drafting Canvas */
 .srm-ambient-mesh {
   position: absolute;
   inset: 0;
@@ -670,58 +676,53 @@ html[data-theme="dark"] .theme-icon-moon {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.52;
-  mix-blend-mode: multiply;
+  opacity: 0.18;
   pointer-events: none;
-  will-change: transform;
 }
 
 html[data-theme="dark"] .ambient-orb {
-  opacity: 0.32;
-  mix-blend-mode: screen;
+  opacity: 0.15;
   filter: blur(95px);
 }
 
 .orb-blue {
   width: 520px;
   height: 520px;
-  top: -100px;
-  left: 3%;
-  background: radial-gradient(circle, #0071E3 0%, rgba(0, 113, 227, 0) 70%);
-  animation: orbDrift1 18s ease-in-out infinite alternate;
+  top: -120px;
+  left: 5%;
+  background: radial-gradient(circle, #0E1E38 0%, rgba(14, 30, 56, 0) 70%);
 }
 
 .orb-indigo {
-  width: 580px;
-  height: 580px;
+  width: 480px;
+  height: 480px;
   top: -40px;
-  right: 2%;
-  background: radial-gradient(circle, #6366F1 0%, rgba(99, 102, 241, 0) 70%);
-  animation: orbDrift2 22s ease-in-out infinite alternate;
+  right: 5%;
+  background: radial-gradient(circle, #162C50 0%, rgba(22, 44, 80, 0) 70%);
 }
 
 .orb-crimson {
-  width: 440px;
-  height: 440px;
+  width: 380px;
+  height: 380px;
   bottom: 0px;
-  left: 42%;
-  background: radial-gradient(circle, #FF375F 0%, rgba(255, 55, 95, 0) 70%);
-  animation: orbDrift3 16s ease-in-out infinite alternate;
+  left: 45%;
+  background: radial-gradient(circle, #D9232E 0%, rgba(217, 35, 46, 0) 70%);
+  opacity: 0.08;
 }
 
 .ambient-grid-canvas {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(0, 113, 227, 0.16) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(14, 30, 56, 0.08) 1.2px, transparent 1.2px);
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 40%, transparent 85%);
   -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 40%, transparent 85%);
-  opacity: 0.75;
+  opacity: 0.6;
 }
 
 html[data-theme="dark"] .ambient-grid-canvas {
-  background-image: radial-gradient(rgba(41, 151, 255, 0.22) 1.2px, transparent 1.2px);
-  opacity: 0.45;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
+  opacity: 0.35;
 }
 
 @keyframes orbDrift1 {
@@ -974,10 +975,10 @@ html[data-theme="dark"] .capability-item {
    Hero Quick Quote Form Widget (High-Tech Floating HUD Terminal)
    ========================================================================== */
 .srm-hero-widget-card {
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 253, 0.92) 100%);
-  border: 1.5px solid rgba(0, 113, 227, 0.22);
-  backdrop-filter: blur(32px) saturate(180%);
-  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 246, 249, 0.94) 100%);
+  border: 1.5px solid rgba(14, 30, 56, 0.16);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-radius: 28px;
   padding: 28px;
   position: relative;
@@ -986,8 +987,8 @@ html[data-theme="dark"] .capability-item {
 }
 
 html[data-theme="dark"] .srm-hero-widget-card {
-  background: rgba(14, 19, 31, 0.82);
-  border: 1.5px solid rgba(41, 151, 255, 0.25);
+  background: rgba(19, 27, 40, 0.88);
+  border: 1.5px solid rgba(59, 130, 246, 0.25);
   animation: levitateHud 7s ease-in-out infinite, hudAuraPulseDark 4s ease-in-out infinite;
 }
 
@@ -998,19 +999,19 @@ html[data-theme="dark"] .srm-hero-widget-card {
 
 @keyframes hudAuraPulse {
   0%, 100% {
-    box-shadow: 0 20px 48px -12px rgba(0, 113, 227, 0.18), 0 0 24px rgba(79, 70, 229, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    box-shadow: 0 16px 36px -10px rgba(14, 30, 56, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
   50% {
-    box-shadow: 0 28px 58px -10px rgba(0, 113, 227, 0.28), 0 0 36px rgba(99, 102, 241, 0.2), inset 0 1px 0 rgba(255, 255, 255, 1);
+    box-shadow: 0 24px 50px -10px rgba(14, 30, 56, 0.22), inset 0 1px 0 rgba(255, 255, 255, 1);
   }
 }
 
 @keyframes hudAuraPulseDark {
   0%, 100% {
-    box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.7), 0 0 24px rgba(41, 151, 255, 0.16);
+    box-shadow: 0 20px 44px -12px rgba(0, 0, 0, 0.7), 0 0 16px rgba(14, 30, 56, 0.3);
   }
   50% {
-    box-shadow: 0 30px 64px -10px rgba(0, 0, 0, 0.8), 0 0 40px rgba(41, 151, 255, 0.3);
+    box-shadow: 0 28px 56px -10px rgba(0, 0, 0, 0.8), 0 0 24px rgba(217, 35, 46, 0.15);
   }
 }
 
@@ -1206,7 +1207,7 @@ html[data-theme="dark"] .form-field input:focus {
 
 /* Curve Fill Tints (Light Theme) */
 .curve-wave-fill-1 {
-  fill: rgba(0, 113, 227, 0.08);
+  fill: rgba(14, 30, 56, 0.05);
 }
 .curve-wave-fill-2 {
   fill: var(--srm-surface);
@@ -1215,7 +1216,7 @@ html[data-theme="dark"] .form-field input:focus {
   fill: var(--srm-bg);
 }
 .curve-wave-fill-trade {
-  fill: #EBF2F9;
+  fill: #E9EFF6;
 }
 .curve-wave-fill-footer {
   fill: var(--srm-footer-bg);
@@ -1223,19 +1224,19 @@ html[data-theme="dark"] .form-field input:focus {
 
 /* Curve Fill Tints (Dark Theme) */
 html[data-theme="dark"] .curve-wave-fill-1 {
-  fill: rgba(41, 151, 255, 0.05);
+  fill: rgba(26, 45, 77, 0.25);
 }
 html[data-theme="dark"] .curve-wave-fill-2 {
-  fill: #06080E;
+  fill: #0B111B;
 }
 html[data-theme="dark"] .curve-wave-fill-surface {
   fill: var(--srm-bg);
 }
 html[data-theme="dark"] .curve-wave-fill-trade {
-  fill: rgba(255, 255, 255, 0.02);
+  fill: #0B111B;
 }
 html[data-theme="dark"] .curve-wave-fill-footer {
-  fill: #000000;
+  fill: #05080E;
 }
 
 /* ==========================================================================
@@ -1576,7 +1577,7 @@ html[data-theme="dark"] .showcase-badge-pill {
   left: 0;
   right: 0;
   height: 3.5px;
-  background: linear-gradient(90deg, #0071E3, #6366F1, #FF375F, #0071E3);
+  background: linear-gradient(90deg, #0E1E38 0%, #D9232E 50%, #0E1E38 100%);
   background-size: 200% 100%;
   animation: gradientFlow 5s linear infinite;
   z-index: 3;
@@ -1604,7 +1605,7 @@ html[data-theme="dark"] .showcase-badge-pill {
 }
 
 html[data-theme="dark"] .brand-card::after {
-  background: linear-gradient(90deg, transparent 0%, rgba(41, 151, 255, 0.35) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
 }
 
 .brand-card:hover::after {
@@ -1636,11 +1637,11 @@ html[data-theme="dark"] .brand-card::after {
 .brand-card:hover {
   transform: translateY(-8px) scale(1.02);
   border-color: var(--srm-card-hover-border);
-  box-shadow: 0 26px 56px -10px rgba(0, 113, 227, 0.28), 0 0 28px rgba(99, 102, 241, 0.16);
+  box-shadow: 0 18px 38px -6px rgba(14, 30, 56, 0.16), 0 2px 8px rgba(14, 30, 56, 0.06);
 }
 
 html[data-theme="dark"] .brand-card:hover {
-  box-shadow: 0 28px 58px -10px rgba(0, 0, 0, 0.8), 0 0 32px rgba(41, 151, 255, 0.25);
+  box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.75), 0 0 20px rgba(59, 130, 246, 0.15);
 }
 
 /* The Floating Showroom Pedestal */
@@ -1837,9 +1838,9 @@ html[data-theme="dark"] .brand-category-badge {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: rgba(0, 113, 227, 0.08);
-  color: #0071E3;
-  border: 1.5px solid rgba(0, 113, 227, 0.25);
+  background: rgba(14, 30, 56, 0.06);
+  color: var(--srm-apple-blue);
+  border: 1.5px solid rgba(14, 30, 56, 0.2);
   min-height: 36px;
   padding: 7px 12px;
   border-radius: var(--radius-pill);
@@ -1856,10 +1857,10 @@ html[data-theme="dark"] .brand-category-badge {
 }
 
 .btn-view-parts:hover {
-  background: #0071E3;
+  background: var(--srm-apple-blue);
   color: #FFFFFF;
-  border-color: #0071E3;
-  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35);
+  border-color: var(--srm-apple-blue);
+  box-shadow: 0 4px 14px rgba(14, 30, 56, 0.25);
 }
 
 .btn-view-parts:hover svg {
@@ -2253,7 +2254,7 @@ html[data-theme="dark"] .meta-tag {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #0071E3, #6366F1, #0071E3);
+  background: linear-gradient(90deg, #0E1E38, #D9232E, #0E1E38);
   background-size: 200% 100%;
   animation: gradientFlow 5s linear infinite;
   z-index: 3;
@@ -2263,11 +2264,11 @@ html[data-theme="dark"] .meta-tag {
 .part-card:hover {
   transform: translateY(-6px) scale(1.015);
   border-color: var(--srm-card-hover-border);
-  box-shadow: 0 20px 44px -8px rgba(0, 113, 227, 0.2), 0 0 20px rgba(99, 102, 241, 0.12);
+  box-shadow: 0 16px 36px -6px rgba(14, 30, 56, 0.15), 0 2px 8px rgba(14, 30, 56, 0.06);
 }
 
 html[data-theme="dark"] .part-card:hover {
-  box-shadow: 0 24px 48px -10px rgba(0, 0, 0, 0.75), 0 0 24px rgba(41, 151, 255, 0.2);
+  box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.75), 0 0 16px rgba(59, 130, 246, 0.15);
 }
 
 .part-image-box {
@@ -2467,26 +2468,33 @@ html[data-theme="dark"] .vehicle-chip {
 
 .trade-feature:hover {
   border-color: var(--srm-apple-blue);
-  box-shadow: 0 16px 36px rgba(0, 113, 227, 0.16);
+  box-shadow: 0 16px 36px rgba(14, 30, 56, 0.12);
   transform: translateY(-5px);
 }
 
 html[data-theme="dark"] .trade-feature:hover {
   border-color: var(--srm-border-hover);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(41, 151, 255, 0.16);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 16px rgba(59, 130, 246, 0.12);
 }
 
 .feature-icon-frame {
   width: 48px;
   height: 48px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(0, 113, 227, 0.18) 0%, rgba(79, 70, 229, 0.14) 100%);
+  background: rgba(14, 30, 56, 0.07);
+  border: 1px solid rgba(14, 30, 56, 0.12);
   color: var(--srm-apple-blue);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html[data-theme="dark"] .feature-icon-frame {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #F8FAFC;
 }
 
 .trade-feature:hover .feature-icon-frame {

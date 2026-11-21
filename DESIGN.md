@@ -1,29 +1,29 @@
 ---
-name: Sai Rudra Motors — Precision Depot HUD
-description: Authorized wholesale & retail automotive spares distribution system with dual-mode cobalt/obsidian depth, aerodynamic curves, and floating telemetry
+name: Sai Rudra Motors — Heritage Automotive OEM
+description: Grounded, authoritative German & Indian automotive spare parts distribution identity featuring Deep Midnight Navy, Precision Racing Red accents, Crisp White pedestals, and WhatsApp Emerald
 colors:
-  primary: "#0071E3"
-  primary-hover: "#0077ED"
-  primary-dark: "#2997FF"
-  indigo-accent: "#4F46E5"
-  crimson-accent: "#E11D48"
+  primary: "#0E1E38"
+  primary-hover: "#162C50"
+  primary-dark: "#3B82F6"
+  accent-red: "#D9232E"
+  accent-red-hover: "#B91C1C"
   whatsapp-green: "#25D366"
   whatsapp-hover: "#20BA5A"
   success-green: "#16A34A"
-  bg-light: "#EEF3F8"
-  bg-dark: "#06080E"
+  bg-light: "#F4F6F9"
+  bg-dark: "#0B111B"
   surface-light: "#FFFFFF"
-  surface-dark: "#0E131F"
-  surface-subtle-light: "#F0F4F9"
+  surface-dark: "#131B28"
+  surface-subtle-light: "#EAEEF4"
   surface-subtle-dark: "rgba(255, 255, 255, 0.05)"
   text-primary-light: "#0F172A"
-  text-primary-dark: "#F5F5F7"
+  text-primary-dark: "#F8FAFC"
   text-secondary-light: "#475569"
-  text-secondary-dark: "#CBD5E1"
+  text-secondary-dark: "#94A3B8"
   text-muted: "#64748B"
-  border-light: "rgba(0, 113, 227, 0.12)"
-  border-dark: "rgba(255, 255, 255, 0.08)"
-  border-hover: "rgba(0, 113, 227, 0.35)"
+  border-light: "rgba(14, 30, 56, 0.12)"
+  border-dark: "rgba(255, 255, 255, 0.09)"
+  border-hover: "rgba(14, 30, 56, 0.28)"
 typography:
   display:
     fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Space Grotesk', 'Plus Jakarta Sans', sans-serif"
@@ -78,7 +78,7 @@ components:
   button-whatsapp-hover:
     backgroundColor: "{colors.whatsapp-hover}"
   button-catalogue:
-    backgroundColor: "rgba(0, 113, 227, 0.08)"
+    backgroundColor: "rgba(14, 30, 56, 0.06)"
     textColor: "{colors.primary}"
     rounded: "{rounded.pill}"
     padding: "7px 12px"
@@ -92,43 +92,43 @@ components:
     padding: "28px"
 ---
 
-# Design System: The Precision Depot HUD
+# Design System: Heritage Automotive OEM
 
 ## Overview
 
-The visual design system for Sai Rudra Motors (SRM) embodies **The Precision Depot HUD**—where heavy-duty automotive trade authority intersects with Apple Keynote keynote-stage glassmorphism, floating HUD telemetry, and aerodynamic fluid curves. 
+The visual design system for Sai Rudra Motors (SRM) embodies **Heritage Automotive OEM Authority**—drawing direct inspiration from legendary automotive engineering and parts distribution powerhouses (Bosch, Brembo, TVS, Delphi). It replaces generic, tech-startup AI clichés (drifting purple gradient mesh orbs, neon cyan halos, crypto-aesthetic cyberpunk glow) with a solid, high-credibility mechanical trade presence.
 
-Built for Karnataka's multi-brand workshops, mechanics, fleet operators, and retail parts counters, the interface rejects generic corporate marketing clichés in favor of grounded trade clarity. The system is driven by a dual-engine aesthetic: vibrant Electric Cobalt and Indigo ambient glass in Light Mode, transitioning seamlessly into an immersive Obsidian Space-Black theatre in Dark Mode. Fluid aerodynamic SVG wave ribbons replace conventional boxy dividers, imparting the kinetic motion of high-velocity transit and precision engineering.
+Engineered specifically for Karnataka's multi-brand workshops, mechanics, fleet operators, and retail trade counters, the identity projects deep industrial reliability. The palette pairs Deep Midnight Navy (`#0E1E38`) with Brembo Precision Racing Red (`#D9232E`), supported by crisp neutral white pedestals and utilitarian WhatsApp Emerald (`#25D366`) for instantaneous counter quotes.
 
 ### Named Rules
 - **The Zero-Price Rule.** No price numerals, currency symbols, or rate tags may appear on any public-facing screen. Commercial terms, tier discounts, and wholesale availability are communicated strictly via authenticated dealer login and direct WhatsApp trade counter dispatch.
 - **The Genuine Pedestal Rule.** Every authorized manufacturer brand logo rests on an isolated, immaculate pure-white showcase pedestal with unified contrast, emphasizing authentic factory origins over grey-market duplicates.
-- **The Aerodynamic Curve Rule.** Hard straight-edge dividers are forbidden between major sections. Fluid SVG wave ribbons and super-ellipse radii (20px to 28px) govern transitions and card containers.
+- **The Aerodynamic Curve Rule.** Hard straight-edge dividers are forbidden between major sections. Fluid SVG wave ribbons and super-ellipse radii (20px to 28px) govern transitions and card containers, echoing precision automotive body lines.
 
 ## Colors
 
-Color is deployed with precision and hierarchy across Light and Dark operating modes.
+Color is deployed with authentic automotive hierarchy across Light and Dark operating modes.
 
 ### Roles & Palettes
-- **Primary Accent (`#0071E3` Light / `#2997FF` Dark):** Represents precision engineering and official distributor authority. Used for active navigation links, spotlight cursor sheens, primary catalog CTAs, search focus rings, and section kickers.
-- **Electric Indigo (`#4F46E5` / `#6366F1`):** Secondary gradient blend partner for ambient orbs and illuminated hairline card crowns.
-- **Crimson Energy (`#E11D48` / `#FF375F`):** Used for the brand crest monogram and high-priority visual accents.
+- **Primary Navy (`#0E1E38` Light / `#3B82F6` Dark):** Represents OEM authority, industrial precision, and established trade trust. Used for primary navigation docks, typography anchors, section headers, search focus rings, and catalog outlines.
+- **Precision Racing Red (`#D9232E` hover `#B91C1C`):** Brembo and Bosch-inspired racing accent. Powers the official SRM brand crest monogram, live status badges, badge tags, and critical visual emphasis.
 - **WhatsApp Emerald (`#25D366` hover `#20BA5A`):** The primary commercial action color across all counter check buttons and sticky docks.
-- **Stock Status Green (`#16A34A` / `#34C759`):** Live verified inventory indicators, sonar radar pulses, and genuine company stock badges.
-- **Light Surfaces:** `#EEF3F8` steel canvas base with `#FFFFFF` elevated glassmorphic cards and subtle `#F0F4F9` container fills.
-- **Obsidian Dark Surfaces:** Deep `#06080E` theatre canvas with `#0E131F` elevated glass, highlighted by luminous cyan borders (`rgba(41, 151, 255, 0.22)`).
+- **Stock Status Green (`#16A34A` / `#22C55E`):** Live verified inventory indicators, sonar radar pulses, and genuine company stock badges.
+- **Light Surfaces:** Crisp `#F4F6F9` automotive industrial steel base with pure `#FFFFFF` elevated cards and `#EAEEF4` container fills.
+- **Cast Iron Dark Surfaces:** Deep `#0B111B` cast-iron slate base with `#131B28` elevated mechanical surfaces, bordered by clean `#223046` outlines.
 
-### Category Color Accents
-- **Braking:** Crimson tint (`bg: #FFF5F5`, `border: rgba(220, 38, 38, 0.25)`, `color: #DC2626`).
-- **Clutch & Axles:** Indigo tint (`bg: #F5F3FF`, `border: rgba(79, 70, 229, 0.25)`, `color: #4F46E5`).
-- **Filtration:** Sky Blue tint (`bg: #F0F9FF`, `border: rgba(2, 132, 199, 0.25)`, `color: #0284C7`).
-- **Suspension & Steering:** Emerald tint (`bg: #F0FDF4`, `border: rgba(22, 163, 74, 0.25)`, `color: #16A34A`).
-- **Oils & Coolants:** Amber tint (`bg: #FFFBEB`, `border: rgba(217, 119, 6, 0.25)`, `color: #D97706`).
-- **Rubber Components:** Slate tint (`bg: #F8FAFC`, `border: rgba(71, 85, 105, 0.25)`, `color: #475569`).
+### Category Color Accents (Authentic Vehicle Subsystems)
+- **Braking:** Racing Red tint (`bg: #FEF2F2`, `border: rgba(217, 35, 46, 0.25)`, `color: #D9232E`).
+- **Clutch & Axles:** Midnight Navy tint (`bg: #F0F4FA`, `border: rgba(14, 30, 56, 0.22)`, `color: #0E1E38`).
+- **Filtration:** Industrial Cerulean tint (`bg: #F0F9FF`, `border: rgba(2, 132, 199, 0.25)`, `color: #0284C7`).
+- **Suspension & Steering:** Precision Forest Emerald tint (`bg: #F0FDF4`, `border: rgba(22, 163, 74, 0.25)`, `color: #16A34A`).
+- **Oils & Coolants:** High-Octane Gold tint (`bg: #FFFBEB`, `border: rgba(217, 119, 6, 0.25)`, `color: #D97706`).
+- **Rubber Components:** Cast Iron Slate tint (`bg: #F8FAFC`, `border: rgba(71, 85, 105, 0.25)`, `color: #475569`).
+- **Electrical & Sensors:** Industrial Amber tint (`bg: #FFF7ED`, `border: rgba(234, 88, 12, 0.25)`, `color: #EA580C`).
 
 ## Typography
 
-Typography pairs technical precision with rapid legibility in workshop conditions.
+Typography pairs technical engineering precision with rapid legibility in busy depot and workshop conditions.
 
 - **Display & Section Titles:** `-apple-system, BlinkMacSystemFont, "SF Pro Display", "Space Grotesk", "Plus Jakarta Sans", sans-serif`. Weight 800, tight tracking (`-0.03em`), line-height 1.1.
 - **Card & Component Titles:** Weight 700 to 800, tracking (`-0.01em`), line-height 1.25.
@@ -136,11 +136,11 @@ Typography pairs technical precision with rapid legibility in workshop condition
 - **Kickers & Badges:** Uppercase, weight 800, size 0.68rem–0.72rem, wide tracking (`0.06em` to `0.08em`).
 
 ### Named Rules
-- **The High-Contrast Readability Rule.** Micro-copy (vehicle model tags, part references, stock statuses) must maintain minimum 6:1 contrast against surface backgrounds to ensure readability on grease-stained workshop mobile screens.
+- **The High-Contrast Readability Rule.** Micro-copy (vehicle model tags, part references, stock statuses) must maintain minimum 6:1 contrast against surface backgrounds to ensure instant legibility on grease-stained workshop mobile screens.
 
 ## Layout
 
-The spatial model uses an Apple-grade responsive bento grid bounded within a 1240px (1300px on ultra-wide displays) shell.
+The spatial model uses an authentic hardware bento grid bounded within a 1240px (1300px on wide screens) container.
 
 - **Hero Grid:** 1.3fr to 1fr asymmetric split on desktop (Authority & Search on the left, Floating Trade Counter HUD on the right). Single column stacked on mobile (<992px).
 - **Brand Showcase Grid:** 4-column responsive hardware bento (1 col <600px, 2 col 600–879px, 3 col 880–1099px, 4 col 1100px+).
@@ -150,13 +150,13 @@ The spatial model uses an Apple-grade responsive bento grid bounded within a 124
 
 ## Elevation & Depth
 
-Depth is achieved through **multi-layered atmospheric luminescence** rather than flat muddy drop shadows.
+Depth is achieved through **grounded mechanical contrast** rather than sci-fi neon blooms.
 
-- **Layer 0 (Canvas):** Radial mesh gradient with drifting blue, indigo, and crimson blurred orbs (`filter: blur(80px)`) overlaid with a masked 28px dot-matrix grid.
-- **Layer 1 (Frosted Glass Dock):** Navbar with `backdrop-filter: blur(28px) saturate(190%)` and 1px cobalt boundary.
-- **Layer 2 (Resting Cards):** `box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.07)`, 1.5px semi-transparent borders.
-- **Layer 3 (Levitating HUD):** Floating Trade Counter with continuous 7-second vertical levitation (`transform: translateY(-7px)`) and pulsating ambient border glow (`box-shadow: 0 28px 58px -10px rgba(0, 113, 227, 0.28)`).
-- **Layer 4 (Hover State Physics):** Cards elevate by `-8px` with a scale of `1.02` accompanied by a 25-degree angled specular sheen glare sweep (`@keyframes sheenSweep`).
+- **Layer 0 (Canvas):** Subtle technical linear grid over crisp steel canvas (`#F4F6F9`) with atmospheric deep navy radial foundation.
+- **Layer 1 (Navigation Dock):** Sticky dock with `backdrop-filter: blur(20px)` and solid hairline boundary (`rgba(14, 30, 56, 0.1)`).
+- **Layer 2 (Resting Cards):** Crisp mechanical elevation (`box-shadow: 0 4px 18px -2px rgba(14, 30, 56, 0.08)`), 1.5px borders.
+- **Layer 3 (Levitating HUD):** Floating Trade Counter with continuous 7-second vertical levitation (`transform: translateY(-6px)`) and authoritative navy-shadowed presence (`box-shadow: 0 24px 50px -10px rgba(14, 30, 56, 0.22)`).
+- **Layer 4 (Hover State Physics):** Cards elevate by `-6px` with a scale of `1.015` and a crisp, subtle racing hairline highlight.
 
 ## Shapes
 
@@ -170,32 +170,28 @@ Depth is achieved through **multi-layered atmospheric luminescence** rather than
 
 ### Brand Cards
 - **Pedestal:** Pure white `#FFFFFF` platform (`height: 220px`, `border-radius: 18px`) isolating original brand logos.
-- **Crown:** Animated 3.5px flowing automotive gradient bar (`@keyframes gradientFlow`).
-- **Glint:** Angled specular light beam traversing the card surface on hover.
-- **Actions:** Dual pill row featuring "View Catalogue" (cobalt border) and "Ask for Stock" (WhatsApp emerald).
+- **Crown:** Solid 3.5px precision racing hairline (`linear-gradient(90deg, #0E1E38, #D9232E, #0E1E38)`).
+- **Actions:** Dual pill row featuring "View Catalogue" (solid navy border) and "Ask for Stock" (WhatsApp emerald).
 
 ### Trade Counter HUD Card
-- **Structure:** Floating glassmorphic terminal with 28px super-ellipse radius, ready-stock emerald breathing badge, and 2-column input rows.
+- **Structure:** Floating terminal with 28px super-ellipse radius, ready-stock emerald breathing badge, and 2-column input rows.
 - **Inputs:** High-contrast single-line inputs with smooth focus lift.
-- **Action:** Full-width WhatsApp button with continuous glowing drop-shadow.
+- **Action:** Full-width WhatsApp button with continuous drop-shadow.
 
 ### Category Navigator Capsules
-- **Default:** Elevated glass capsules with category-specific icon tints and 20px rounded corners.
-- **Active:** Cobalt-to-indigo gradient background with pulsating box-shadow aura (`@keyframes activePillPulse`).
-
-### Trade Credibility Features
-- **Design:** Glassmorphic cards with glowing 48px icon frames. Icons rotate by `6deg` and scale to `1.12` on card hover.
+- **Default:** Elevated capsules with category-specific icon tints and 20px rounded corners.
+- **Active:** Midnight Navy background with crisp white typography.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** maintain the 100% pure white background for logo pedestals to preserve original manufacturer branding.
 - **Do** route all part and stock inquiries to WhatsApp with pre-filled vehicle details and record leads to the CRM counter.
-- **Do** keep both Light and Obsidian Dark themes fully styled with authentic automotive contrast.
+- **Do** use Deep Midnight Navy, Crisp Neutral Steel, and Brembo Precision Racing Red.
 - **Do** use aerodynamic super-ellipses (20px–28px) and fluid wave dividers between major sections.
 
 ### Don't:
 - **Don't** display price numbers, currency symbols, or discount percentages anywhere on public screens.
 - **Don't** use corporate marketing buzzwords ("Tier-1 Distribution", "Counterfeit Tolerance Zero", "Revolutionary Logistics").
+- **Don't** use neon purple, electric indigo, or crypto-style sci-fi gradient mesh orbs.
 - **Don't** introduce flat straight 1px horizontal border lines to divide major sections.
-- **Don't** use generic stock photos or unverified manufacturer logos.

@@ -4,31 +4,30 @@
    ========================================================================== */
 
 :root {
-  /* Color Palette — Light Mode (Precision Depot Light) */
-  --color-primary: #0071E3;
-  --color-primary-hover: #0077ED;
-  --color-primary-dark: #2997FF;
-  --color-indigo: #4F46E5;
-  --color-crimson: #E11D48;
+  /* Color Palette — Heritage Automotive OEM (Deep Midnight Navy & Racing Red) */
+  --color-primary: #0E1E38;
+  --color-primary-hover: #162C50;
+  --color-primary-dark: #3B82F6;
+  --color-racing-red: #D9232E;
   --color-whatsapp: #25D366;
   --color-whatsapp-hover: #20BA5A;
-  --color-danger: #E11D48;
+  --color-danger: #D9232E;
   --color-success: #16A34A;
-  --color-focus: #0071E3;
+  --color-focus: #0E1E38;
 
-  --color-bg: #EEF3F8;
+  --color-bg: #F4F6F9;
   --color-surface: #FFFFFF;
-  --color-surface-subtle: #F0F4F9;
+  --color-surface-subtle: #EAEEF4;
   --color-text: #0F172A;
   --color-text-secondary: #475569;
   --color-text-muted: #64748B;
-  --color-border: rgba(0, 113, 227, 0.12);
-  --color-border-hover: rgba(0, 113, 227, 0.35);
+  --color-border: rgba(14, 30, 56, 0.12);
+  --color-border-hover: rgba(14, 30, 56, 0.3);
 
-  --admin-glass-dock: rgba(255, 255, 255, 0.88);
-  --admin-glass-blur: blur(28px) saturate(190%);
-  --admin-card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.07);
-  --admin-card-shadow-hover: 0 16px 36px -4px rgba(0, 113, 227, 0.16);
+  --admin-glass-dock: rgba(255, 255, 255, 0.94);
+  --admin-glass-blur: blur(20px) saturate(180%);
+  --admin-card-shadow: 0 4px 18px -2px rgba(14, 30, 56, 0.08);
+  --admin-card-shadow-hover: 0 16px 36px -4px rgba(14, 30, 56, 0.14);
 
   /* Typography */
   --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Plus Jakarta Sans", "Inter", sans-serif;
@@ -58,24 +57,24 @@
   --spacing-48: 48px;
 }
 
-/* Obsidian Dark Theme */
+/* Cast Iron Slate Dark Theme */
 html[data-theme="dark"] {
-  --color-primary: #2997FF;
-  --color-primary-hover: #52ACFF;
-  --color-focus: #2997FF;
+  --color-primary: #3B82F6;
+  --color-primary-hover: #60A5FA;
+  --color-focus: #3B82F6;
 
-  --color-bg: #06080E;
-  --color-surface: #0E131F;
+  --color-bg: #0B111B;
+  --color-surface: #131B28;
   --color-surface-subtle: rgba(255, 255, 255, 0.05);
-  --color-text: #F5F5F7;
-  --color-text-secondary: #CBD5E1;
-  --color-text-muted: #94A3B8;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(41, 151, 255, 0.35);
+  --color-text: #F8FAFC;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-hover: rgba(59, 130, 246, 0.35);
 
-  --admin-glass-dock: rgba(14, 19, 31, 0.88);
-  --admin-card-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5);
-  --admin-card-shadow-hover: 0 16px 36px -4px rgba(41, 151, 255, 0.22);
+  --admin-glass-dock: rgba(11, 17, 27, 0.9);
+  --admin-card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  --admin-card-shadow-hover: 0 16px 36px -4px rgba(0, 0, 0, 0.7);
 }
 
 /* Base & Reset */
@@ -123,14 +122,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brand-crest {
-  background: linear-gradient(135deg, #FF375F 0%, #D62848 100%);
+  background: linear-gradient(135deg, #D9232E 0%, #B91C1C 100%);
   color: #FFFFFF;
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 800;
   padding: 5px 9px;
   border-radius: var(--radius-sm);
-  box-shadow: 0 2px 10px rgba(255, 55, 95, 0.35);
+  box-shadow: 0 2px 10px rgba(217, 35, 46, 0.35);
   position: relative;
   overflow: hidden;
   letter-spacing: 0.04em;
@@ -1153,7 +1152,8 @@ html[data-theme="dark"] .ambient-orb {
   height: 480px;
   top: -60px;
   left: 5%;
-  background: radial-gradient(circle, #0071E3 0%, rgba(0, 113, 227, 0) 70%);
+  background: radial-gradient(circle, #0E1E38 0%, rgba(14, 30, 56, 0) 70%);
+  opacity: 0.14;
 }
 
 .orb-indigo {
@@ -1161,5 +1161,6 @@ html[data-theme="dark"] .ambient-orb {
   height: 520px;
   bottom: -60px;
   right: 5%;
-  background: radial-gradient(circle, #4F46E5 0%, rgba(79, 70, 229, 0) 70%);
+  background: radial-gradient(circle, #162C50 0%, rgba(22, 44, 80, 0) 70%);
+  opacity: 0.14;
 }
