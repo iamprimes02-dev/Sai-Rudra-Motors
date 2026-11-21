@@ -295,7 +295,7 @@ function initHomePage() {
       searchCountEl.textContent = `Showing ${list.length} of ${brandList.length} authorized distributor lines`;
     }
 
-    list.forEach((s) => {
+    list.forEach((s, idx) => {
       const card = document.createElement('article');
       card.className = 'brand-card';
 
@@ -303,9 +303,12 @@ function initHomePage() {
       const categoryLabel = s.categoryLabel || s.category || 'Automotive Spares';
       const description = s.description || 'Genuine factory replacement components and assemblies.';
       const catClass = `cat-${s.category || 'automotive'}`;
+      const lineNum = String(s.id || (idx + 1)).padStart(2, '0');
 
       card.innerHTML = `
-        <a href="/supplier/${s.id}" class="brand-logo-container" aria-label="View ${escapeHtml(s.name)} parts">
+        <a href="/supplier/${s.id}" class="brand-logo-container" aria-label="View ${escapeHtml(s.name)} catalogue">
+          <span class="brand-stage-watermark">LINE ${lineNum}</span>
+          <span class="brand-stage-status"><span class="stage-live-dot"></span> Active Line</span>
           <img src="${escapeAttr(logoUrl)}" alt="${escapeHtml(s.name)} logo" class="brand-logo-img" loading="lazy" onerror="this.src='/logos/01_sangsin_brakes.png'">
         </a>
         <div class="brand-card-body">

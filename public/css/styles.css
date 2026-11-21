@@ -900,7 +900,36 @@ button {
 }
 
 .showcase-title-row {
-  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.showcase-title-left {
+  flex: 1;
+}
+
+.showcase-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.badge-dot-green {
+  width: 7px;
+  height: 7px;
+  background-color: #16A34A;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(22, 163, 74, 0.4);
 }
 
 .section-kicker {
@@ -928,28 +957,24 @@ button {
   margin-top: 4px;
 }
 
-/* The Brand Grid */
+/* The Brand Grid - 3 Columns on Desktop for Maximum Visual Prominence */
 .srm-brand-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: 1fr;
   gap: 24px;
 }
 
-@media (min-width: 620px) {
+@media (min-width: 640px) {
   .srm-brand-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .srm-brand-grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .srm-brand-grid {
-    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
   }
 }
 
@@ -962,42 +987,94 @@ button {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
   position: relative;
 }
 
 .brand-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(15, 39, 68, 0.08);
-  border-color: #94A3B8;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px -6px rgba(15, 39, 68, 0.12), 0 6px 12px -3px rgba(15, 39, 68, 0.06);
+  border-color: #CBD5E1;
 }
 
-/* Precision Logo Frame */
+/* Precision Showroom Stage for High-Res Manufacturer Logos */
 .brand-logo-container {
-  height: 125px;
-  background-color: #FFFFFF;
-  padding: 18px 24px;
+  height: 205px;
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+  padding: 24px 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #F1F5F9;
+  border-bottom: 1px solid #E2E8F0;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+}
+
+.brand-stage-watermark {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #94A3B8;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.brand-stage-status {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #15803D;
+  background: rgba(240, 253, 244, 0.95);
+  border: 1px solid #BBF7D0;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  pointer-events: none;
+}
+
+.stage-live-dot {
+  width: 5px;
+  height: 5px;
+  background-color: #22C55E;
+  border-radius: 50%;
 }
 
 .brand-logo-img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 86%;
+  max-height: 145px;
   object-fit: contain;
-  transition: transform 0.2s ease;
+  filter: drop-shadow(0 2px 6px rgba(15, 23, 42, 0.06));
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.28s ease;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .brand-card:hover .brand-logo-img {
-  transform: scale(1.03);
+  transform: scale(1.06);
+  filter: drop-shadow(0 8px 20px rgba(15, 23, 42, 0.12));
+}
+
+@media (max-width: 640px) {
+  .brand-logo-container {
+    height: 170px;
+    padding: 18px 22px;
+  }
+  .brand-logo-img {
+    max-height: 120px;
+    max-width: 88%;
+  }
 }
 
 .brand-card-body {
-  padding: 18px 20px 20px;
+  padding: 22px 22px 20px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -1017,7 +1094,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 3px 8px;
+  padding: 3px 9px;
   border-radius: var(--radius-xs);
   background: #F1F5F9;
   color: #334155;
@@ -1039,14 +1116,16 @@ button {
 
 .brand-title {
   font-family: var(--srm-font-display);
-  font-size: 1.22rem;
+  font-size: 1.28rem;
   font-weight: 700;
   color: var(--srm-text-dark);
   line-height: 1.25;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .brand-title a {
+  color: inherit;
+  text-decoration: none;
   transition: color 0.15s;
 }
 
@@ -1056,10 +1135,10 @@ button {
 }
 
 .brand-description {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--srm-text-muted);
-  line-height: 1.5;
-  margin-bottom: 18px;
+  line-height: 1.55;
+  margin-bottom: 20px;
   flex: 1;
 }
 
@@ -1068,7 +1147,7 @@ button {
   flex-direction: column;
   gap: 8px;
   margin-top: auto;
-  padding-top: 14px;
+  padding-top: 16px;
   border-top: 1px solid #F1F5F9;
 }
 
@@ -1079,11 +1158,12 @@ button {
   gap: 8px;
   background-color: var(--srm-primary-navy);
   color: #FFFFFF;
+  min-height: 44px;
   padding: 10px 16px;
   border-radius: var(--radius-sm);
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  transition: background-color 0.15s;
+  transition: background-color 0.15s, transform 0.15s;
   text-decoration: none;
 }
 
@@ -1107,24 +1187,19 @@ button {
   background-color: #FFFFFF;
   border: 1px solid #CBD5E1;
   color: #15803D;
+  min-height: 42px;
   padding: 9px 16px;
   border-radius: var(--radius-sm);
   font-size: 0.84rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.15s, border-color 0.15s;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
 .btn-quick-wa:hover {
   background-color: #F0FDF4;
   border-color: #86EFAC;
   color: #166534;
-}
-
-.btn-quick-wa:hover {
-  background-color: #DCFCE7;
-  color: #166534;
-  border-color: #86EFAC;
 }
 
 /* ==========================================================================
@@ -1146,21 +1221,22 @@ button {
 
 .brand-logo-frame {
   background: #FFFFFF;
-  border-radius: var(--radius-sm);
-  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  padding: 20px 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #E2E8F0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  min-width: 160px;
-  height: 90px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  min-width: 220px;
+  height: 135px;
 }
 
 .brand-hero-logo {
-  max-height: 70px;
-  max-width: 180px;
+  max-height: 105px;
+  max-width: 200px;
   object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(15, 23, 42, 0.08));
 }
 
 .brand-hero-details {
