@@ -308,7 +308,6 @@ function initHomePage() {
       card.innerHTML = `
         <a href="/supplier/${s.id}" class="brand-logo-container" aria-label="View ${escapeHtml(s.name)} catalogue">
           <span class="brand-stage-watermark">LINE ${lineNum}</span>
-          <span class="brand-stage-status"><span class="stage-live-dot"></span> Active Line</span>
           <img src="${escapeAttr(logoUrl)}" alt="${escapeHtml(s.name)} logo" class="brand-logo-img" loading="lazy" onerror="this.src='/logos/01_sangsin_brakes.png'">
         </a>
         <div class="brand-card-body">
