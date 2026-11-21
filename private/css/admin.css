@@ -88,7 +88,12 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: var(--color-text);
-  background: var(--color-bg);
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(1100px 600px at 15% -40px, rgba(0, 102, 255, 0.14) 0%, transparent 60%),
+    radial-gradient(900px 500px at 85% -20px, rgba(255, 42, 60, 0.10) 0%, transparent 60%),
+    repeating-linear-gradient(45deg, rgba(0, 102, 255, 0.015) 0px, rgba(0, 102, 255, 0.015) 1px, transparent 1px, transparent 16px),
+    repeating-linear-gradient(-45deg, rgba(255, 42, 60, 0.012) 0px, rgba(255, 42, 60, 0.012) 1px, transparent 1px, transparent 16px);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.25s ease, color 0.25s ease;
@@ -1138,29 +1143,31 @@ html[data-theme="dark"] .theme-icon-moon {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.45;
   pointer-events: none;
 }
 
-html[data-theme="dark"] .ambient-orb {
-  opacity: 0.3;
-  filter: blur(95px);
-}
-
 .orb-blue {
-  width: 480px;
-  height: 480px;
-  top: -60px;
+  width: 520px;
+  height: 520px;
+  top: -80px;
   left: 5%;
-  background: radial-gradient(circle, #0E1E38 0%, rgba(14, 30, 56, 0) 70%);
-  opacity: 0.14;
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.35) 0%, rgba(0, 102, 255, 0.10) 50%, transparent 70%);
 }
 
 .orb-indigo {
-  width: 520px;
-  height: 520px;
-  bottom: -60px;
+  width: 540px;
+  height: 540px;
+  bottom: -80px;
   right: 5%;
-  background: radial-gradient(circle, #162C50 0%, rgba(22, 44, 80, 0) 70%);
-  opacity: 0.14;
+  background: radial-gradient(circle, rgba(255, 42, 60, 0.28) 0%, rgba(255, 42, 60, 0.08) 50%, transparent 70%);
+}
+
+html[data-theme="dark"] .orb-blue {
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.45) 0%, rgba(0, 102, 255, 0.15) 50%, transparent 70%);
+  filter: blur(95px);
+}
+
+html[data-theme="dark"] .orb-indigo {
+  background: radial-gradient(circle, rgba(255, 42, 60, 0.38) 0%, rgba(255, 42, 60, 0.12) 50%, transparent 70%);
+  filter: blur(95px);
 }

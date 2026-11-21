@@ -8,8 +8,9 @@
   /* --- High-Performance Motorsport (Default Light) Tokens --- */
   --srm-bg: #F5F7FB;
   --srm-bg-gradient: 
-    radial-gradient(1200px 520px at 50% -90px, rgba(0, 102, 255, 0.08) 0%, transparent 70%),
-    linear-gradient(180deg, #F5F7FB 0%, #FFFFFF 40%, #EEF2F8 100%);
+    radial-gradient(1200px 650px at 15% -60px, rgba(0, 102, 255, 0.16) 0%, transparent 60%),
+    radial-gradient(1000px 550px at 85% -40px, rgba(255, 42, 60, 0.12) 0%, transparent 60%),
+    linear-gradient(180deg, #F5F7FB 0%, #FFFFFF 35%, #F0F4FA 70%, #EBF1F8 100%);
 
   --srm-surface: #FFFFFF;
   --srm-surface-subtle: #F0F4FA;
@@ -135,8 +136,9 @@
 html[data-theme="dark"] {
   --srm-bg: #080B10;
   --srm-bg-gradient: 
-    radial-gradient(1200px 600px at 50% 0%, rgba(0, 102, 255, 0.16) 0%, transparent 60%),
-    radial-gradient(800px 400px at 80% 30%, rgba(255, 42, 60, 0.08) 0%, transparent 60%);
+    radial-gradient(1200px 700px at 15% -40px, rgba(0, 102, 255, 0.28) 0%, transparent 60%),
+    radial-gradient(1000px 600px at 85% -20px, rgba(255, 42, 60, 0.22) 0%, transparent 60%),
+    linear-gradient(180deg, #080B10 0%, #0A0F18 35%, #0E1624 70%, #06090E 100%);
   --srm-surface: #101622;
   --srm-surface-subtle: rgba(255, 255, 255, 0.05);
   --srm-surface-elevated: #161E2E;
@@ -255,7 +257,61 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Full-Page Persistent Motorsport Atmospheric Canvas */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    /* Fixed dual ambient racing halos */
+    radial-gradient(1000px 600px at 12% 18%, rgba(0, 102, 255, 0.13) 0%, transparent 65%),
+    radial-gradient(850px 500px at 88% 28%, rgba(255, 42, 60, 0.09) 0%, transparent 60%),
+    radial-gradient(1100px 700px at 50% 82%, rgba(0, 102, 255, 0.07) 0%, transparent 70%),
+    /* Genuine motorsport carbon twill weave */
+    repeating-linear-gradient(45deg, rgba(0, 102, 255, 0.02) 0px, rgba(0, 102, 255, 0.02) 1px, transparent 1px, transparent 14px),
+    repeating-linear-gradient(-45deg, rgba(255, 42, 60, 0.015) 0px, rgba(255, 42, 60, 0.015) 1px, transparent 1px, transparent 14px),
+    /* Engineering Blueprint Coordinate Lines */
+    linear-gradient(to right, rgba(0, 102, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 102, 255, 0.025) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    auto,
+    28px 28px,
+    28px 28px,
+    56px 56px,
+    56px 56px;
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+
+html[data-theme="dark"] body::before {
+  background-image:
+    /* High-Octane Motorsport Night Racing Glow */
+    radial-gradient(1100px 700px at 12% 14%, rgba(0, 102, 255, 0.26) 0%, transparent 65%),
+    radial-gradient(900px 550px at 88% 24%, rgba(255, 42, 60, 0.20) 0%, transparent 60%),
+    radial-gradient(1200px 750px at 50% 82%, rgba(0, 102, 255, 0.15) 0%, transparent 70%),
+    /* 3D Carbon Fiber Twill Weave */
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.022) 0px, rgba(255, 255, 255, 0.022) 1px, transparent 1px, transparent 12px),
+    repeating-linear-gradient(-45deg, rgba(0, 102, 255, 0.03) 0px, rgba(0, 102, 255, 0.03) 1px, transparent 1px, transparent 12px),
+    /* Precision Engineering Coordinate Grid */
+    linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    auto,
+    24px 24px,
+    24px 24px,
+    48px 48px,
+    48px 48px;
+  opacity: 1;
 }
 
 a {
@@ -674,75 +730,128 @@ html[data-theme="dark"] .theme-icon-moon {
   z-index: 1;
 }
 
+.srm-ambient-mesh::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -35deg,
+    transparent 0px,
+    transparent 90px,
+    rgba(0, 102, 255, 0.04) 90px,
+    rgba(0, 102, 255, 0.04) 92px,
+    transparent 92px,
+    transparent 180px,
+    rgba(255, 42, 60, 0.03) 180px,
+    rgba(255, 42, 60, 0.03) 182px
+  );
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+html[data-theme="dark"] .srm-ambient-mesh::after {
+  background: repeating-linear-gradient(
+    -35deg,
+    transparent 0px,
+    transparent 90px,
+    rgba(0, 102, 255, 0.09) 90px,
+    rgba(0, 102, 255, 0.09) 92px,
+    transparent 92px,
+    transparent 180px,
+    rgba(255, 42, 60, 0.07) 180px,
+    rgba(255, 42, 60, 0.07) 182px
+  );
+  opacity: 0.95;
+}
+
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.18;
+  filter: blur(75px);
   pointer-events: none;
-}
-
-html[data-theme="dark"] .ambient-orb {
-  opacity: 0.15;
-  filter: blur(95px);
+  will-change: transform;
 }
 
 .orb-blue {
-  width: 520px;
-  height: 520px;
-  top: -120px;
-  left: 5%;
-  background: radial-gradient(circle, #0E1E38 0%, rgba(14, 30, 56, 0) 70%);
+  width: 620px;
+  height: 620px;
+  top: -140px;
+  left: 2%;
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.32) 0%, rgba(0, 102, 255, 0.10) 45%, transparent 70%);
+  animation: orbDrift1 16s ease-in-out infinite alternate;
 }
 
 .orb-indigo {
-  width: 480px;
-  height: 480px;
-  top: -40px;
-  right: 5%;
-  background: radial-gradient(circle, #162C50 0%, rgba(22, 44, 80, 0) 70%);
+  width: 540px;
+  height: 540px;
+  top: -60px;
+  right: 2%;
+  background: radial-gradient(circle, rgba(0, 194, 255, 0.25) 0%, rgba(0, 102, 255, 0.08) 45%, transparent 70%);
+  animation: orbDrift2 20s ease-in-out infinite alternate;
 }
 
 .orb-crimson {
-  width: 380px;
-  height: 380px;
-  bottom: 0px;
-  left: 45%;
-  background: radial-gradient(circle, #D9232E 0%, rgba(217, 35, 46, 0) 70%);
-  opacity: 0.08;
+  width: 480px;
+  height: 480px;
+  bottom: -30px;
+  left: 42%;
+  background: radial-gradient(circle, rgba(255, 42, 60, 0.28) 0%, rgba(255, 42, 60, 0.08) 50%, transparent 70%);
+  animation: orbDrift3 18s ease-in-out infinite alternate;
+}
+
+html[data-theme="dark"] .orb-blue {
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.48) 0%, rgba(0, 102, 255, 0.18) 45%, transparent 70%);
+  filter: blur(85px);
+}
+
+html[data-theme="dark"] .orb-indigo {
+  background: radial-gradient(circle, rgba(0, 194, 255, 0.38) 0%, rgba(0, 102, 255, 0.14) 45%, transparent 70%);
+  filter: blur(85px);
+}
+
+html[data-theme="dark"] .orb-crimson {
+  background: radial-gradient(circle, rgba(255, 42, 60, 0.42) 0%, rgba(255, 42, 60, 0.14) 50%, transparent 70%);
+  filter: blur(85px);
 }
 
 .ambient-grid-canvas {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(14, 30, 56, 0.08) 1.2px, transparent 1.2px);
-  background-size: 28px 28px;
-  mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 40%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 40%, transparent 85%);
-  opacity: 0.6;
+  background-image: 
+    radial-gradient(rgba(0, 102, 255, 0.20) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(0, 102, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 102, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px, 28px 28px, 28px 28px;
+  mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 45%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 45%, transparent 85%);
+  opacity: 0.85;
 }
 
 html[data-theme="dark"] .ambient-grid-canvas {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
-  opacity: 0.35;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.22) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(0, 102, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 102, 255, 0.09) 1px, transparent 1px);
+  background-size: 28px 28px, 28px 28px, 28px 28px;
+  opacity: 0.80;
 }
 
 @keyframes orbDrift1 {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(50px, -35px) scale(1.12); }
-  100% { transform: translate(-35px, 25px) scale(0.96); }
+  50% { transform: translate(60px, -40px) scale(1.15); }
+  100% { transform: translate(-40px, 30px) scale(0.95); }
 }
 
 @keyframes orbDrift2 {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-60px, 45px) scale(1.15); }
-  100% { transform: translate(40px, -25px) scale(0.92); }
+  50% { transform: translate(-70px, 50px) scale(1.18); }
+  100% { transform: translate(50px, -30px) scale(0.90); }
 }
 
 @keyframes orbDrift3 {
   0% { transform: translate(0, 0) scale(0.92); }
-  50% { transform: translate(35px, 50px) scale(1.1); }
-  100% { transform: translate(-25px, -35px) scale(1); }
+  50% { transform: translate(45px, 55px) scale(1.14); }
+  100% { transform: translate(-35px, -40px) scale(1.02); }
 }
 
 .srm-hero-grid {
