@@ -275,9 +275,11 @@ function renderAdminSuppliers(suppliers) {
 
   if (!suppliers || suppliers.length === 0) {
     empty.classList.remove('hidden');
+    empty.style.display = 'block';
     return;
   }
   empty.classList.add('hidden');
+  empty.style.display = 'none';
 
   suppliers.forEach((s) => {
     const card = document.createElement('div');
@@ -540,9 +542,11 @@ async function openSupplierParts(id) {
 
     if (!data.parts || data.parts.length === 0) {
       empty.classList.remove('hidden');
+      empty.style.display = 'block';
       return;
     }
     empty.classList.add('hidden');
+    empty.style.display = 'none';
 
     data.parts.forEach((part) => {
       const vehicles = typeof part.vehicles === 'string' ? JSON.parse(part.vehicles) : part.vehicles;
@@ -859,10 +863,16 @@ async function loadInquiries() {
 
     container.innerHTML = '';
     if (!data || data.length === 0) {
-      if (empty) empty.classList.remove('hidden');
+      if (empty) {
+        empty.classList.remove('hidden');
+        empty.style.display = 'block';
+      }
       return;
     }
-    if (empty) empty.classList.add('hidden');
+    if (empty) {
+      empty.classList.add('hidden');
+      empty.style.display = 'none';
+    }
 
     data.forEach((item) => {
       const card = document.createElement('div');

@@ -559,8 +559,12 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 /* ==========================================================================
-   Empty State
+   Utility & Empty State
    ========================================================================== */
+.hidden {
+  display: none !important;
+}
+
 .empty-state {
   text-align: center;
   padding: 64px 20px;
