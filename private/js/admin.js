@@ -489,7 +489,8 @@ async function loadDashboard() {
       try {
         const setData = await setResult.value.json();
         if (statWaEl) {
-          statWaEl.textContent = setData.whatsappNumber ? `+${setData.whatsappNumber}` : 'Not set';
+          statWaEl.textContent = formatPhoneDisplay(setData.whatsappNumber);
+          statWaEl.title = setData.whatsappNumber ? `+${setData.whatsappNumber}` : 'Not set';
         }
       } catch {}
     }
@@ -1209,4 +1210,15 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString('en-IN', {
     day: 'numeric', month: 'short', year: 'numeric',
   });
+}
+
+function formatPhoneDisplay(num) {
+  if (!num) return 'Not set';
+  const clean = String(num).replace(/\D/g, '');
+  if (clean.length === 12 && clean.startsWith('91')) {
+    return `+91 ${clean.slice(2, 7)} ${clean.slice(7)}`;
+  } else if (clean.length === 10) {
+    return `+91 ${clean.slice(0, 5)} ${clean.slice(5)}`;
+  }
+  return clean ? `+${clean}` : 'Not set';
 }

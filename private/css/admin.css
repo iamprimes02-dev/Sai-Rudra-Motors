@@ -375,7 +375,13 @@ html[data-theme="dark"] .theme-icon-moon {
   margin-bottom: 28px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 540px) {
+  .admin-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
   .admin-stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -385,10 +391,10 @@ html[data-theme="dark"] .theme-icon-moon {
   background: var(--color-surface);
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 16px 18px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   box-shadow: var(--admin-card-shadow);
   position: relative;
   overflow: hidden;
@@ -451,9 +457,9 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .icon-emerald {
-  background: rgba(16, 185, 129, 0.08);
-  border: 1.5px solid rgba(16, 185, 129, 0.22);
-  color: #10B981;
+  background: rgba(37, 211, 102, 0.1);
+  border: 1.5px solid rgba(37, 211, 102, 0.25);
+  color: #25D366;
 }
 
 .icon-red {
@@ -466,6 +472,11 @@ html[data-theme="dark"] .theme-icon-moon {
   transform: scale(1.06);
 }
 
+.stat-details {
+  min-width: 0;
+  flex: 1;
+}
+
 .stat-label {
   font-size: 0.72rem;
   font-weight: 700;
@@ -473,6 +484,9 @@ html[data-theme="dark"] .theme-icon-moon {
   color: var(--color-text-muted);
   letter-spacing: 0.06em;
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .stat-val {
@@ -483,6 +497,16 @@ html[data-theme="dark"] .theme-icon-moon {
   display: block;
   margin-top: 2px;
   letter-spacing: -0.02em;
+}
+
+.stat-whatsapp .stat-val {
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
 }
 
 /* ==========================================================================
