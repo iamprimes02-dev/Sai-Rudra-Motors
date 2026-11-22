@@ -443,7 +443,7 @@ button {
   background: transparent;
   padding: 0 16px;
   margin-top: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   border: none;
   box-shadow: none;
   transition: top 0.25s ease;
@@ -462,7 +462,7 @@ button {
   backdrop-filter: var(--srm-glass-blur);
   -webkit-backdrop-filter: var(--srm-glass-blur);
   border: 1.5px solid var(--srm-border);
-  box-shadow: 0 14px 34px -8px rgba(0, 102, 255, 0.16), 0 4px 18px rgba(10, 15, 29, 0.06);
+  box-shadow: 0 8px 24px -4px rgba(10, 15, 29, 0.08), 0 2px 8px rgba(0, 102, 255, 0.06);
   pointer-events: auto;
   position: relative;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -489,7 +489,7 @@ button {
 html[data-theme="dark"] .srm-nav-inner {
   background: rgba(14, 20, 32, 0.9);
   border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 18px 42px -8px rgba(0, 0, 0, 0.65), 0 2px 14px rgba(0, 102, 255, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 2px 10px rgba(0, 102, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 html[data-theme="dark"] .srm-nav-inner:hover {
@@ -810,7 +810,8 @@ html[data-theme="dark"] .theme-icon-moon {
 .srm-terminal-hero {
   background: transparent;
   color: var(--srm-text-primary);
-  padding: 56px 0 0;
+  margin-top: -74px; /* Seamlessly pull hero atmospheric canvas behind floating nav dock */
+  padding: 94px 0 0;
   position: relative;
   overflow: hidden;
 }
@@ -822,6 +823,22 @@ html[data-theme="dark"] .theme-icon-moon {
   overflow: hidden;
   pointer-events: none;
   z-index: 1;
+}
+
+.srm-ambient-mesh::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 380px;
+  background: radial-gradient(ellipse 75% 60% at 50% 0%, rgba(0, 102, 255, 0.08) 0%, transparent 75%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+html[data-theme="dark"] .srm-ambient-mesh::before {
+  background: radial-gradient(ellipse 75% 60% at 50% 0%, rgba(0, 102, 255, 0.16) 0%, transparent 75%);
 }
 
 .srm-ambient-mesh::after {
@@ -916,8 +933,8 @@ html[data-theme="dark"] .orb-crimson {
     linear-gradient(to right, rgba(0, 102, 255, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 102, 255, 0.04) 1px, transparent 1px);
   background-size: 28px 28px, 28px 28px, 28px 28px;
-  mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 45%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 45%, transparent 85%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 65%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 65%, transparent 100%);
   opacity: 0.85;
 }
 
@@ -927,6 +944,8 @@ html[data-theme="dark"] .ambient-grid-canvas {
     linear-gradient(to right, rgba(0, 102, 255, 0.09) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 102, 255, 0.09) 1px, transparent 1px);
   background-size: 28px 28px, 28px 28px, 28px 28px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 65%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 65%, transparent 100%);
   opacity: 0.80;
 }
 
@@ -3139,7 +3158,7 @@ html[data-theme="dark"] .feature-icon-frame {
     top: 8px;
     padding: 0 10px;
     margin-top: 6px;
-    margin-bottom: 4px;
+    margin-bottom: 0;
     height: auto;
   }
 
@@ -3204,7 +3223,8 @@ html[data-theme="dark"] .feature-icon-frame {
 
   /* Hero Section */
   .srm-terminal-hero {
-    padding: 24px 0 0;
+    margin-top: -62px;
+    padding: 78px 0 0;
   }
 
   .srm-hero-grid {
