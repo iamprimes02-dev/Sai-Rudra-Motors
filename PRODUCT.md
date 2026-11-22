@@ -29,7 +29,7 @@ Fast-paced multi-brand workshop bays and counter sales desks where technicians n
 ## Brand Commitments
 - Business Name: SRM — Sai Rudra Motors
 - Subtitle: Authorized Auto Spares Distributors
-- Depot Location: Hubballi, Karnataka, India
+- Depot Location: #103/A/5, First Floor, Near Nalwaad Hospital, Vikas Nagar, Gokul Road, Hubli, Karnataka
 - Contact / WhatsApp: +91 86609 57903
 - Depot Operating Hours: Monday – Saturday, 9:00 AM – 8:00 PM
 - Brand Voice: Grounded, practical, trade-focused Indian automotive distributor. Direct and professional without generic marketing buzzwords.

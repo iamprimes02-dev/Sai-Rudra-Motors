@@ -2967,17 +2967,26 @@ html[data-theme="dark"] .feature-icon-frame {
 
 .contact-row {
   display: flex;
+  align-items: flex-start;
   gap: 8px;
+  line-height: 1.45;
 }
 
 .row-label {
   color: #64748B;
   min-width: 90px;
+  flex-shrink: 0;
 }
 
 .row-val {
   color: #FFFFFF;
   font-weight: 600;
+  text-decoration: none;
+}
+
+a.row-val:hover {
+  color: #38BDF8;
+  text-decoration: underline;
 }
 
 .footer-col-title {
