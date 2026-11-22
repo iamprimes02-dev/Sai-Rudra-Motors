@@ -702,6 +702,11 @@ html[data-theme="dark"] .theme-icon-moon {
   color: var(--color-primary);
 }
 
+.logo-upload-box:hover {
+  border-color: var(--color-primary) !important;
+  background: rgba(0, 102, 255, 0.04) !important;
+}
+
 .admin-part-count-badge {
   display: inline-flex;
   align-items: center;

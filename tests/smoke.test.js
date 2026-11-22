@@ -146,6 +146,25 @@ test('smoke: add supplier via admin', async () => {
   await request('DELETE', base + '/api/admin/suppliers/' + r.body.id, {}, { 'X-CSRF-Token': adminCsrf });
 });
 
+test('smoke: add supplier via admin with custom logo file and description', async () => {
+  const logoPath = path.join(__dirname, 'smoke-logo.png');
+  fs.writeFileSync(logoPath, Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+
+  const r = await formRequest('POST', base + '/api/admin/suppliers', {
+    name: 'Smoke Custom Brand',
+    description: 'Specialized brake parts & pads',
+  }, { logoFile: logoPath }, { 'X-CSRF-Token': adminCsrf });
+
+  assert.strictEqual(r.status, 201);
+  assert.ok(r.body.id);
+  assert.strictEqual(r.body.description, 'Specialized brake parts & pads');
+  assert.ok(r.body.logo);
+  fs.unlinkSync(logoPath);
+
+  // Clean up
+  await request('DELETE', base + '/api/admin/suppliers/' + r.body.id, {}, { 'X-CSRF-Token': adminCsrf });
+});
+
 test('smoke: add part via admin with image', async () => {
   const list = await request('GET', base + '/api/admin/suppliers');
   const supplierId = list.body[0].id;

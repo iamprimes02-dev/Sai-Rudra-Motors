@@ -156,14 +156,47 @@
         </div>
 
         <div class="form-group">
-          <label for="supplierLogo">Supplier Logo (optional)</label>
+          <label for="supplierDescription">Supplier Description / Component Lines (optional)</label>
+          <textarea id="supplierDescription" name="description" rows="3" maxlength="500" placeholder="e.g. Brake pads, brake shoes, and commercial brake linings for passenger and commercial vehicles."></textarea>
+          <div style="font-size:0.75rem;color:var(--color-text-muted);margin-top:4px;">Displayed on catalogue cards, brand showcase, and WhatsApp enquiry messages.</div>
+          <div class="field-error" id="supplierDescriptionError"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Brand Logo (optional)</label>
+          
+          <!-- Option 1: Upload a local file -->
+          <div class="logo-upload-box" id="logoUploadBox" style="border:1.5px dashed var(--color-border);border-radius:var(--radius-lg);padding:18px;text-align:center;cursor:pointer;background:var(--color-surface);transition:all 0.2s ease;">
+            <input type="file" id="supplierLogoFile" accept="image/jpeg,image/png,image/webp,image/svg+xml" style="display:none;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:42px;height:42px;border-radius:50%;background:rgba(0,102,255,0.08);border:1px solid rgba(0,102,255,0.18);display:flex;align-items:center;justify-content:center;color:var(--color-primary);">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              </div>
+              <div style="font-weight:600;font-size:0.88rem;color:var(--color-text);" id="logoUploadText">Click or Drag &amp; Drop to upload local logo file</div>
+              <div style="font-size:0.75rem;color:var(--color-text-muted);">PNG, JPG, WebP, or SVG (Transparent or white background recommended, max 5 MB)</div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:12px;margin:12px 0;">
+            <span style="flex:1;height:1px;background:var(--color-border);"></span>
+            <span style="font-size:0.72rem;font-weight:700;color:var(--color-text-muted);letter-spacing:0.06em;">OR SELECT FROM PRESET LOGOS</span>
+            <span style="flex:1;height:1px;background:var(--color-border);"></span>
+          </div>
+
           <select id="supplierLogo" name="logo">
-            <option value="">No logo</option>
+            <option value="">No preset logo selected</option>
           </select>
+
           <!-- The Genuine Pedestal Rule for Logos -->
-          <div class="logo-preview" id="logoPreview" style="margin-top:var(--spacing-12);display:none;">
-            <div class="admin-logo-pedestal" style="width:140px;height:70px;margin:0;">
-              <img id="previewLogo" alt="Logo preview">
+          <div class="logo-preview" id="logoPreview" style="margin-top:var(--spacing-14);display:none;">
+            <div style="font-size:0.78rem;font-weight:600;color:var(--color-text-muted);margin-bottom:8px;">Active Logo Preview (Genuine Pedestal):</div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div class="admin-logo-pedestal" style="width:140px;height:70px;margin:0;display:flex;align-items:center;justify-content:center;background:#FFFFFF;border-radius:8px;border:1px solid rgba(0,0,0,0.08);padding:6px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <img id="previewLogo" alt="Logo preview" style="max-width:100%;max-height:100%;object-fit:contain;">
+              </div>
+              <button type="button" class="btn-secondary" id="removeLogoBtn" style="padding:6px 14px;font-size:0.8rem;">
+                Remove Logo
+              </button>
             </div>
           </div>
           <div class="field-error" id="supplierLogoError"></div>

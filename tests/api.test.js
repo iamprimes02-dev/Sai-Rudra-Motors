@@ -120,15 +120,17 @@ test('GET /api/admin/vehicles/suggest returns string suggestions', async () => {
 
 test('admin supplier CRUD and settings workflow', async () => {
   // Create supplier
-  const createRes = await request('POST', base + '/api/admin/suppliers', { name: 'Test Brand OEM', logo: null }, { 'X-CSRF-Token': adminCsrf });
+  const createRes = await request('POST', base + '/api/admin/suppliers', { name: 'Test Brand OEM', logo: null, description: 'Genuine brake pads and discs' }, { 'X-CSRF-Token': adminCsrf });
   assert.strictEqual(createRes.status, 201);
   const supplierId = createRes.body.id;
   assert.ok(supplierId);
+  assert.strictEqual(createRes.body.description, 'Genuine brake pads and discs');
 
   // Patch supplier
-  const patchRes = await request('PATCH', base + `/api/admin/suppliers/${supplierId}`, { name: 'Test Brand Updated' }, { 'X-CSRF-Token': adminCsrf });
+  const patchRes = await request('PATCH', base + `/api/admin/suppliers/${supplierId}`, { name: 'Test Brand Updated', description: 'Updated brake components' }, { 'X-CSRF-Token': adminCsrf });
   assert.strictEqual(patchRes.status, 200);
   assert.strictEqual(patchRes.body.name, 'Test Brand Updated');
+  assert.strictEqual(patchRes.body.description, 'Updated brake components');
 
   // Update settings
   const putSettingsRes = await request('PUT', base + '/api/admin/settings', { businessName: 'Sai Rudra Motors Test', whatsappNumber: '918660957903' }, { 'X-CSRF-Token': adminCsrf });

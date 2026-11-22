@@ -11,6 +11,8 @@ let isLoggedIn = false;
 let currentSupplierId = null;
 let partImageFile = null; // File object for the current part form
 let currentPartImage = null; // Existing image name (for edit)
+let supplierLogoFile = null; // File object for custom supplier logo
+let currentEditSupplierLogo = null; // Existing supplier logo URL or filename
 let tags = []; // Current vehicle tags
 
 // Global bridge for inline event handlers (declared upfront)
@@ -89,6 +91,53 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('deleteSupplierBtn').addEventListener('click', () => {
     confirmDelete('supplier');
   });
+
+  // Supplier Logo File Upload & Drag-and-Drop
+  const logoUploadBox = document.getElementById('logoUploadBox');
+  const supplierLogoFileInput = document.getElementById('supplierLogoFile');
+  const removeLogoBtn = document.getElementById('removeLogoBtn');
+
+  if (logoUploadBox && supplierLogoFileInput) {
+    logoUploadBox.addEventListener('click', () => supplierLogoFileInput.click());
+
+    logoUploadBox.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      logoUploadBox.style.borderColor = 'var(--color-primary)';
+      logoUploadBox.style.background = 'rgba(0,102,255,0.04)';
+    });
+    logoUploadBox.addEventListener('dragleave', () => {
+      logoUploadBox.style.borderColor = 'var(--color-border)';
+      logoUploadBox.style.background = 'var(--color-surface)';
+    });
+    logoUploadBox.addEventListener('drop', (e) => {
+      e.preventDefault();
+      logoUploadBox.style.borderColor = 'var(--color-border)';
+      logoUploadBox.style.background = 'var(--color-surface)';
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        handleSupplierLogoFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    supplierLogoFileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        handleSupplierLogoFile(e.target.files[0]);
+      }
+    });
+  }
+
+  if (removeLogoBtn) {
+    removeLogoBtn.addEventListener('click', () => {
+      supplierLogoFile = null;
+      currentEditSupplierLogo = null;
+      if (supplierLogoFileInput) supplierLogoFileInput.value = '';
+      const logoSelect = document.getElementById('supplierLogo');
+      if (logoSelect) logoSelect.value = '';
+      const logoPreview = document.getElementById('logoPreview');
+      if (logoPreview) logoPreview.style.display = 'none';
+      const uploadText = document.getElementById('logoUploadText');
+      if (uploadText) uploadText.textContent = 'Click or Drag & Drop to upload local logo file';
+    });
+  }
 
   // Back to dashboard from parts view
   document.getElementById('backToDashboard').addEventListener('click', () => switchView('dashboard'));
@@ -337,14 +386,19 @@ function renderAdminSuppliers(suppliers) {
   suppliers.forEach((s) => {
     const card = document.createElement('div');
     card.className = 'supplier-card-admin';
-    const logoHtml = s.logo
-      ? `<div class="admin-logo-pedestal"><img src="/logos/${escapeAttr(s.logo)}" alt="${escapeHtml(s.name)} logo"></div>`
+    const rawLogo = s.logoUrl || s.logo;
+    const logoSrc = rawLogo
+      ? (rawLogo.startsWith('http') || rawLogo.startsWith('data:') ? rawLogo : (rawLogo.startsWith('/') ? rawLogo : `/logos/${rawLogo}`))
+      : null;
+    const logoHtml = logoSrc
+      ? `<div class="admin-logo-pedestal"><img src="${escapeAttr(logoSrc)}" alt="${escapeHtml(s.name)} logo"></div>`
       : `<div class="admin-logo-pedestal admin-logo-fallback"><span>${escapeHtml(s.name.slice(0, 2).toUpperCase())}</span></div>`;
     card.innerHTML = `
       <div class="info" style="display:flex;align-items:center;gap:16px;">
         ${logoHtml}
         <div>
           <h2 style="margin:0 0 4px 0;font-size:1.15rem;font-weight:700;">${escapeHtml(s.name)}</h2>
+          ${s.description ? `<p style="margin:0 0 6px 0;font-size:0.84rem;color:var(--color-text-muted);max-width:550px;line-height:1.4;">${escapeHtml(s.description)}</p>` : ''}
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
             <span class="admin-part-count-badge">
               <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
@@ -443,18 +497,40 @@ window.app = {
   deleteSupplier: (id) => deleteSupplier(id),
 };
 
+function handleSupplierLogoFile(file) {
+  supplierLogoFile = file;
+  const url = URL.createObjectURL(file);
+  const previewLogo = document.getElementById('previewLogo');
+  const logoPreview = document.getElementById('logoPreview');
+  const logoSelect = document.getElementById('supplierLogo');
+  const uploadText = document.getElementById('logoUploadText');
+
+  if (previewLogo) previewLogo.src = url;
+  if (logoPreview) logoPreview.style.display = 'block';
+  if (logoSelect) logoSelect.value = '';
+  if (uploadText) uploadText.textContent = `Selected: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+}
+
 async function openSupplierForm(supplier = null) {
   const title = document.getElementById('supplierFormTitle');
   const form = document.getElementById('supplierForm');
   const idInput = document.getElementById('supplierFormId');
   const nameInput = document.getElementById('supplierName');
+  const descInput = document.getElementById('supplierDescription');
   const logoSelect = document.getElementById('supplierLogo');
   const logoPreview = document.getElementById('logoPreview');
   const previewLogo = document.getElementById('previewLogo');
   const deleteBtn = document.getElementById('deleteSupplierBtn');
+  const fileInput = document.getElementById('supplierLogoFile');
+  const uploadText = document.getElementById('logoUploadText');
 
   form.reset();
   idInput.value = '';
+  supplierLogoFile = null;
+  currentEditSupplierLogo = null;
+  if (fileInput) fileInput.value = '';
+  if (uploadText) uploadText.textContent = 'Click or Drag & Drop to upload local logo file';
+  if (descInput) descInput.value = '';
   deleteBtn.style.display = 'none';
   logoPreview.style.display = 'none';
 
@@ -465,23 +541,42 @@ async function openSupplierForm(supplier = null) {
     title.textContent = 'Edit supplier';
     idInput.value = supplier.id;
     nameInput.value = supplier.name;
+    if (descInput) descInput.value = supplier.description || '';
+    currentEditSupplierLogo = supplier.logo || null;
     deleteBtn.style.display = 'inline-block';
-    if (supplier.logo) {
-      logoSelect.value = supplier.logo;
-      previewLogo.src = '/logos/' + supplier.logo;
+
+    const rawLogo = supplier.logoUrl || supplier.logo;
+    if (rawLogo) {
+      const src = rawLogo.startsWith('http') || rawLogo.startsWith('data:')
+        ? rawLogo
+        : (rawLogo.startsWith('/') ? rawLogo : '/logos/' + rawLogo);
+      previewLogo.src = src;
       logoPreview.style.display = 'block';
+
+      const hasOption = Array.from(logoSelect.options).some(o => o.value && o.value === supplier.logo);
+      if (hasOption) {
+        logoSelect.value = supplier.logo;
+      } else {
+        logoSelect.value = '';
+        if (uploadText) uploadText.textContent = 'Active: Custom logo uploaded';
+      }
     }
   } else {
     title.textContent = 'Add supplier';
   }
 
-  // Show/hide preview on logo change
+  // Show/hide preview on preset logo change
   logoSelect.onchange = function () {
     if (logoSelect.value) {
+      supplierLogoFile = null;
+      if (fileInput) fileInput.value = '';
       previewLogo.src = '/logos/' + logoSelect.value;
       logoPreview.style.display = 'block';
+      if (uploadText) uploadText.textContent = 'Preset selected: ' + logoSelect.options[logoSelect.selectedIndex].text;
     } else {
-      logoPreview.style.display = 'none';
+      if (!supplierLogoFile && !currentEditSupplierLogo) {
+        logoPreview.style.display = 'none';
+      }
     }
   };
 
@@ -525,7 +620,10 @@ async function handleSupplierFormSubmit(e) {
   e.preventDefault();
   const id = document.getElementById('supplierFormId').value;
   const name = document.getElementById('supplierName').value;
-  const logo = document.getElementById('supplierLogo').value || null;
+  const descInput = document.getElementById('supplierDescription');
+  const description = descInput ? descInput.value.trim() : '';
+  const logoSelect = document.getElementById('supplierLogo');
+  const logoPreview = document.getElementById('logoPreview');
   const errorEl = document.getElementById('supplierFormError');
   const btn = document.getElementById('supplierFormSaveBtn');
 
@@ -533,26 +631,28 @@ async function handleSupplierFormSubmit(e) {
   btn.disabled = true;
 
   try {
-    if (id) {
-      const res = await apiRequest('/api/admin/suppliers/' + id, {
-        method: 'PATCH',
-        body: JSON.stringify({ name, logo }),
-      });
-      if (!res.ok) {
-        const data = await res.json();
-        errorEl.textContent = data.error || 'Failed to rename supplier.';
-        return;
-      }
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('description', description);
+
+    if (supplierLogoFile) {
+      formData.append('logoFile', supplierLogoFile);
     } else {
-      const res = await apiRequest('/api/admin/suppliers', {
-        method: 'POST',
-        body: JSON.stringify({ name, logo }),
-      });
-      if (!res.ok) {
-        const data = await res.json();
-        errorEl.textContent = data.error || 'Failed to add supplier.';
-        return;
-      }
+      const isRemoved = logoPreview.style.display === 'none';
+      const logoVal = isRemoved ? '' : (logoSelect.value || currentEditSupplierLogo || '');
+      formData.append('logo', logoVal);
+    }
+
+    const path = id ? '/api/admin/suppliers/' + id : '/api/admin/suppliers';
+    const res = await apiRequest(path, {
+      method: id ? 'PATCH' : 'POST',
+      body: formData,
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      errorEl.textContent = data.error || 'Failed to save supplier.';
+      return;
     }
 
     showToastMessage('Supplier saved.');

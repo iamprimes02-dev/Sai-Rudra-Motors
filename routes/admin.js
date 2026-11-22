@@ -119,7 +119,41 @@ router.get('/suppliers', loadSession, async (req, res) => {
 
 // POST /api/admin/suppliers
 router.post('/suppliers', adminWriteMiddleware, async (req, res) => {
-  const validation = validateSupplierName(req.body.name);
+  let name = (req.body && req.body.name) || '';
+  let logo = req.body && req.body.logo !== undefined ? req.body.logo : null;
+  let description = (req.body && req.body.description) || '';
+  let logoFile = null;
+
+  if (req.rawBody || (req.headers['content-type'] || '').includes('multipart/form-data')) {
+    const parsed = await parseMultipart({
+      headers: req.headers,
+      rawBody: req.rawBody,
+    });
+    if (parsed.fields.name) name = parsed.fields.name;
+    if (parsed.fields.logo !== undefined) logo = parsed.fields.logo || null;
+    if (parsed.fields.description !== undefined) description = parsed.fields.description;
+    logoFile = parsed.files.logoFile || parsed.files.logo || parsed.files.image;
+  }
+
+  // Handle local logo file upload
+  if (logoFile) {
+    if (logoFile.size > 5 * 1024 * 1024) {
+      return res.status(413).json({ error: 'Logo file too large. Maximum size is 5 MB.' });
+    }
+    const ext = validateImageBuffer(logoFile.data);
+    if (!ext) {
+      return res.status(415).json({ error: 'Only JPG, PNG, WebP, or SVG logo images are accepted.' });
+    }
+    try {
+      const imageKey = await saveImageFile(logoFile.data, ext, 'logos');
+      logo = getImageUrl(imageKey) || imageKey;
+    } catch (err) {
+      console.error('Failed to upload supplier logo:', err);
+      return res.status(500).json({ error: 'Failed to upload supplier logo image.' });
+    }
+  }
+
+  const validation = validateSupplierName(name);
   if (!validation.ok) {
     return res.status(400).json({ error: validation.error });
   }
@@ -129,14 +163,57 @@ router.post('/suppliers', adminWriteMiddleware, async (req, res) => {
     return res.status(409).json({ error: 'This supplier already exists.' });
   }
 
-  const supplier = await stmt.createSupplier(validation.value, req.body.logo || null);
-  return res.status(201).json({ id: supplier.id, name: supplier.name, logo: supplier.logo });
+  const supplier = await stmt.createSupplier(validation.value, logo, description);
+  const logoUrl = supplier.logo
+    ? (supplier.logo.startsWith('http') || supplier.logo.startsWith('data:') ? supplier.logo : `/logos/${supplier.logo}`)
+    : null;
+
+  return res.status(201).json({
+    id: supplier.id,
+    name: supplier.name,
+    logo: supplier.logo,
+    description: supplier.description || '',
+    logoUrl,
+  });
 });
 
 // PATCH /api/admin/suppliers/:id
 router.patch('/suppliers/:id', adminWriteMiddleware, async (req, res) => {
   const id = Number(req.params.id);
-  const validation = validateSupplierName(req.body.name);
+  let name = (req.body && req.body.name) || '';
+  let logo = req.body && req.body.logo !== undefined ? req.body.logo : undefined;
+  let description = req.body && req.body.description !== undefined ? req.body.description : undefined;
+  let logoFile = null;
+
+  if (req.rawBody || (req.headers['content-type'] || '').includes('multipart/form-data')) {
+    const parsed = await parseMultipart({
+      headers: req.headers,
+      rawBody: req.rawBody,
+    });
+    if (parsed.fields.name) name = parsed.fields.name;
+    if (parsed.fields.logo !== undefined) logo = parsed.fields.logo || null;
+    if (parsed.fields.description !== undefined) description = parsed.fields.description;
+    logoFile = parsed.files.logoFile || parsed.files.logo || parsed.files.image;
+  }
+
+  if (logoFile) {
+    if (logoFile.size > 5 * 1024 * 1024) {
+      return res.status(413).json({ error: 'Logo file too large. Maximum size is 5 MB.' });
+    }
+    const ext = validateImageBuffer(logoFile.data);
+    if (!ext) {
+      return res.status(415).json({ error: 'Only JPG, PNG, WebP, or SVG logo images are accepted.' });
+    }
+    try {
+      const imageKey = await saveImageFile(logoFile.data, ext, 'logos');
+      logo = getImageUrl(imageKey) || imageKey;
+    } catch (err) {
+      console.error('Failed to upload supplier logo:', err);
+      return res.status(500).json({ error: 'Failed to upload supplier logo image.' });
+    }
+  }
+
+  const validation = validateSupplierName(name);
   if (!validation.ok) {
     return res.status(400).json({ error: validation.error });
   }
@@ -146,11 +223,22 @@ router.patch('/suppliers/:id', adminWriteMiddleware, async (req, res) => {
     return res.status(409).json({ error: 'This supplier already exists.' });
   }
 
-  const supplier = await stmt.updateSupplier(validation.value, id, req.body.logo || null);
+  const supplier = await stmt.updateSupplier(validation.value, id, logo, description);
   if (!supplier) {
     return res.status(404).json({ error: 'Supplier not found.' });
   }
-  return res.json({ id: supplier.id, name: supplier.name, logo: supplier.logo });
+
+  const logoUrl = supplier.logo
+    ? (supplier.logo.startsWith('http') || supplier.logo.startsWith('data:') ? supplier.logo : `/logos/${supplier.logo}`)
+    : null;
+
+  return res.json({
+    id: supplier.id,
+    name: supplier.name,
+    logo: supplier.logo,
+    description: supplier.description || '',
+    logoUrl,
+  });
 });
 
 // DELETE /api/admin/suppliers/:id

@@ -9,11 +9,15 @@ CREATE TABLE IF NOT EXISTS public.settings (
 
 -- 2. Suppliers table (Brands distributed by Sai Rudra Motors)
 CREATE TABLE IF NOT EXISTS public.suppliers (
-  id         SERIAL PRIMARY KEY,
-  name       TEXT NOT NULL UNIQUE,
-  logo       TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  id          SERIAL PRIMARY KEY,
+  name        TEXT NOT NULL UNIQUE,
+  logo        TEXT,
+  description TEXT,
+  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+-- Ensure description column exists on existing installations
+ALTER TABLE public.suppliers ADD COLUMN IF NOT EXISTS description TEXT;
 
 -- Case-insensitive unique index on supplier name
 CREATE UNIQUE INDEX IF NOT EXISTS idx_suppliers_name_lower
