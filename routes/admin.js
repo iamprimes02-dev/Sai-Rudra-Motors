@@ -78,7 +78,7 @@ router.post('/login', async (req, res) => {
   const csrfToken = crypto.randomBytes(24).toString('hex');
   const signed = createSession(true, csrfToken);
 
-  res.setHeader('Set-Cookie', buildSessionCookie(signed, process.env.NODE_ENV === 'production'));
+  res.setHeader('Set-Cookie', buildSessionCookie(signed, process.env.NODE_ENV === 'production' || !!process.env.VERCEL));
   return res.status(200).json({ ok: true, csrfToken });
 });
 

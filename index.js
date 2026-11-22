@@ -201,7 +201,7 @@ app.use((req, res) => {
 
 // --- Error handler ---
 app.use((err, req, res, next) => {
-  const isProd = process.env.NODE_ENV === 'production';
+  const isProd = process.env.NODE_ENV === 'production' || !!process.env.VERCEL;
   if (req.path.startsWith('/api/')) {
     const status = err.status || 500;
     res.status(status).json({ error: isProd ? 'Server error.' : err.message });
