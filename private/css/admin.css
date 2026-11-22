@@ -434,8 +434,8 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .stat-icon {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -499,14 +499,12 @@ html[data-theme="dark"] .theme-icon-moon {
   letter-spacing: -0.02em;
 }
 
-.stat-whatsapp .stat-val {
-  font-size: 1.08rem;
+.stat-card.stat-whatsapp .stat-val {
+  font-size: 0.84rem !important;
   font-weight: 700;
   letter-spacing: -0.01em;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 /* ==========================================================================
@@ -2053,6 +2051,10 @@ html[data-theme="dark"] .orb-indigo {
 
   .stat-card .stat-val {
     font-size: 1.4rem;
+  }
+
+  .stat-card.stat-whatsapp .stat-val {
+    font-size: 0.80rem !important;
   }
 
   .supplier-card-admin {
