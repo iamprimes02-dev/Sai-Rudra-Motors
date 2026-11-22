@@ -34,8 +34,8 @@ if (!process.env.SESSION_SECRET) {
   console.error('FATAL: SESSION_SECRET environment variable is required.');
   process.exit(1);
 }
-if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-  console.error('FATAL: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY environment variables are required.');
+if (!process.env.SUPABASE_URL || (!process.env.SUPABASE_SERVICE_ROLE_KEY && !process.env.SUPABASE_SECRET_KEY)) {
+  console.error('FATAL: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_SECRET_KEY) environment variables are required.');
   process.exit(1);
 }
 
