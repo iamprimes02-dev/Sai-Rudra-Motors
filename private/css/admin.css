@@ -499,8 +499,12 @@ html[data-theme="dark"] .theme-icon-moon {
   letter-spacing: -0.02em;
 }
 
+.stat-card.stat-whatsapp {
+  padding: 16px 14px;
+}
+
 .stat-card.stat-whatsapp .stat-val {
-  font-size: 0.84rem !important;
+  font-size: 0.78rem !important;
   font-weight: 700;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -2054,7 +2058,7 @@ html[data-theme="dark"] .orb-indigo {
   }
 
   .stat-card.stat-whatsapp .stat-val {
-    font-size: 0.80rem !important;
+    font-size: 0.74rem !important;
   }
 
   .supplier-card-admin {

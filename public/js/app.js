@@ -133,7 +133,7 @@ function escapeAttr(text) {
 }
 
 // WhatsApp Utilities
-let whatsappNumber = '918660957903';
+let whatsappNumber = '';
 
 function buildGeneralMessage() {
   return (
@@ -246,7 +246,7 @@ async function loadConfig() {
   headerBtns.forEach(btn => {
     btn.onclick = (e) => {
       e.preventDefault();
-      const num = window.whatsappNumber || whatsappNumber || '918660957903';
+      const num = window.whatsappNumber || whatsappNumber || '';
       const link = buildContactLink(num, buildGeneralMessage());
       if (link) window.open(link, '_blank', 'noopener,noreferrer');
     };
@@ -306,7 +306,7 @@ function makePartContactBtn(partId, supplier, partNameOrRef, vehicles) {
     e.preventDefault();
     e.stopPropagation();
     const message = buildPartMessage(supplier, partNameOrRef, vehicles);
-    const num = window.whatsappNumber || whatsappNumber || '918660957903';
+    const num = window.whatsappNumber || whatsappNumber || '';
     const link = buildContactLink(num, message);
     if (link) window.open(link, '_blank', 'noopener,noreferrer');
   });
@@ -459,7 +459,7 @@ function initHomePage() {
         waBtn.onclick = (e) => {
           e.preventDefault();
           const message = buildBrandInquiryMessage(s.name);
-          const num = window.whatsappNumber || whatsappNumber || '918660957903';
+          const num = window.whatsappNumber || whatsappNumber || '';
           const link = buildContactLink(num, message);
           if (link) window.open(link, '_blank', 'noopener,noreferrer');
         };
@@ -645,7 +645,7 @@ function initHomePage() {
           console.warn('Lead persistence notice:', err);
         });
 
-        const num = window.whatsappNumber || whatsappNumber || '918660957903';
+        const num = window.whatsappNumber || whatsappNumber || '';
         const link = buildContactLink(num, message);
         if (link) window.open(link, '_blank', 'noopener,noreferrer');
       });

@@ -15,7 +15,7 @@ router.get('/config', async (req, res) => {
   const sWa = await stmt.getSetting('whatsapp_number');
   res.json({
     businessName: sName.value || 'Sai Rudra Motors',
-    whatsappNumber: sWa.value || '918660957903',
+    whatsappNumber: sWa.value || '',
   });
 });
 

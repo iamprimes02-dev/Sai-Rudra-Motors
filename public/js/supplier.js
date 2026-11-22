@@ -245,7 +245,7 @@
       if (waBtn) {
         waBtn.onclick = () => {
           const msg = `Hello Sai Rudra Motors,\nI want to check stock and rates for ${bName} parts.\nPlease confirm availability and dispatch.`;
-          const num = window.whatsappNumber || (typeof whatsappNumber !== 'undefined' ? whatsappNumber : '918660957903');
+          const num = window.whatsappNumber || (typeof whatsappNumber !== 'undefined' ? whatsappNumber : '');
           const link = typeof buildContactLink === 'function' ? buildContactLink(num, msg) : `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
           if (link) window.open(link, '_blank', 'noopener,noreferrer');
         };
@@ -362,7 +362,7 @@
       const msg = typeof buildBrandInquiryMessage === 'function'
         ? buildBrandInquiryMessage(bName)
         : `Hello Sai Rudra Motors,\nI want to check stock and rates for ${bName}.\nPlease let me know availability and dispatch.`;
-      const num = window.whatsappNumber || (typeof whatsappNumber !== 'undefined' ? whatsappNumber : '918660957903');
+      const num = window.whatsappNumber || (typeof whatsappNumber !== 'undefined' ? whatsappNumber : '');
       const link = typeof buildContactLink === 'function'
         ? buildContactLink(num, msg)
         : `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;

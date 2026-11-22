@@ -1060,7 +1060,7 @@ async function loadSettings() {
     const bName = document.getElementById('businessName');
     const waNum = document.getElementById('whatsappNumber');
     if (bName) bName.value = data.businessName || 'Sai Rudra Motors';
-    if (waNum) waNum.value = data.whatsappNumber || '918660957903';
+    if (waNum) waNum.value = data.whatsappNumber || '';
   } catch (err) {
     showToastMessage('Failed to load settings.', 'danger');
   }
