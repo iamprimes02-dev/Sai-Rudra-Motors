@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dealer Terminal — Sai Rudra Motors</title>
-  <link rel="stylesheet" href="/css/admin.css?v=4.0">
-  <script src="/js/theme.js?v=4.0"></script>
+  <link rel="stylesheet" href="/css/admin.css?v=4.1">
+  <script src="/js/theme.js?v=4.1"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -19,15 +19,15 @@
 
   <!-- Top Bar — Apple Frosted Glass Floating Dock -->
   <header class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:16px;">
-      <a href="/admin" class="srm-brand-logo" style="text-decoration:none;display:flex;align-items:center;gap:12px;">
+    <div class="topbar-brand-section">
+      <a href="/admin" class="srm-brand-logo" aria-label="Sai Rudra Motors Dealer Terminal">
         <div class="brand-crest">
           <span class="crest-monogram">SRM</span>
           <span class="crest-accent"></span>
         </div>
         <div class="brand-typography">
-          <span class="company-name" style="font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--color-text);letter-spacing:-0.02em;display:block;line-height:1.2;">Sai Rudra Motors</span>
-          <span class="company-descriptor" style="font-size:0.68rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;display:block;">Dealer Terminal</span>
+          <span class="company-name">Sai Rudra Motors</span>
+          <span class="company-descriptor">Dealer Terminal</span>
         </div>
       </a>
       <div class="login-status-badge admin-live-badge">
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <nav class="admin-nav">
+    <nav class="admin-nav" aria-label="Dealer Navigation">
       <a href="#" class="nav-link active" data-view="dashboard">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span>Brands &amp; Suppliers</span>
@@ -70,10 +70,10 @@
   <main class="admin-container">
     <!-- Dashboard view -->
     <section id="viewDashboard" class="view active">
-      <div class="dashboard-top">
-        <div>
+      <div class="view-header">
+        <div class="view-header-title">
           <h1>Brands &amp; Suppliers</h1>
-          <p style="color:var(--color-text-muted);font-size:0.95rem;margin:0;">Manage automotive manufacturers, genuine brands, and parts catalogs.</p>
+          <p class="view-header-subtitle">Manage automotive manufacturers, genuine brands, and parts catalogs.</p>
         </div>
         <button class="btn-primary" id="addSupplierBtn">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -83,7 +83,7 @@
 
       <!-- Quick Metrics Bento Grid -->
       <div class="admin-stats-grid">
-        <div class="stat-card stat-brands" style="cursor:pointer;" onclick="switchView('dashboard');" title="Filter Brands">
+        <div class="stat-card stat-brands" role="button" tabindex="0" onclick="switchView('dashboard');" title="Filter Brands">
           <div class="stat-icon icon-blue">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M9 15h2M13 11h2M13 15h2"></path></svg>
           </div>
@@ -92,7 +92,7 @@
             <span class="stat-val" id="statSupplierCount">0</span>
           </div>
         </div>
-        <div class="stat-card stat-parts" style="cursor:pointer;" onclick="switchView('dashboard');" title="View Parts by Brand">
+        <div class="stat-card stat-parts" role="button" tabindex="0" onclick="switchView('dashboard');" title="View Parts by Brand">
           <div class="stat-icon icon-cyan">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
           </div>
@@ -101,16 +101,16 @@
             <span class="stat-val" id="statPartCount">0</span>
           </div>
         </div>
-        <div class="stat-card stat-whatsapp" style="cursor:pointer;" onclick="switchView('settings');" title="Configure WhatsApp Number">
+        <div class="stat-card stat-whatsapp" role="button" tabindex="0" onclick="switchView('settings');" title="Configure WhatsApp Number">
           <div class="stat-icon icon-emerald">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
           </div>
           <div class="stat-details">
             <span class="stat-label">WhatsApp Telemetry</span>
-            <span class="stat-val" id="statWhatsappNum" style="font-size:1.15rem;color:var(--color-whatsapp);">Active</span>
+            <span class="stat-val" id="statWhatsappNum">Active</span>
           </div>
         </div>
-        <div class="stat-card stat-leads" style="cursor:pointer;" onclick="switchView('inquiries');" title="View Stock Enquiries & Leads">
+        <div class="stat-card stat-leads" role="button" tabindex="0" onclick="switchView('inquiries');" title="View Stock Enquiries & Leads">
           <div class="stat-icon icon-red">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 12h6M9 16h4"></path></svg>
           </div>
@@ -124,7 +124,7 @@
       <!-- Precision Search Bar -->
       <div class="admin-search-wrapper">
         <svg class="search-lead-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" id="adminSupplierSearch" placeholder="Filter suppliers by name or component lines..." aria-label="Filter suppliers">
+        <input type="text" id="adminSupplierSearch" placeholder="Filter suppliers by name, category, or component lines..." aria-label="Filter suppliers">
       </div>
 
       <div class="supplier-list" id="supplierList">
@@ -132,7 +132,7 @@
       </div>
       <div class="empty-state hidden" id="dashboardEmpty">
         <div class="empty-state-icon">
-          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M9 15h2M13 11h2M13 15h2"></path></svg>
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M9 15h2M13 11h2M13 15h2"></path></svg>
         </div>
         <h2>No suppliers found.</h2>
         <p>Add your first supplier to populate the dealer catalogue.</p>
@@ -141,108 +141,120 @@
 
     <!-- Add / Edit supplier form -->
     <section id="viewSupplierForm" class="view">
-      <div style="display:flex;align-items:center;gap:var(--spacing-12);margin-bottom:var(--spacing-20);">
-        <button class="btn-secondary" id="backToDashboardFromSupplierForm">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          <span>Back to suppliers</span>
-        </button>
-        <h1 id="supplierFormTitle" style="margin:0;">Add supplier</h1>
+      <div class="view-header">
+        <div class="view-header-left">
+          <button class="btn-secondary" id="backToDashboardFromSupplierForm">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            <span>Back to suppliers</span>
+          </button>
+          <h1 id="supplierFormTitle">Add supplier</h1>
+        </div>
       </div>
-      <form id="supplierForm" novalidate class="form-panel" style="max-width:580px;">
-        <div class="form-group">
-          <label for="supplierName">Supplier Name (required)</label>
-          <input type="text" id="supplierName" name="name" required maxlength="60" placeholder="e.g. Sangsin Brakes">
-          <div class="field-error" id="supplierNameError"></div>
-        </div>
 
-        <div class="form-group">
-          <label for="supplierCategory">Component Category (optional)</label>
-          <input type="text" id="supplierCategory" name="category" list="categoryOptions" maxlength="50" placeholder="e.g. Brakes, Filters, Suspension & Steering...">
-          <datalist id="categoryOptions">
-            <option value="Brakes">Braking Systems (Pads, Shoes, Discs)</option>
-            <option value="Filters">Filtration (Oil, Air, Fuel, Cabin)</option>
-            <option value="Clutch & Transmission">Clutch Kits, Plates, Release Bearings</option>
-            <option value="Suspension & Steering">Shock Absorbers, Struts, Steering Racks</option>
-            <option value="Fluids & Lubricants">Engine Oils, Coolants, Lubricants</option>
-            <option value="Rubber Parts">Bushes, Engine Mounts, Bellows</option>
-            <option value="Electrical & Ignition">Starters, Alternators, Sensors, Relays</option>
-            <option value="Drivetrain & Axles">CV Axles, Driveshafts, Propeller Shafts</option>
-            <option value="Auto Spares">General Replacement Parts</option>
-          </datalist>
-          <div style="font-size:0.75rem;color:var(--color-text-muted);margin-top:4px;">Select from recommended automotive systems or type a custom category. Enables customer category filtering.</div>
-          <div class="field-error" id="supplierCategoryError"></div>
-        </div>
+      <div class="admin-form-container">
+        <form id="supplierForm" novalidate class="form-panel">
+          <div class="form-row-2col">
+            <div class="form-group">
+              <label for="supplierName">Supplier Name (required)</label>
+              <input type="text" id="supplierName" name="name" required maxlength="60" placeholder="e.g. Sangsin Brakes">
+              <div class="field-error" id="supplierNameError"></div>
+            </div>
 
-        <div class="form-group">
-          <label for="supplierDescription">Supplier Description / Component Lines (optional)</label>
-          <textarea id="supplierDescription" name="description" rows="3" maxlength="500" placeholder="e.g. Brake pads, brake shoes, and commercial brake linings for passenger and commercial vehicles."></textarea>
-          <div style="font-size:0.75rem;color:var(--color-text-muted);margin-top:4px;">Displayed on catalogue cards, brand showcase, and WhatsApp enquiry messages.</div>
-          <div class="field-error" id="supplierDescriptionError"></div>
-        </div>
-
-        <div class="form-group">
-          <label>Brand Logo (optional)</label>
-          
-          <!-- Option 1: Upload a local file -->
-          <div class="logo-upload-box" id="logoUploadBox" style="border:1.5px dashed var(--color-border);border-radius:var(--radius-lg);padding:18px;text-align:center;cursor:pointer;background:var(--color-surface);transition:all 0.2s ease;">
-            <input type="file" id="supplierLogoFile" accept="image/jpeg,image/png,image/webp,image/svg+xml" style="display:none;">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-              <div style="width:42px;height:42px;border-radius:50%;background:rgba(0,102,255,0.08);border:1px solid rgba(0,102,255,0.18);display:flex;align-items:center;justify-content:center;color:var(--color-primary);">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-              </div>
-              <div style="font-weight:600;font-size:0.88rem;color:var(--color-text);" id="logoUploadText">Click or Drag &amp; Drop to upload local logo file</div>
-              <div style="font-size:0.75rem;color:var(--color-text-muted);">PNG, JPG, WebP, or SVG (Transparent or white background recommended, max 5 MB)</div>
+            <div class="form-group">
+              <label for="supplierCategory">Component Category (optional)</label>
+              <input type="text" id="supplierCategory" name="category" list="categoryOptions" maxlength="50" placeholder="e.g. Brakes, Filters, Suspension & Steering...">
+              <datalist id="categoryOptions">
+                <option value="Brakes">Braking Systems (Pads, Shoes, Discs)</option>
+                <option value="Filters">Filtration (Oil, Air, Fuel, Cabin)</option>
+                <option value="Clutch & Transmission">Clutch Kits, Plates, Release Bearings</option>
+                <option value="Suspension & Steering">Shock Absorbers, Struts, Steering Racks</option>
+                <option value="Fluids & Lubricants">Engine Oils, Coolants, Lubricants</option>
+                <option value="Rubber Parts">Bushes, Engine Mounts, Bellows</option>
+                <option value="Electrical & Ignition">Starters, Alternators, Sensors, Relays</option>
+                <option value="Drivetrain & Axles">CV Axles, Driveshafts, Propeller Shafts</option>
+                <option value="Auto Spares">General Replacement Parts</option>
+              </datalist>
+              <div class="field-hint">Select a category or type a custom one. Used for customer category filtering.</div>
+              <div class="field-error" id="supplierCategoryError"></div>
             </div>
           </div>
 
-          <div style="display:flex;align-items:center;gap:12px;margin:12px 0;">
-            <span style="flex:1;height:1px;background:var(--color-border);"></span>
-            <span style="font-size:0.72rem;font-weight:700;color:var(--color-text-muted);letter-spacing:0.06em;">OR SELECT FROM PRESET LOGOS</span>
-            <span style="flex:1;height:1px;background:var(--color-border);"></span>
+          <div class="form-group">
+            <label for="supplierDescription">Supplier Description / Component Lines (optional)</label>
+            <textarea id="supplierDescription" name="description" rows="3" maxlength="500" placeholder="e.g. Brake pads, brake shoes, and commercial brake linings for passenger and commercial vehicles."></textarea>
+            <div class="field-hint">Displayed on catalogue cards, brand showcase, and WhatsApp enquiry messages.</div>
+            <div class="field-error" id="supplierDescriptionError"></div>
           </div>
 
-          <select id="supplierLogo" name="logo">
-            <option value="">No preset logo selected</option>
-          </select>
-
-          <!-- The Genuine Pedestal Rule for Logos -->
-          <div class="logo-preview" id="logoPreview" style="margin-top:var(--spacing-14);display:none;">
-            <div style="font-size:0.78rem;font-weight:600;color:var(--color-text-muted);margin-bottom:8px;">Active Logo Preview (Genuine Pedestal):</div>
-            <div style="display:flex;align-items:center;gap:16px;">
-              <div class="admin-logo-pedestal" style="width:140px;height:70px;margin:0;display:flex;align-items:center;justify-content:center;background:#FFFFFF;border-radius:8px;border:1px solid rgba(0,0,0,0.08);padding:6px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-                <img id="previewLogo" alt="Logo preview" style="max-width:100%;max-height:100%;object-fit:contain;">
+          <div class="form-group">
+            <label>Brand Logo (optional)</label>
+            
+            <!-- Option 1: Upload a local file -->
+            <div class="logo-upload-box" id="logoUploadBox" role="button" tabindex="0">
+              <input type="file" id="supplierLogoFile" accept="image/jpeg,image/png,image/webp,image/svg+xml" style="display:none;">
+              <div class="logo-upload-content">
+                <div class="logo-upload-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                </div>
+                <div class="logo-upload-title" id="logoUploadText">Click or Drag &amp; Drop to upload local logo file</div>
+                <div class="logo-upload-sub">PNG, JPG, WebP, or SVG (Transparent or white background recommended, max 5 MB)</div>
               </div>
-              <button type="button" class="btn-secondary" id="removeLogoBtn" style="padding:6px 14px;font-size:0.8rem;">
-                Remove Logo
-              </button>
             </div>
-          </div>
-          <div class="field-error" id="supplierLogoError"></div>
-        </div>
 
-        <div class="field-error" id="supplierFormError"></div>
-        <div style="display:flex;gap:var(--spacing-12);margin-top:var(--spacing-20);">
-          <button type="submit" class="btn-primary" id="supplierFormSaveBtn">Save Supplier</button>
-          <button type="button" class="btn-secondary" id="supplierFormCancelBtn">Cancel</button>
-          <input type="hidden" id="supplierFormId">
-        </div>
-      </form>
-      <button class="btn-danger" id="deleteSupplierBtn" style="display:none;margin-top:var(--spacing-20);">Delete Supplier</button>
-      <div class="field-error" id="deleteSupplierError"></div>
+            <div class="logo-divider">
+              <span class="divider-line"></span>
+              <span class="divider-text">OR SELECT FROM PRESET LOGOS</span>
+              <span class="divider-line"></span>
+            </div>
+
+            <select id="supplierLogo" name="logo">
+              <option value="">No preset logo selected</option>
+            </select>
+
+            <!-- The Genuine Pedestal Rule for Logos -->
+            <div class="logo-preview" id="logoPreview">
+              <div class="preview-title">Active Logo Preview (Genuine Pedestal):</div>
+              <div class="preview-pedestal-row">
+                <div class="admin-logo-pedestal preview-pedestal-box">
+                  <img id="previewLogo" alt="Logo preview">
+                </div>
+                <button type="button" class="btn-secondary" id="removeLogoBtn">
+                  Remove Logo
+                </button>
+              </div>
+            </div>
+            <div class="field-error" id="supplierLogoError"></div>
+          </div>
+
+          <div class="field-error" id="supplierFormError"></div>
+
+          <div class="form-actions-bar">
+            <div class="form-actions-primary">
+              <button type="submit" class="btn-primary" id="supplierFormSaveBtn">Save Supplier</button>
+              <button type="button" class="btn-secondary" id="supplierFormCancelBtn">Cancel</button>
+            </div>
+            <div class="form-actions-danger">
+              <button type="button" class="btn-danger" id="deleteSupplierBtn" style="display:none;">Delete Supplier</button>
+            </div>
+            <input type="hidden" id="supplierFormId">
+          </div>
+          <div class="field-error" id="deleteSupplierError"></div>
+        </form>
+      </div>
     </section>
 
     <!-- Supplier parts view -->
     <section id="viewSupplierParts" class="view">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--spacing-12);margin-bottom:var(--spacing-24);">
-        <div style="display:flex;align-items:center;gap:12px;">
+      <div class="view-header">
+        <div class="view-header-left">
           <button class="btn-secondary" id="backToDashboard">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
             <span>Back to suppliers</span>
           </button>
-          <h1 id="partsPageTitle" style="margin:0;">Parts</h1>
+          <h1 id="partsPageTitle">Parts</h1>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <a href="#" target="_blank" class="btn-secondary" id="viewLiveCatalogueBtn" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;" title="Open this brand's catalogue on the customer website">
+        <div class="view-header-right">
+          <a href="#" target="_blank" class="btn-secondary" id="viewLiveCatalogueBtn" title="Open this brand's catalogue on the customer website">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
             <span>View on Customer Site ↗</span>
           </a>
@@ -252,12 +264,13 @@
           </button>
         </div>
       </div>
+
       <div class="admin-parts-grid" id="partsGrid">
         <!-- Part cards injected here -->
       </div>
       <div class="empty-state hidden" id="partsEmpty">
         <div class="empty-state-icon">
-          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         </div>
         <h2>No parts listed for this supplier yet.</h2>
         <p>Add your first part with a photo and compatible vehicles.</p>
@@ -266,66 +279,76 @@
 
     <!-- Add / Edit part form -->
     <section id="viewPartForm" class="view">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--spacing-24);">
-        <button class="btn-secondary" id="backToParts">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          <span>Back to parts</span>
-        </button>
-        <h1 id="partFormTitle" style="margin:0;">Add part</h1>
+      <div class="view-header">
+        <div class="view-header-left">
+          <button class="btn-secondary" id="backToParts">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            <span>Back to parts</span>
+          </button>
+          <h1 id="partFormTitle">Add part</h1>
+        </div>
       </div>
-      <form id="partForm" novalidate class="form-panel" style="max-width:680px;">
-        <div class="form-group">
-          <label>Photo (required)</label>
-          <div class="image-picker" id="imagePicker">
-            <input type="file" id="partImage" accept="image/jpeg,image/png,image/webp" style="display:none;">
-            <div class="picker-icon-wrap">
-              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+
+      <div class="admin-form-container">
+        <form id="partForm" novalidate class="form-panel">
+          <div class="form-group">
+            <label>Part Photo (required)</label>
+            <div class="image-picker" id="imagePicker" role="button" tabindex="0">
+              <input type="file" id="partImage" accept="image/jpeg,image/png,image/webp" style="display:none;">
+              <div class="picker-icon-wrap">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              </div>
+              <p class="picker-lead">Tap or drag &amp; drop to choose a photo</p>
+              <p class="picker-sub">JPG, PNG or WebP, up to 5 MB</p>
             </div>
-            <p style="font-weight:700;color:var(--color-text);margin-top:8px;">Tap or drag &amp; drop to choose a photo</p>
-            <p style="font-size:0.85rem;color:var(--color-text-muted);">JPG, PNG or WebP, up to 5 MB</p>
+            <!-- Genuine Pedestal Platform for Admin Photo Preview -->
+            <div class="image-preview" id="imagePreview">
+              <img id="previewImage" alt="Photo preview">
+            </div>
+            <button type="button" class="btn-secondary" id="changePhotoBtn" style="display:none;margin-top:8px;">Change photo</button>
+            <div class="field-error" id="imageError"></div>
           </div>
-          <!-- Genuine Pedestal Platform for Admin Photo Preview -->
-          <div class="image-preview" id="imagePreview">
-            <img id="previewImage" alt="Photo preview">
+
+          <div class="form-group">
+            <label for="vehicleInput">Compatible Vehicles (required, at least 1)</label>
+            <div class="tag-input" id="tagInput">
+              <input type="text" id="vehicleInput" placeholder="Type vehicle (e.g. Maruti Swift 2018-2022) and press Enter">
+            </div>
+            <div id="tagSuggestions" class="tag-suggestions"></div>
+            <div class="field-error" id="vehiclesError"></div>
+            <p class="field-hint">Press Enter or Comma after typing each vehicle model.</p>
           </div>
-          <button type="button" class="btn-secondary" id="changePhotoBtn" style="display:none;margin-top:8px;">Change photo</button>
-          <div class="field-error" id="imageError"></div>
-        </div>
 
-        <div class="form-group">
-          <label for="vehicleInput">Compatible Vehicles (required, at least 1)</label>
-          <div class="tag-input" id="tagInput">
-            <input type="text" id="vehicleInput" placeholder="Type vehicle (e.g. Maruti Swift 2018-2022) and press Enter">
+          <div class="form-group">
+            <label for="partName">Part Name / Ref (optional)</label>
+            <input type="text" id="partName" name="name" placeholder="e.g. Front Brake Pad Set" maxlength="120">
+            <div class="field-error" id="partNameError"></div>
           </div>
-          <div id="tagSuggestions" class="tag-suggestions"></div>
-          <div class="field-error" id="vehiclesError"></div>
-          <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:var(--spacing-6);">Press Enter or Comma after typing each vehicle name.</p>
-        </div>
 
-        <div class="form-group">
-          <label for="partName">Part Name / Ref (optional)</label>
-          <input type="text" id="partName" name="name" placeholder="e.g. Front Brake Pad Set" maxlength="120">
-          <div class="field-error" id="partNameError"></div>
-        </div>
+          <div class="field-error" id="partFormError"></div>
 
-        <div class="field-error" id="partFormError"></div>
-        <div style="display:flex;gap:var(--spacing-12);margin-top:var(--spacing-20);">
-          <button type="submit" class="btn-primary" id="partFormSaveBtn">Save Part</button>
-          <button type="button" class="btn-secondary" id="partFormCancelBtn">Cancel</button>
-          <input type="hidden" id="partFormId">
-          <input type="hidden" id="partFormSupplierId">
-        </div>
-      </form>
-      <button class="btn-danger" id="deletePartBtn" style="display:none;margin-top:var(--spacing-20);">Delete Part</button>
-      <div class="field-error" id="deletePartError"></div>
+          <div class="form-actions-bar">
+            <div class="form-actions-primary">
+              <button type="submit" class="btn-primary" id="partFormSaveBtn">Save Part</button>
+              <button type="button" class="btn-secondary" id="partFormCancelBtn">Cancel</button>
+            </div>
+            <div class="form-actions-danger">
+              <button type="button" class="btn-danger" id="deletePartBtn" style="display:none;">Delete Part</button>
+            </div>
+            <input type="hidden" id="partFormId">
+            <input type="hidden" id="partFormSupplierId">
+          </div>
+          <div class="field-error" id="deletePartError"></div>
+        </form>
+      </div>
     </section>
 
     <!-- Inquiries / Leads view -->
     <section id="viewInquiries" class="view">
-      <div class="dashboard-top">
-        <div>
+      <div class="view-header">
+        <div class="view-header-title">
           <h1>Stock Enquiries &amp; Customer Leads</h1>
-          <p style="color:var(--color-text-muted);font-size:0.95rem;margin:0;">Live customer requirements captured from the website Stock Check box.</p>
+          <p class="view-header-subtitle">Live customer requirements captured from the website Stock Check box.</p>
         </div>
         <button class="btn-secondary" id="refreshInquiriesBtn">
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
@@ -333,12 +356,12 @@
         </button>
       </div>
 
-      <div class="inquiries-list" id="inquiriesList" style="display:flex;flex-direction:column;gap:14px;">
+      <div class="inquiries-list" id="inquiriesList">
         <!-- Inquiries injected here -->
       </div>
       <div class="empty-state hidden" id="inquiriesEmpty">
         <div class="empty-state-icon">
-          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
         </div>
         <h2>No enquiries yet.</h2>
         <p>Customer submissions from the website Stock Check &amp; Price form will automatically appear here.</p>
@@ -347,8 +370,13 @@
 
     <!-- Settings view -->
     <section id="viewSettings" class="view">
-      <h1 style="margin-bottom:20px;">Business Settings</h1>
-      <form id="settingsForm" novalidate>
+      <div class="view-header">
+        <div class="view-header-title">
+          <h1>Business Settings</h1>
+          <p class="view-header-subtitle">Configure verified depot identity and WhatsApp dispatch parameters.</p>
+        </div>
+      </div>
+      <form id="settingsForm" novalidate class="settings-form">
         <div class="settings-grid">
           <div class="form-panel">
             <h2>Business Details</h2>
@@ -360,7 +388,7 @@
           </div>
           <div class="form-panel">
             <h2>WhatsApp Contact Number</h2>
-            <p style="font-size:0.88rem;color:var(--color-text-muted);margin-bottom:var(--spacing-16);">Used for customer inquiry links. Digits only, with country code (e.g. 918660957903).</p>
+            <p class="field-hint" style="margin-bottom:var(--spacing-16);">Used for customer inquiry links. Digits only, with country code (e.g. 918660957903).</p>
             <div class="form-group">
               <label for="whatsappNumber">WhatsApp Number</label>
               <input type="text" id="whatsappNumber" name="whatsappNumber" placeholder="918660957903" maxlength="15" value="918660957903">
@@ -369,13 +397,15 @@
           </div>
         </div>
         <div class="field-error" id="settingsError"></div>
-        <button type="submit" class="btn-primary" style="margin-top:20px;">Save Settings</button>
+        <div class="settings-actions-bar">
+          <button type="submit" class="btn-primary">Save Settings</button>
+        </div>
       </form>
     </section>
   </main>
 
   <!-- Confirm dialog -->
-  <div class="modal-overlay" id="confirmOverlay">
+  <div class="modal-overlay" id="confirmOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
     <div class="modal">
       <h3 id="confirmTitle">Confirm Action</h3>
       <p id="confirmMessage">Are you sure you want to proceed?</p>
@@ -386,8 +416,8 @@
     </div>
   </div>
 
-  <div class="toast toast-success hidden" id="toast"></div>
+  <div class="toast toast-success hidden" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="/js/admin.js?v=4.0"></script>
+  <script src="/js/admin.js?v=4.1"></script>
 </body>
 </html>

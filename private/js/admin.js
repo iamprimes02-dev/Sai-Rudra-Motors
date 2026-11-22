@@ -190,6 +190,34 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Settings form
   document.getElementById('settingsForm').addEventListener('submit', handleSettingsFormSubmit);
 
+  // Keyboard accessibility for stat cards
+  document.querySelectorAll('.stat-card[role="button"]').forEach((card) => {
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+
+  // Keyboard accessibility for upload boxes
+  if (logoUploadBox && supplierLogoFileInput) {
+    logoUploadBox.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        supplierLogoFileInput.click();
+      }
+    });
+  }
+  if (imagePicker && partImageInput) {
+    imagePicker.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        partImageInput.click();
+      }
+    });
+  }
+
   // Confirm dialog
   document.getElementById('confirmCancel').addEventListener('click', () => {
     confirmOverlay.classList.remove('open');
@@ -433,14 +461,23 @@ function renderAdminSuppliers(suppliers) {
 
 async function loadDashboard() {
   try {
-    const res = await apiRequest('/api/admin/suppliers');
-    const suppliers = await res.json();
+    const [supResult, setResult, inqResult] = await Promise.allSettled([
+      apiRequest('/api/admin/suppliers'),
+      apiRequest('/api/admin/settings'),
+      apiRequest('/api/admin/inquiries'),
+    ]);
+
+    let suppliers = [];
+    if (supResult.status === 'fulfilled' && supResult.value.ok) {
+      suppliers = await supResult.value.json();
+    }
     allAdminSuppliers = Array.isArray(suppliers) ? suppliers : [];
 
     // Update Stats
     const statSuppliersEl = document.getElementById('statSupplierCount');
     const statPartsEl = document.getElementById('statPartCount');
     const statWaEl = document.getElementById('statWhatsappNum');
+    const statInqEl = document.getElementById('statInquiryCount');
 
     if (statSuppliersEl) statSuppliersEl.textContent = allAdminSuppliers.length;
     if (statPartsEl) {
@@ -448,41 +485,46 @@ async function loadDashboard() {
       statPartsEl.textContent = totalParts;
     }
 
-    // Load WhatsApp status & Inquiry count
-    try {
-      const setRes = await apiRequest('/api/admin/settings');
-      if (setRes.ok) {
-        const setData = await setRes.json();
+    if (setResult.status === 'fulfilled' && setResult.value.ok) {
+      try {
+        const setData = await setResult.value.json();
         if (statWaEl) {
           statWaEl.textContent = setData.whatsappNumber ? `+${setData.whatsappNumber}` : 'Not set';
         }
-      }
-    } catch {}
+      } catch {}
+    }
 
-    try {
-      const inqRes = await apiRequest('/api/admin/inquiries');
-      if (inqRes.ok) {
-        const inqData = await inqRes.json();
-        const statInqEl = document.getElementById('statInquiryCount');
+    if (inqResult.status === 'fulfilled' && inqResult.value.ok) {
+      try {
+        const inqData = await inqResult.value.json();
         if (statInqEl && Array.isArray(inqData)) {
           statInqEl.textContent = inqData.length;
         }
-      }
-    } catch {}
+      } catch {}
+    }
 
     renderAdminSuppliers(allAdminSuppliers);
 
-    // Setup Admin Search
+    // Setup Admin Search with debounce & multi-field matching
     const searchInput = document.getElementById('adminSupplierSearch');
     if (searchInput) {
+      let debounceTimer = null;
       searchInput.oninput = (e) => {
-        const q = e.target.value.trim().toLowerCase();
-        if (!q) {
-          renderAdminSuppliers(allAdminSuppliers);
-        } else {
-          const filtered = allAdminSuppliers.filter(s => s.name.toLowerCase().includes(q));
-          renderAdminSuppliers(filtered);
-        }
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          const q = e.target.value.trim().toLowerCase();
+          if (!q) {
+            renderAdminSuppliers(allAdminSuppliers);
+          } else {
+            const filtered = allAdminSuppliers.filter((s) => {
+              const nameMatch = s.name && s.name.toLowerCase().includes(q);
+              const catMatch = s.category && s.category.toLowerCase().includes(q);
+              const descMatch = s.description && s.description.toLowerCase().includes(q);
+              return nameMatch || catMatch || descMatch;
+            });
+            renderAdminSuppliers(filtered);
+          }
+        }, 60);
       };
     }
   } catch (err) {
@@ -1082,36 +1124,49 @@ async function loadInquiries() {
 
     data.forEach((item) => {
       const card = document.createElement('div');
-      card.className = 'supplier-card-admin';
-      card.style.display = 'flex';
-      card.style.justifyContent = 'space-between';
-      card.style.alignItems = 'flex-start';
+      card.className = 'inquiry-card';
 
-      const typeBadgeColor = item.enquiry_type === 'Wholesale Enquiry' ? '#2563EB' : item.enquiry_type === 'Brand And Availability Enquiry' ? '#7C3AED' : '#059669';
+      const typeClass = item.enquiry_type === 'Wholesale Enquiry'
+        ? 'type-wholesale'
+        : (item.enquiry_type === 'Brand And Availability Enquiry' ? 'type-brand' : 'type-retail');
       const cleanPhone = String(item.phone || '').replace(/\D/g, '');
       const waLink = cleanPhone ? `https://wa.me/${cleanPhone}` : '#';
 
       card.innerHTML = `
-        <div class="info" style="flex:1;">
-          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px;">
-            <h2 style="margin:0;font-size:1.15rem;">${escapeHtml(item.name || 'Customer')}</h2>
-            <span style="font-size:0.75rem;font-weight:700;padding:2px 8px;border-radius:12px;background:${typeBadgeColor}15;color:${typeBadgeColor};border:1px solid ${typeBadgeColor}40;">
+        <div class="inquiry-header">
+          <div class="inquiry-title-wrap">
+            <h3 class="inquiry-customer-name">${escapeHtml(item.name || 'Customer')}</h3>
+            <span class="inquiry-type-pill ${typeClass}">
               ${escapeHtml(item.enquiry_type || 'Retail Enquiry')}
             </span>
-            <span style="font-size:0.8rem;color:var(--color-text-muted);">${formatDate(item.created_at)}</span>
           </div>
-          <p style="margin:4px 0;font-size:0.92rem;color:var(--color-text);">
-            <strong>Phone:</strong> <a href="tel:${escapeAttr(item.phone)}" style="color:var(--color-focus);font-weight:600;">${escapeHtml(item.phone)}</a>
-            &bull;
-            <a href="${escapeAttr(waLink)}" target="_blank" style="color:var(--color-whatsapp);font-weight:600;margin-left:4px;">Open WhatsApp &rarr;</a>
-          </p>
-          <p style="margin:4px 0;font-size:0.88rem;color:var(--color-text-muted);">
-            <strong>Brand:</strong> ${escapeHtml(item.brand)} &bull; <strong>Vehicle:</strong> ${escapeHtml(item.vehicle)}
-            ${item.part ? `&bull; <strong>Part:</strong> ${escapeHtml(item.part)}` : ''}
-          </p>
+          <span class="inquiry-date">${formatDate(item.created_at)}</span>
         </div>
-        <div class="actions" style="margin-left:16px;">
-          <button class="admin-action-btn btn-delete" title="Delete enquiry" onclick="app.deleteInquiry(${item.id})">
+        <div class="inquiry-meta-grid">
+          <div class="inquiry-meta-item">
+            <span class="meta-label">Phone:</span>
+            <a href="tel:${escapeAttr(item.phone)}" class="meta-phone-link">${escapeHtml(item.phone)}</a>
+            <a href="${escapeAttr(waLink)}" target="_blank" rel="noopener noreferrer" class="inquiry-wa-pill">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+              Chat
+            </a>
+          </div>
+          <div class="inquiry-meta-item">
+            <span class="meta-label">Brand:</span>
+            <span class="meta-val">${escapeHtml(item.brand || '—')}</span>
+          </div>
+          <div class="inquiry-meta-item">
+            <span class="meta-label">Vehicle:</span>
+            <span class="meta-val">${escapeHtml(item.vehicle || '—')}</span>
+          </div>
+          ${item.part ? `
+          <div class="inquiry-meta-item">
+            <span class="meta-label">Part:</span>
+            <span class="meta-val">${escapeHtml(item.part)}</span>
+          </div>` : ''}
+        </div>
+        <div class="inquiry-actions">
+          <button type="button" class="admin-action-btn btn-delete" title="Delete enquiry" onclick="app.deleteInquiry(${item.id})">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             <span>Delete</span>
           </button>
