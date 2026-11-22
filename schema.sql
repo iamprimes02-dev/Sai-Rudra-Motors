@@ -50,7 +50,7 @@ INSERT INTO public.suppliers (name, logo) VALUES
   ('Mavrod Suspension', '06_mavrod_suspension.png'),
   ('TVS Coolants', '07_tvs_coolants.png'),
   ('MB Techno Rubber', '08_mb_techno_rubber.png'),
-  ('HL Mando Suspension & Brakes', '09_hl_mando_suspension_brakes.png'),
+  ('HL Mando', '09_hl_mando_suspension_brakes.png'),
   ('Delphi Engine Oils', '10_delphi_engine_oils.png'),
   ('Delphi Driveshafts', '11_delphi_driveshafts.png')
 ON CONFLICT (name) DO NOTHING;
@@ -68,4 +68,30 @@ CREATE TABLE IF NOT EXISTS public.inquiries (
 );
 
 CREATE INDEX IF NOT EXISTS idx_inquiries_created_at ON public.inquiries(created_at DESC);
+
+-- 7. Supabase Storage Bucket for Part Images
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('part-images', 'part-images', true)
+ON CONFLICT (id) DO UPDATE SET public = true;
+
+-- 8. Row Level Security (RLS) Configuration
+ALTER TABLE public.settings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.suppliers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.parts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.inquiries ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can view settings" ON public.settings;
+CREATE POLICY "Public can view settings" ON public.settings FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Public can view suppliers" ON public.suppliers;
+CREATE POLICY "Public can view suppliers" ON public.suppliers FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Public can view parts" ON public.parts;
+CREATE POLICY "Public can view parts" ON public.parts FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Public can create inquiries" ON public.inquiries;
+CREATE POLICY "Public can create inquiries" ON public.inquiries FOR INSERT WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Public can view part images" ON storage.objects;
+CREATE POLICY "Public can view part images" ON storage.objects FOR SELECT USING (bucket_id = 'part-images');
 
