@@ -1,9 +1,10 @@
 // Sai Rudra Motors - Supplier Parts Catalogue Engine
 // Handles parts listing, vehicle filtering, live keyword search, image viewer, and WhatsApp contact.
 
-'use strict';
+(() => {
+  'use strict';
 
-const API = window.location.origin;
+  const API = window.location.origin;
 const urlParams = new URLSearchParams(window.location.search);
 const querySupplierId = urlParams.get('id') || urlParams.get('supplierId');
 const pathTokens = window.location.pathname.split('/').filter(Boolean);
@@ -278,4 +279,9 @@ if (supplierInquireBtn) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', loadSupplierAndParts);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadSupplierAndParts);
+  } else {
+    loadSupplierAndParts();
+  }
+})();
