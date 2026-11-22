@@ -10,6 +10,7 @@ const { getImageUrl } = require('../lib/uploads');
 
 // GET /api/config - business name and WhatsApp number for the customer site.
 router.get('/config', async (req, res) => {
+  res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
   const sName = await stmt.getSetting('business_name');
   const sWa = await stmt.getSetting('whatsapp_number');
   res.json({
@@ -20,6 +21,7 @@ router.get('/config', async (req, res) => {
 
 // GET /api/suppliers - all suppliers with part counts, sorted by name.
 router.get('/suppliers', async (req, res) => {
+  res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
   const rows = await stmt.listSuppliers();
   // Add logo URL for each supplier
   const suppliersWithLogo = rows.map((s) => ({
@@ -31,6 +33,7 @@ router.get('/suppliers', async (req, res) => {
 
 // GET /api/suppliers/:id/parts?vehicle=
 router.get('/suppliers/:id/parts', async (req, res) => {
+  res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
   const supplierId = Number(req.params.id);
   const vehicle = req.query.vehicle ? String(req.query.vehicle) : null;
 

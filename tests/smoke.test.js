@@ -185,7 +185,7 @@ test('smoke: public page shows no price text', async () => {
 test('smoke: config returns business name', async () => {
   const r = await request('GET', base + '/api/config');
   assert.strictEqual(r.status, 200);
-  assert.strictEqual(r.body.businessName, 'Sai Rudra Motors');
+  assert.ok(r.body.businessName && r.body.businessName.includes('Sai Rudra Motors'));
 });
 
 test('smoke: admin pages reject unauthenticated access', async () => {

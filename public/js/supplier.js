@@ -4,8 +4,11 @@
 'use strict';
 
 const API = window.location.origin;
+const urlParams = new URLSearchParams(window.location.search);
+const querySupplierId = urlParams.get('id') || urlParams.get('supplierId');
 const pathTokens = window.location.pathname.split('/').filter(Boolean);
-const supplierId = pathTokens[pathTokens.length - 1];
+const lastToken = pathTokens[pathTokens.length - 1];
+const supplierId = querySupplierId || (lastToken && !lastToken.endsWith('.html') && lastToken !== 'supplier' ? lastToken : '1');
 
 const partGrid = document.getElementById('partGrid');
 const vehicleFilter = document.getElementById('vehicleFilter');
@@ -26,7 +29,7 @@ let supplierData = null;
 
 async function loadSupplierAndParts() {
   try {
-    const res = await fetch(`${API}/api/suppliers/${supplierId}/parts`);
+    const res = await fetch(`${API}/api/suppliers/${supplierId}/parts`, { cache: 'no-store' });
     let data;
     if (res.ok) {
       data = await res.json();
