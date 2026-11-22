@@ -1060,7 +1060,15 @@ async function loadSettings() {
     const bName = document.getElementById('businessName');
     const waNum = document.getElementById('whatsappNumber');
     if (bName) bName.value = data.businessName || 'Sai Rudra Motors';
-    if (waNum) waNum.value = data.whatsappNumber || '';
+    if (waNum) {
+      const raw = data.whatsappNumber || '';
+      // Display clean 10-digit number directly if it has Indian 91 country prefix
+      if (raw.length === 12 && raw.startsWith('91')) {
+        waNum.value = raw.slice(2);
+      } else {
+        waNum.value = raw;
+      }
+    }
   } catch (err) {
     showToastMessage('Failed to load settings.', 'danger');
   }
@@ -1086,6 +1094,12 @@ async function handleSettingsFormSubmit(e) {
       // Map field errors
       if (data.error) errorEl.textContent = data.error;
       return;
+    }
+    const saved = await res.json();
+    const statWaEl = document.getElementById('statWhatsappNum');
+    if (statWaEl && saved.whatsappNumber) {
+      statWaEl.textContent = formatPhoneDisplay(saved.whatsappNumber);
+      statWaEl.title = `+${saved.whatsappNumber}`;
     }
     showToastMessage('Settings saved.');
   } catch (err) {

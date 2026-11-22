@@ -148,10 +148,10 @@ test('admin supplier CRUD and settings workflow', async () => {
   const origName = getSettingsRes.body.businessName || 'Sai Rudra Motors';
   const origWa = getSettingsRes.body.whatsappNumber || '918660957903';
 
-  // Update settings
-  const putSettingsRes = await request('PUT', base + '/api/admin/settings', { businessName: 'Sai Rudra Motors Test', whatsappNumber: '918660957903' }, { 'X-CSRF-Token': adminCsrf });
-  assert.strictEqual(putSettingsRes.status, 200);
-  assert.strictEqual(putSettingsRes.body.businessName, 'Sai Rudra Motors Test');
+  // Update settings with 10-digit number directly (no country code)
+  const putSettings10Res = await request('PUT', base + '/api/admin/settings', { businessName: 'Sai Rudra Motors Test', whatsappNumber: '9876543210' }, { 'X-CSRF-Token': adminCsrf });
+  assert.strictEqual(putSettings10Res.status, 200);
+  assert.strictEqual(putSettings10Res.body.whatsappNumber, '919876543210');
 
   // Restore settings to original
   await request('PUT', base + '/api/admin/settings', { businessName: origName, whatsappNumber: origWa }, { 'X-CSRF-Token': adminCsrf });

@@ -73,6 +73,15 @@ test('validateVehicles accepts JSON string input', () => {
 
 test('validateWhatsappNumber accepts valid numbers', () => {
   assert.ok(validateWhatsappNumber('919876543210').ok);
+  assert.strictEqual(validateWhatsappNumber('919876543210').value, '919876543210');
+  assert.ok(validateWhatsappNumber('9876543210').ok);
+  assert.strictEqual(validateWhatsappNumber('9876543210').value, '919876543210');
+  assert.ok(validateWhatsappNumber('+919876543210').ok);
+  assert.strictEqual(validateWhatsappNumber('+919876543210').value, '919876543210');
+  assert.ok(validateWhatsappNumber('+91 98765 43210').ok);
+  assert.strictEqual(validateWhatsappNumber('+91 98765 43210').value, '919876543210');
+  assert.ok(validateWhatsappNumber('09876543210').ok);
+  assert.strictEqual(validateWhatsappNumber('09876543210').value, '919876543210');
   assert.ok(validateWhatsappNumber('').ok);
   assert.ok(validateWhatsappNumber(null).ok);
 });
@@ -80,7 +89,6 @@ test('validateWhatsappNumber accepts valid numbers', () => {
 test('validateWhatsappNumber rejects invalid numbers', () => {
   assert.ok(!validateWhatsappNumber('abc').ok);
   assert.ok(!validateWhatsappNumber('1234567').ok);
-  assert.ok(!validateWhatsappNumber('+919876543210').ok);
 });
 
 test('buildPartMessage builds a complete message', () => {

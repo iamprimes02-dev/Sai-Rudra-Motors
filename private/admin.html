@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dealer Terminal — Sai Rudra Motors</title>
-  <link rel="stylesheet" href="/css/admin.css?v=5.0">
-  <script src="/js/theme.js?v=5.0"></script>
+  <link rel="stylesheet" href="/css/admin.css?v=5.1">
+  <script src="/js/theme.js?v=5.1"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -390,10 +390,10 @@
           </div>
           <div class="form-panel">
             <h2>WhatsApp Contact Number</h2>
-            <p class="field-hint" style="margin-bottom:var(--spacing-16);">Used for customer inquiry links. Digits only, with country code (e.g. 919876543210).</p>
+            <p class="field-hint" style="margin-bottom:var(--spacing-16);">Used for customer WhatsApp inquiries. Enter standard 10-digit mobile number directly (e.g. 9876543210); country code (+91) is optional.</p>
             <div class="form-group">
               <label for="whatsappNumber">WhatsApp Number</label>
-              <input type="text" id="whatsappNumber" name="whatsappNumber" placeholder="e.g. 919876543210" maxlength="15" value="">
+              <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="e.g. 9876543210" maxlength="20" value="">
               <div class="field-error" id="whatsappNumberError"></div>
             </div>
           </div>
@@ -420,6 +420,6 @@
 
   <div class="toast toast-success hidden" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="/js/admin.js?v=5.0"></script>
+  <script src="/js/admin.js?v=5.1"></script>
 </body>
 </html>
