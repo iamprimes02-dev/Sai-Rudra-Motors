@@ -2121,16 +2121,33 @@ html[data-theme="dark"] .btn-view-parts:hover {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-quick-wa svg {
-  width: 14px;
-  height: 14px;
+html[data-theme="dark"] .btn-quick-wa {
+  color: #25D366;
+  background: rgba(37, 211, 102, 0.14);
+  border-color: rgba(37, 211, 102, 0.38);
 }
 
-.btn-quick-wa:hover {
+.btn-quick-wa svg,
+.btn-quick-wa .wa-icon-svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.btn-quick-wa:hover,
+html[data-theme="dark"] .btn-quick-wa:hover {
   background: var(--srm-wa-green);
   color: #FFFFFF;
   border-color: var(--srm-wa-green);
   box-shadow: 0 4px 14px rgba(37, 211, 102, 0.45);
+}
+
+/* Base WhatsApp Vector Styling */
+.wa-icon-svg {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  pointer-events: none;
 }
 
 /* ==========================================================================
