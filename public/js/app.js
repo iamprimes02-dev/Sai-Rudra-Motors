@@ -216,7 +216,7 @@ function syncPhoneToDOM(num) {
   });
 
   // Explicitly update targeted phone classes
-  document.querySelectorAll('.phone-link strong, .phone-drawer-link, .contact-row .row-val').forEach(el => {
+  document.querySelectorAll('.phone-link strong, .phone-drawer-link, .phone-display-val').forEach(el => {
     el.textContent = formatted;
     if (el.tagName === 'A') el.href = telHref;
   });
