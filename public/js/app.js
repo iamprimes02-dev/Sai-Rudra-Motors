@@ -281,19 +281,82 @@ function initHomePage() {
   let brandList = OFFICIAL_DISTRIBUTORS;
   let activeCategory = 'all';
 
+  function updateBrandCounters(total, shown) {
+    document.querySelectorAll('.brand-total-count').forEach((el) => {
+      el.textContent = total;
+    });
+    document.querySelectorAll('.brand-shown-count').forEach((el) => {
+      el.textContent = shown;
+    });
+
+    const heroSub = document.getElementById('heroBrandSubtitle');
+    if (heroSub) {
+      heroSub.innerHTML = `Direct from <span class="brand-total-count">${total}</span> Leading Brands.`;
+    }
+
+    const allBrandsTitle = document.getElementById('allBrandsPillTitle');
+    if (allBrandsTitle) {
+      allBrandsTitle.innerHTML = `All Brands (<span class="brand-total-count">${total}</span>)`;
+    }
+
+    const sectionDesc = document.getElementById('brandsSectionDesc');
+    if (sectionDesc) {
+      sectionDesc.innerHTML = `Authorized distributors for <span class="brand-total-count">${total}</span> trusted OEM and aftermarket brands. Select any brand to check the catalogue or ask for stock.`;
+    }
+
+    const counterPill = document.getElementById('brandsCounterPillText');
+    if (counterPill) {
+      counterPill.innerHTML = `<span class="brand-total-count">${total}</span> Authorized Brands`;
+    }
+
+    if (searchCountEl) {
+      searchCountEl.textContent = shown === total
+        ? `Showing ${total} of ${total} authorized brands`
+        : `Showing ${shown} of ${total} authorized brands`;
+    }
+  }
+
+  function updateBrandSelectOptions(brands) {
+    const sel = document.getElementById('widgetBrandSelect');
+    if (!sel || !Array.isArray(brands) || brands.length === 0) return;
+    const currentVal = sel.value;
+    sel.innerHTML = '<option value="">Select a brand...</option>';
+    brands.forEach((b) => {
+      const opt = document.createElement('option');
+      opt.value = b.name;
+      opt.textContent = b.name;
+      sel.appendChild(opt);
+    });
+    if (currentVal && brands.some((b) => b.name === currentVal)) {
+      sel.value = currentVal;
+    }
+  }
+
+  function updateFooterBrandLinks(brands) {
+    const container = document.getElementById('footerBrandLinks');
+    if (!container || !Array.isArray(brands) || brands.length === 0) return;
+    container.innerHTML = '';
+    brands.forEach((b) => {
+      const a = document.createElement('a');
+      a.href = `/supplier/${b.id}`;
+      a.className = 'f-brand-link';
+      a.textContent = b.name;
+      container.appendChild(a);
+    });
+  }
+
   function renderBrands(list) {
     grid.innerHTML = '';
 
     if (!list || list.length === 0) {
       if (emptyState) emptyState.classList.remove('hidden');
       if (searchCountEl) searchCountEl.textContent = 'No matching brands found';
+      updateBrandCounters(brandList.length, 0);
       return;
     }
 
     if (emptyState) emptyState.classList.add('hidden');
-    if (searchCountEl) {
-      searchCountEl.textContent = `Showing ${list.length} of ${brandList.length} authorized brands`;
-    }
+    updateBrandCounters(brandList.length, list.length);
 
     list.forEach((s, idx) => {
       const card = document.createElement('article');
@@ -424,6 +487,9 @@ function initHomePage() {
     }
 
     renderBrands(brandList);
+    updateBrandCounters(brandList.length, brandList.length);
+    updateBrandSelectOptions(brandList);
+    updateFooterBrandLinks(brandList);
 
     // Search events
     if (searchInput) {

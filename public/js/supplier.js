@@ -370,9 +370,33 @@
     });
   }
 
+  async function loadFooterBrands() {
+    try {
+      const res = await fetch(`${API}/api/suppliers`);
+      if (res.ok) {
+        const list = await res.json();
+        const container = document.getElementById('footerBrandLinks');
+        if (container && Array.isArray(list) && list.length > 0) {
+          container.innerHTML = '';
+          list.forEach((b) => {
+            const a = document.createElement('a');
+            a.href = `/supplier/${b.id}`;
+            a.className = 'f-brand-link';
+            a.textContent = b.name;
+            container.appendChild(a);
+          });
+        }
+      }
+    } catch {}
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadSupplierAndParts);
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSupplierAndParts();
+      loadFooterBrands();
+    });
   } else {
     loadSupplierAndParts();
+    loadFooterBrands();
   }
 })();

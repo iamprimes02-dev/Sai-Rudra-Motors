@@ -105,7 +105,7 @@
         </div>
         <h1 class="srm-hero-title">
           Genuine Car & Commercial Spares.
-          <span class="srm-hero-subtitle">Direct from 11 Leading Brands.</span>
+          <span class="srm-hero-subtitle" id="heroBrandSubtitle">Direct from <span class="brand-total-count">11</span> Leading Brands.</span>
         </h1>
         <p class="srm-hero-lead">
           Supplying multi-brand workshops, mechanics, fleet owners, and spare parts shops across Karnataka. Ready stock, genuine GST billing, and daily transport dispatch.
@@ -119,7 +119,7 @@
             <span class="search-key-badge hide-mobile" title="Press / to search">/</span>
             <button type="button" id="clearSearchBtn" class="srm-clear-btn" style="display:none;" aria-label="Clear search input">&times;</button>
           </div>
-          <div class="srm-search-status" id="supplierSearchCount">Showing 11 of 11 authorized brands</div>
+          <div class="srm-search-status" id="supplierSearchCount">Showing <span class="brand-shown-count">11</span> of <span class="brand-total-count">11</span> authorized brands</div>
         </div>
 
         <!-- Operational Capabilities Badges -->
@@ -238,7 +238,7 @@
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
           </span>
           <span class="pill-text-wrap">
-            <span class="pill-title">All Brands (11)</span>
+            <span class="pill-title" id="allBrandsPillTitle">All Brands (<span class="brand-total-count">11</span>)</span>
             <span class="pill-count">Complete Range</span>
           </span>
         </button>
@@ -314,12 +314,12 @@
         <div class="showcase-title-left">
           <span class="section-kicker">AUTHORIZED DISTRIBUTION</span>
           <h2 class="section-title">Brands We Distribute</h2>
-          <p class="section-desc">Authorized distributors for 11 trusted OEM and aftermarket brands. Select any brand to check the catalogue or ask for stock.</p>
+          <p class="section-desc" id="brandsSectionDesc">Authorized distributors for <span class="brand-total-count">11</span> trusted OEM and aftermarket brands. Select any brand to check the catalogue or ask for stock.</p>
         </div>
         <div class="showcase-title-right hide-mobile">
           <div class="showcase-badge-pill">
             <span class="badge-dot-green"></span>
-            <span>11 Authorized Brands</span>
+            <span id="brandsCounterPillText"><span class="brand-total-count">11</span> Authorized Brands</span>
           </div>
         </div>
       </div>
@@ -436,7 +436,7 @@
 
       <div class="footer-brands-col">
         <h5 class="footer-col-title">Brands We Distribute</h5>
-        <div class="footer-brand-grid-links">
+        <div class="footer-brand-grid-links" id="footerBrandLinks">
           <a href="/supplier/1" class="f-brand-link">Sangsin Brakes</a>
           <a href="/supplier/2" class="f-brand-link">Autolek Filters</a>
           <a href="/supplier/3" class="f-brand-link">Rotex Brake Discs</a>
