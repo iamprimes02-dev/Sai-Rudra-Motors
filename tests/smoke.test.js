@@ -142,6 +142,8 @@ test('smoke: add supplier via admin', async () => {
   const r = await request('POST', base + '/api/admin/suppliers', { name: 'Sai Rudra Supplier' }, { 'X-CSRF-Token': adminCsrf });
   assert.strictEqual(r.status, 201);
   assert.ok(r.body.id);
+  // Clean up
+  await request('DELETE', base + '/api/admin/suppliers/' + r.body.id, {}, { 'X-CSRF-Token': adminCsrf });
 });
 
 test('smoke: add part via admin with image', async () => {
@@ -158,6 +160,11 @@ test('smoke: add part via admin with image', async () => {
   assert.strictEqual(r.status, 201);
   assert.ok(r.body.id);
   fs.unlinkSync(imgPath);
+
+  // Clean up
+  if (r.body.id) {
+    await request('DELETE', base + '/api/admin/parts/' + r.body.id, {}, { 'X-CSRF-Token': adminCsrf });
+  }
 });
 
 test('smoke: public page shows no price text', async () => {

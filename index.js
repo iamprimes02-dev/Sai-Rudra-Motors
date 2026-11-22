@@ -83,6 +83,22 @@ const MAX_UPLOAD_SIZE = 5 * 1024 * 1024; // 5 MB
 app.use((req, res, next) => {
   const ct = req.headers['content-type'] || '';
   if (ct.includes('multipart/form-data')) {
+    // If runtime (e.g. Vercel serverless) already buffered the body
+    if (req.rawBody) {
+      return next();
+    }
+    if (Buffer.isBuffer(req.body)) {
+      req.rawBody = req.body;
+      return next();
+    }
+    if (typeof req.body === 'string') {
+      req.rawBody = Buffer.from(req.body, 'binary');
+      return next();
+    }
+    if (req.readableEnded) {
+      return next();
+    }
+
     const cl = Number(req.headers['content-length']);
     if (cl && cl > MAX_UPLOAD_SIZE) {
       return res.status(413).json({ error: 'File too large. Maximum size is 5 MB.' });

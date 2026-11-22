@@ -135,6 +135,9 @@ test('admin supplier CRUD and settings workflow', async () => {
   assert.strictEqual(putSettingsRes.status, 200);
   assert.strictEqual(putSettingsRes.body.businessName, 'Sai Rudra Motors Test');
 
+  // Restore settings to default
+  await request('PUT', base + '/api/admin/settings', { businessName: 'Sai Rudra Motors', whatsappNumber: '918660957903' }, { 'X-CSRF-Token': adminCsrf });
+
   // Delete supplier
   const delRes = await request('DELETE', base + `/api/admin/suppliers/${supplierId}`, {}, { 'X-CSRF-Token': adminCsrf });
   assert.strictEqual(delRes.status, 200);

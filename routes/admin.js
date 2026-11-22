@@ -251,7 +251,8 @@ router.post('/suppliers/:id/parts', adminWriteMiddleware, async (req, res) => {
     if (imageKey) {
       await deleteImageFile(imageKey);
     }
-    return res.status(500).json({ error: 'Failed to save part.' });
+    console.error('Failed to save part:', err);
+    return res.status(500).json({ error: err.message || 'Failed to save part.' });
   }
 });
 
@@ -318,7 +319,8 @@ router.patch('/parts/:id', adminWriteMiddleware, async (req, res) => {
     if (newImageKey !== oldImageKey) {
       await deleteImageFile(newImageKey);
     }
-    return res.status(500).json({ error: 'Failed to update part.' });
+    console.error('Failed to update part:', err);
+    return res.status(500).json({ error: err.message || 'Failed to update part.' });
   }
 });
 

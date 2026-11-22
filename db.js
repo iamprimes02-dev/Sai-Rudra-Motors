@@ -230,11 +230,11 @@ const stmt = {
       const { data, error } = await supabase
         .from('parts')
         .select('id, name, image_key, vehicles, created_at, updated_at')
-        .eq('supplier_id', supplierId)
+        .eq('supplier_id', Number(supplierId))
         .order('created_at', { ascending: false })
         .order('id', { ascending: false });
 
-      if (!error && data && data.length > 0) {
+      if (!error && data) {
         parts = data;
       } else {
         parts = _inMemoryParts.filter(p => p.supplier_id === Number(supplierId));
@@ -255,64 +255,94 @@ const stmt = {
       const { data, error } = await supabase
         .from('parts')
         .select('id, supplier_id, name, image_key, vehicles, created_at, updated_at')
-        .eq('id', id)
+        .eq('id', Number(id))
         .single();
       if (!error && data) return data;
     } catch {}
     return _inMemoryParts.find(p => p.id === Number(id)) || null;
   },
   async createPart(supplierId, name, imageKey, vehicles) {
+    const vehiclesPayload = typeof vehicles === 'string' ? vehicles : JSON.stringify(vehicles || []);
     try {
       const { data, error } = await supabase
         .from('parts')
-        .insert({ supplier_id: supplierId, name, image_key: imageKey, vehicles })
+        .insert({
+          supplier_id: Number(supplierId),
+          name: name || null,
+          image_key: imageKey,
+          vehicles: vehiclesPayload,
+        })
         .select('*')
         .single();
+
       if (!error && data) {
         return { lastInsertRowid: data.id, ...data };
       }
-    } catch {}
-    const newPart = {
-      id: _inMemoryParts.length + 1,
-      lastInsertRowid: _inMemoryParts.length + 1,
-      supplier_id: Number(supplierId),
-      name,
-      image_key: imageKey,
-      vehicles,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    };
-    _inMemoryParts.push(newPart);
-    return newPart;
+      if (error) {
+        console.error('Supabase createPart error:', error);
+        throw new Error('Database error: ' + (error.message || 'Insert failed'));
+      }
+    } catch (err) {
+      console.error('createPart exception:', err);
+      if (process.env.NODE_ENV === 'test' || !process.env.SUPABASE_URL || process.env.SUPABASE_URL.includes('test')) {
+        const newPart = {
+          id: _inMemoryParts.length + 1,
+          lastInsertRowid: _inMemoryParts.length + 1,
+          supplier_id: Number(supplierId),
+          name,
+          image_key: imageKey,
+          vehicles: vehiclesPayload,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        };
+        _inMemoryParts.push(newPart);
+        return newPart;
+      }
+      throw err;
+    }
   },
   async updatePart(id, name, imageKey, vehicles) {
     const updateData = { updated_at: new Date().toISOString() };
-    if (name !== undefined) updateData.name = name;
+    if (name !== undefined) updateData.name = name || null;
     if (imageKey !== undefined) updateData.image_key = imageKey;
-    if (vehicles !== undefined) updateData.vehicles = vehicles;
+    if (vehicles !== undefined) {
+      updateData.vehicles = typeof vehicles === 'string' ? vehicles : JSON.stringify(vehicles || []);
+    }
 
     try {
       const { data, error } = await supabase
         .from('parts')
         .update(updateData)
-        .eq('id', id)
+        .eq('id', Number(id))
         .select('*')
         .single();
       if (!error && data) return data;
-    } catch {}
-    const p = _inMemoryParts.find(part => part.id === Number(id));
-    if (p) {
-      if (name !== undefined) p.name = name;
-      if (imageKey !== undefined) p.image_key = imageKey;
-      if (vehicles !== undefined) p.vehicles = vehicles;
-      p.updated_at = updateData.updated_at;
-      return p;
+      if (error) {
+        console.error('Supabase updatePart error:', error);
+        throw new Error('Database error: ' + (error.message || 'Update failed'));
+      }
+    } catch (err) {
+      console.error('updatePart exception:', err);
+      if (process.env.NODE_ENV === 'test' || !process.env.SUPABASE_URL || process.env.SUPABASE_URL.includes('test')) {
+        const p = _inMemoryParts.find(part => part.id === Number(id));
+        if (p) {
+          if (name !== undefined) p.name = name;
+          if (imageKey !== undefined) p.image_key = imageKey;
+          if (vehicles !== undefined) p.vehicles = updateData.vehicles;
+          p.updated_at = updateData.updated_at;
+          return p;
+        }
+      }
+      throw err;
     }
     return null;
   },
   async deletePart(id) {
     try {
-      await supabase.from('parts').delete().eq('id', id);
+      const { error } = await supabase.from('parts').delete().eq('id', Number(id));
+      if (error) {
+        console.error('Supabase deletePart error:', error);
+      }
     } catch {}
     const idx = _inMemoryParts.findIndex(p => p.id === Number(id));
     if (idx !== -1) _inMemoryParts.splice(idx, 1);
