@@ -183,23 +183,71 @@ function showToast(message, type = 'success') {
   setTimeout(() => { toast.classList.remove('show'); }, 3000);
 }
 
-// Config Loader
+// Format phone number for human display: e.g. 918660957903 -> +91 86609 57903
+function formatDisplayPhone(num) {
+  if (!num) return '';
+  const clean = String(num).replace(/\D/g, '');
+  if (clean.length === 12 && clean.startsWith('91')) {
+    return `+91 ${clean.slice(2, 7)} ${clean.slice(7)}`;
+  } else if (clean.length === 10) {
+    return `+91 ${clean.slice(0, 5)} ${clean.slice(5)}`;
+  }
+  return clean ? `+${clean}` : '';
+}
+
+// Synchronize verified phone number to all DOM elements across the page
+function syncPhoneToDOM(num) {
+  if (!num) return;
+  const clean = String(num).replace(/\D/g, '');
+  const telHref = 'tel:+' + clean;
+  const formatted = formatDisplayPhone(clean);
+
+  // Update all tel: links (topbar, mobile drawer, footer, mobile bottom dock)
+  document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+    a.href = telHref;
+    const strong = a.querySelector('strong');
+    if (strong) {
+      strong.textContent = formatted;
+    } else if (a.childNodes.length === 1 && a.childNodes[0].nodeType === Node.TEXT_NODE) {
+      if (/\+?\d[\d\s-]{6,}/.test(a.textContent)) {
+        a.textContent = formatted;
+      }
+    }
+  });
+
+  // Explicitly update targeted phone classes
+  document.querySelectorAll('.phone-link strong, .phone-drawer-link, .contact-row .row-val').forEach(el => {
+    el.textContent = formatted;
+    if (el.tagName === 'A') el.href = telHref;
+  });
+}
+
+window.formatDisplayPhone = formatDisplayPhone;
+window.syncPhoneToDOM = syncPhoneToDOM;
+
+// Config Loader - syncs business details & WhatsApp number from admin settings to the live page
 async function loadConfig() {
   try {
     const config = await fetchJson('/api/config');
-    if (config.whatsappNumber) {
+    if (config && config.whatsappNumber) {
       whatsappNumber = config.whatsappNumber;
+      window.whatsappNumber = config.whatsappNumber;
+      syncPhoneToDOM(config.whatsappNumber);
+    }
+    if (config && config.businessName) {
+      window.businessName = config.businessName;
     }
   } catch (err) {
     console.warn('Using default business config:', err.message);
   }
 
-  // Setup header contact buttons
+  // Setup header & footer general WhatsApp contact buttons
   const headerBtns = document.querySelectorAll('[data-contact-btn="header"]');
   headerBtns.forEach(btn => {
     btn.onclick = (e) => {
       e.preventDefault();
-      const link = buildContactLink(whatsappNumber, buildGeneralMessage());
+      const num = window.whatsappNumber || whatsappNumber || '918660957903';
+      const link = buildContactLink(num, buildGeneralMessage());
       if (link) window.open(link, '_blank', 'noopener,noreferrer');
     };
   });
@@ -258,7 +306,8 @@ function makePartContactBtn(partId, supplier, partNameOrRef, vehicles) {
     e.preventDefault();
     e.stopPropagation();
     const message = buildPartMessage(supplier, partNameOrRef, vehicles);
-    const link = buildContactLink(whatsappNumber, message);
+    const num = window.whatsappNumber || whatsappNumber || '918660957903';
+    const link = buildContactLink(num, message);
     if (link) window.open(link, '_blank', 'noopener,noreferrer');
   });
 
@@ -410,7 +459,8 @@ function initHomePage() {
         waBtn.onclick = (e) => {
           e.preventDefault();
           const message = buildBrandInquiryMessage(s.name);
-          const link = buildContactLink(whatsappNumber, message);
+          const num = window.whatsappNumber || whatsappNumber || '918660957903';
+          const link = buildContactLink(num, message);
           if (link) window.open(link, '_blank', 'noopener,noreferrer');
         };
       }
@@ -595,7 +645,8 @@ function initHomePage() {
           console.warn('Lead persistence notice:', err);
         });
 
-        const link = buildContactLink(whatsappNumber, message);
+        const num = window.whatsappNumber || whatsappNumber || '918660957903';
+        const link = buildContactLink(num, message);
         if (link) window.open(link, '_blank', 'noopener,noreferrer');
       });
     }

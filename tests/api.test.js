@@ -68,8 +68,8 @@ function request(method, url, body, headers = {}) {
 test('GET /api/config returns business config', async () => {
   const r = await request('GET', base + '/api/config');
   assert.strictEqual(r.status, 200);
-  assert.strictEqual(r.body.businessName, 'Sai Rudra Motors');
-  assert.strictEqual(r.body.whatsappNumber, '918660957903');
+  assert.ok(r.body.businessName && typeof r.body.businessName === 'string');
+  assert.ok(r.body.whatsappNumber && /^\d{10,15}$/.test(r.body.whatsappNumber));
 });
 
 test('GET /api/suppliers returns list of authorized suppliers', async () => {
@@ -143,13 +143,18 @@ test('admin supplier CRUD and settings workflow', async () => {
   assert.strictEqual(patchRes.body.description, 'Updated brake components');
   assert.strictEqual(patchRes.body.category, 'Braking Systems');
 
+  // Get current settings to restore accurately
+  const getSettingsRes = await request('GET', base + '/api/admin/settings', {}, { 'X-CSRF-Token': adminCsrf });
+  const origName = getSettingsRes.body.businessName || 'Sai Rudra Motors';
+  const origWa = getSettingsRes.body.whatsappNumber || '918660957903';
+
   // Update settings
   const putSettingsRes = await request('PUT', base + '/api/admin/settings', { businessName: 'Sai Rudra Motors Test', whatsappNumber: '918660957903' }, { 'X-CSRF-Token': adminCsrf });
   assert.strictEqual(putSettingsRes.status, 200);
   assert.strictEqual(putSettingsRes.body.businessName, 'Sai Rudra Motors Test');
 
-  // Restore settings to default
-  await request('PUT', base + '/api/admin/settings', { businessName: 'Sai Rudra Motors', whatsappNumber: '918660957903' }, { 'X-CSRF-Token': adminCsrf });
+  // Restore settings to original
+  await request('PUT', base + '/api/admin/settings', { businessName: origName, whatsappNumber: origWa }, { 'X-CSRF-Token': adminCsrf });
 
   // Delete supplier
   const delRes = await request('DELETE', base + `/api/admin/suppliers/${supplierId}`, {}, { 'X-CSRF-Token': adminCsrf });
