@@ -5,11 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Parts Catalogue - Sai Rudra Motors</title>
   <meta name="description" content="Browse genuine OEM/OES automotive spare parts catalogue and check immediate stock and wholesale availability on WhatsApp.">
-  <link rel="stylesheet" href="/css/styles.css?v=4.1">
-  <script src="/js/theme.js?v=4.1"></script>
+  <link rel="stylesheet" href="/css/styles.css?v=4.5">
+  <script src="/js/theme.js?v=4.5"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Pre-hydration Script: Instant 0ms Brand Rendering (No Loading Flicker) -->
+  <script>
+    (function() {
+      try {
+        var p = window.location.pathname.split('/').filter(Boolean);
+        var last = p[p.length - 1];
+        var q = new URLSearchParams(window.location.search).get('id') || new URLSearchParams(window.location.search).get('supplierId');
+        var sid = q || (last && !last.endsWith('.html') && last !== 'supplier' ? last : '1');
+        var brands = {
+          '1': { id: 1, name: 'Sangsin Brakes', logo: '01_sangsin_brakes.png', desc: 'Brake pads, brake shoes, and commercial brake linings.', cat: 'Brakes' },
+          '2': { id: 2, name: 'Autolek Filters', logo: '02_autolek_filters.png', desc: 'Engine oil, air, AC cabin, and fuel filters.', cat: 'Filters' },
+          '3': { id: 3, name: 'Rotex Brake Discs', logo: '03_rotex_brake_discs.png', desc: 'Solid and ventilated brake discs and rotors.', cat: 'Brakes' },
+          '4': { id: 4, name: 'MX Mark Xtralife', logo: '04_mx_mark_xtralife.png', desc: 'Electrical, ignition, and mechanical replacement parts.', cat: 'Auto Spares' },
+          '5': { id: 5, name: 'Ceekay Exedy Clutches', logo: '05_ceekay_exedy_clutches.png', desc: 'Clutch plates, cover assemblies, and release bearings.', cat: 'Clutch & Transmission' },
+          '6': { id: 6, name: 'Mavrod Suspension', logo: '06_mavrod_suspension.png', desc: 'Shock absorbers, strut assemblies, and suspension kits.', cat: 'Suspension' },
+          '7': { id: 7, name: 'TVS Coolants', logo: '07_tvs_coolants.png', desc: 'Engine radiator coolants and anti-freeze fluids.', cat: 'Oils & Coolants' },
+          '8': { id: 8, name: 'MB Techno Rubber', logo: '08_mb_techno_rubber.png', desc: 'Suspension bushes, engine mounts, bellows, and steering boots.', cat: 'Rubber Parts' },
+          '9': { id: 9, name: 'HL Mando', logo: '09_hl_mando_suspension_brakes.png', desc: 'Steering racks, columns, shock absorbers, and brake calipers.', cat: 'Steering & Suspension' },
+          '10': { id: 10, name: 'Delphi Engine Oils', logo: '10_delphi_engine_oils.png', desc: 'Synthetic and semi-synthetic engine oils for petrol and diesel vehicles.', cat: 'Oils & Coolants' },
+          '11': { id: 11, name: 'Delphi Driveshafts', logo: '11_delphi_driveshafts.png', desc: 'Complete CV axles, CV joints, and axle boots.', cat: 'Drivetrain & Axles' }
+        };
+        var b = brands[sid];
+        if (b) {
+          document.title = b.name + ' Parts - Sai Rudra Motors';
+          window.__SRM_INITIAL_BRAND__ = b;
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <!-- Top Utility Bar -->
@@ -85,7 +114,7 @@
     </div>
     <div class="srm-shell supplier-brand-container">
       <div class="brand-logo-frame">
-        <img id="supplierLogo" alt="Brand Logo" class="brand-hero-logo" style="display:none;">
+        <img id="supplierLogo" alt="Brand Logo" class="brand-hero-logo" loading="eager" decoding="async" style="display:none;">
       </div>
       <div class="brand-hero-details">
         <div class="brand-hero-tagline">
@@ -95,10 +124,10 @@
             100% Genuine
           </span>
         </div>
-        <h1 id="supplierTitle" class="brand-hero-name">Loading Brand...</h1>
+        <h1 id="supplierTitle" class="brand-hero-name">OEM Spare Parts</h1>
         <p id="supplierDescription" class="brand-hero-desc">Genuine factory replacement components and assemblies.</p>
         <div class="brand-hero-meta">
-          <span class="meta-tag" id="supplierPartsCount">100% Genuine Company Stock</span>
+          <span class="meta-tag" id="supplierPartsCount">Genuine Company Stock</span>
           <span class="meta-tag">Daily Karnataka Dispatch</span>
           <span class="meta-tag">Workshop & Retail Rates</span>
         </div>
@@ -110,9 +139,29 @@
         </button>
       </div>
     </div>
+    <!-- Instant Hero Pre-Paint Script -->
+    <script>
+      (function() {
+        if (window.__SRM_INITIAL_BRAND__) {
+          var b = window.__SRM_INITIAL_BRAND__;
+          var t = document.getElementById('supplierTitle');
+          var bc = document.getElementById('breadcrumbBrand');
+          var d = document.getElementById('supplierDescription');
+          var img = document.getElementById('supplierLogo');
+          if (t) t.textContent = b.name;
+          if (bc) bc.textContent = b.name;
+          if (d) d.textContent = b.desc;
+          if (img) {
+            img.src = '/logos/' + b.logo;
+            img.alt = b.name + ' logo';
+            img.style.display = 'block';
+          }
+        }
+      })();
+    </script>
     <div class="srm-curve-divider curve-supplier" aria-hidden="true">
-      <svg viewBox="0 0 1440 64" fill="none" preserveAspectRatio="none">
-        <path d="M0,0 C380,48 760,58 1120,24 C1260,8 1360,26 1440,38 L1440,64 L0,64 Z" class="curve-wave-fill-2"></path>
+      <svg viewBox="0 0 1440 36" fill="none" preserveAspectRatio="none">
+        <path d="M0,0 C380,24 760,30 1120,12 C1260,4 1360,14 1440,20 L1440,36 L0,36 Z" class="curve-wave-fill-2"></path>
       </svg>
     </div>
   </section>
@@ -141,7 +190,31 @@
   <main class="catalogue-main">
     <div class="srm-shell">
       <div class="part-grid" id="partGrid">
-        <!-- Parts injected dynamically -->
+        <!-- Initial Instant Skeleton Loaders (Clean perceived performance) -->
+        <div class="part-card-skeleton">
+          <div class="skeleton-shimmer skeleton-img-box"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-shimmer skeleton-line skeleton-title"></div>
+            <div class="skeleton-shimmer skeleton-line skeleton-tag"></div>
+            <div class="skeleton-shimmer skeleton-btn"></div>
+          </div>
+        </div>
+        <div class="part-card-skeleton">
+          <div class="skeleton-shimmer skeleton-img-box"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-shimmer skeleton-line skeleton-title"></div>
+            <div class="skeleton-shimmer skeleton-line skeleton-tag"></div>
+            <div class="skeleton-shimmer skeleton-btn"></div>
+          </div>
+        </div>
+        <div class="part-card-skeleton">
+          <div class="skeleton-shimmer skeleton-img-box"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-shimmer skeleton-line skeleton-title"></div>
+            <div class="skeleton-shimmer skeleton-line skeleton-tag"></div>
+            <div class="skeleton-shimmer skeleton-btn"></div>
+          </div>
+        </div>
       </div>
 
       <!-- Empty State -->
@@ -159,9 +232,9 @@
     </div>
 
     <!-- Aerodynamic Curve Ribbon: Catalogue to Footer -->
-    <div class="srm-curve-divider curve-footer" aria-hidden="true" style="margin-top:40px;">
-      <svg viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none">
-        <path d="M0,38 C420,92 1020,0 1440,55 L1440,90 L0,90 Z" class="curve-wave-fill-footer"></path>
+    <div class="srm-curve-divider curve-footer" aria-hidden="true" style="margin-top:24px;">
+      <svg viewBox="0 0 1440 36" fill="none" preserveAspectRatio="none">
+        <path d="M0,16 C420,36 1020,0 1440,22 L1440,36 L0,36 Z" class="curve-wave-fill-footer"></path>
       </svg>
     </div>
   </main>
@@ -260,7 +333,7 @@
 
   <div class="toast toast-success hidden" id="toast"></div>
 
-  <script src="/js/app.js?v=4.4"></script>
-  <script src="/js/supplier.js?v=4.4"></script>
+  <script src="/js/app.js?v=4.5"></script>
+  <script src="/js/supplier.js?v=4.5"></script>
 </body>
 </html>
