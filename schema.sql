@@ -13,11 +13,13 @@ CREATE TABLE IF NOT EXISTS public.suppliers (
   name        TEXT NOT NULL UNIQUE,
   logo        TEXT,
   description TEXT,
+  category    TEXT DEFAULT 'Auto Spares',
   created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Ensure description column exists on existing installations
+-- Ensure description and category columns exist on existing installations
 ALTER TABLE public.suppliers ADD COLUMN IF NOT EXISTS description TEXT;
+ALTER TABLE public.suppliers ADD COLUMN IF NOT EXISTS category TEXT;
 
 -- Case-insensitive unique index on supplier name
 CREATE UNIQUE INDEX IF NOT EXISTS idx_suppliers_name_lower

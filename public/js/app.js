@@ -396,12 +396,24 @@ function initHomePage() {
             d.name.toLowerCase() === item.name.toLowerCase() ||
             (d.name === 'HL Mando' && item.name.toLowerCase().includes('hl mando'))
           );
+
+          const rawCat = item.category || (match && match.categoryLabel) || (match && match.category) || 'Auto Spares';
+          let catSlug = (match && match.category) || 'automotive';
+          const lowerCat = String(rawCat).toLowerCase();
+          if (lowerCat.includes('brake')) catSlug = 'braking';
+          else if (lowerCat.includes('clutch') || lowerCat.includes('drivetrain') || lowerCat.includes('axle') || lowerCat.includes('transmission')) catSlug = 'clutch';
+          else if (lowerCat.includes('filter')) catSlug = 'filtration';
+          else if (lowerCat.includes('suspension') || lowerCat.includes('steering')) catSlug = 'suspension';
+          else if (lowerCat.includes('oil') || lowerCat.includes('fluid') || lowerCat.includes('coolant') || lowerCat.includes('lubricant')) catSlug = 'fluids';
+          else if (lowerCat.includes('rubber') || lowerCat.includes('mount')) catSlug = 'rubber';
+          else if (lowerCat.includes('electric') || lowerCat.includes('ignition')) catSlug = 'electrical';
+
           return {
             ...item,
             name: match ? match.name : item.name,
-            category: (match && match.category) || 'automotive',
-            categoryLabel: (match && match.categoryLabel) || 'Auto Spares',
-            description: (match && match.description) || 'Genuine factory replacement components and assemblies.',
+            category: catSlug,
+            categoryLabel: rawCat,
+            description: item.description || (match && match.description) || 'Genuine factory replacement components and assemblies.',
             logoUrl: item.logoUrl || (match && match.logoUrl) || (item.logo ? `/logos/${item.logo}` : null),
           };
         });

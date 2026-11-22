@@ -720,6 +720,25 @@ html[data-theme="dark"] .theme-icon-moon {
   border-radius: var(--radius-pill);
 }
 
+.admin-category-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary, #475569);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--color-border);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+[data-theme="dark"] .admin-category-badge {
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
 .supplier-card-admin .info {
   flex: 1;
 }

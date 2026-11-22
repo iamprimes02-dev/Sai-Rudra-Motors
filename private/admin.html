@@ -156,6 +156,24 @@
         </div>
 
         <div class="form-group">
+          <label for="supplierCategory">Component Category (optional)</label>
+          <input type="text" id="supplierCategory" name="category" list="categoryOptions" maxlength="50" placeholder="e.g. Brakes, Filters, Suspension & Steering...">
+          <datalist id="categoryOptions">
+            <option value="Brakes">Braking Systems (Pads, Shoes, Discs)</option>
+            <option value="Filters">Filtration (Oil, Air, Fuel, Cabin)</option>
+            <option value="Clutch & Transmission">Clutch Kits, Plates, Release Bearings</option>
+            <option value="Suspension & Steering">Shock Absorbers, Struts, Steering Racks</option>
+            <option value="Fluids & Lubricants">Engine Oils, Coolants, Lubricants</option>
+            <option value="Rubber Parts">Bushes, Engine Mounts, Bellows</option>
+            <option value="Electrical & Ignition">Starters, Alternators, Sensors, Relays</option>
+            <option value="Drivetrain & Axles">CV Axles, Driveshafts, Propeller Shafts</option>
+            <option value="Auto Spares">General Replacement Parts</option>
+          </datalist>
+          <div style="font-size:0.75rem;color:var(--color-text-muted);margin-top:4px;">Select from recommended automotive systems or type a custom category. Enables customer category filtering.</div>
+          <div class="field-error" id="supplierCategoryError"></div>
+        </div>
+
+        <div class="form-group">
           <label for="supplierDescription">Supplier Description / Component Lines (optional)</label>
           <textarea id="supplierDescription" name="description" rows="3" maxlength="500" placeholder="e.g. Brake pads, brake shoes, and commercial brake linings for passenger and commercial vehicles."></textarea>
           <div style="font-size:0.75rem;color:var(--color-text-muted);margin-top:4px;">Displayed on catalogue cards, brand showcase, and WhatsApp enquiry messages.</div>

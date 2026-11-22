@@ -54,6 +54,13 @@
     if (supplierDescEl && (brand.description || brand.desc)) {
       supplierDescEl.textContent = brand.description || brand.desc;
     }
+
+    const catTag = document.getElementById('supplierCategoryTag');
+    const cat = brand.category || brand.cat;
+    if (catTag && cat) {
+      catTag.textContent = cat;
+      catTag.style.display = 'inline-flex';
+    }
   }
 
   async function loadSupplierAndParts() {

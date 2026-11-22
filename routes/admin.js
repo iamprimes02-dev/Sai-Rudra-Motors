@@ -122,6 +122,7 @@ router.post('/suppliers', adminWriteMiddleware, async (req, res) => {
   let name = (req.body && req.body.name) || '';
   let logo = req.body && req.body.logo !== undefined ? req.body.logo : null;
   let description = (req.body && req.body.description) || '';
+  let category = (req.body && req.body.category) || '';
   let logoFile = null;
 
   if (req.rawBody || (req.headers['content-type'] || '').includes('multipart/form-data')) {
@@ -132,6 +133,7 @@ router.post('/suppliers', adminWriteMiddleware, async (req, res) => {
     if (parsed.fields.name) name = parsed.fields.name;
     if (parsed.fields.logo !== undefined) logo = parsed.fields.logo || null;
     if (parsed.fields.description !== undefined) description = parsed.fields.description;
+    if (parsed.fields.category !== undefined) category = parsed.fields.category;
     logoFile = parsed.files.logoFile || parsed.files.logo || parsed.files.image;
   }
 
@@ -163,7 +165,7 @@ router.post('/suppliers', adminWriteMiddleware, async (req, res) => {
     return res.status(409).json({ error: 'This supplier already exists.' });
   }
 
-  const supplier = await stmt.createSupplier(validation.value, logo, description);
+  const supplier = await stmt.createSupplier(validation.value, logo, description, category);
   const logoUrl = supplier.logo
     ? (supplier.logo.startsWith('http') || supplier.logo.startsWith('data:') ? supplier.logo : `/logos/${supplier.logo}`)
     : null;
@@ -173,6 +175,7 @@ router.post('/suppliers', adminWriteMiddleware, async (req, res) => {
     name: supplier.name,
     logo: supplier.logo,
     description: supplier.description || '',
+    category: supplier.category || 'Auto Spares',
     logoUrl,
   });
 });
@@ -183,6 +186,7 @@ router.patch('/suppliers/:id', adminWriteMiddleware, async (req, res) => {
   let name = (req.body && req.body.name) || '';
   let logo = req.body && req.body.logo !== undefined ? req.body.logo : undefined;
   let description = req.body && req.body.description !== undefined ? req.body.description : undefined;
+  let category = req.body && req.body.category !== undefined ? req.body.category : undefined;
   let logoFile = null;
 
   if (req.rawBody || (req.headers['content-type'] || '').includes('multipart/form-data')) {
@@ -193,6 +197,7 @@ router.patch('/suppliers/:id', adminWriteMiddleware, async (req, res) => {
     if (parsed.fields.name) name = parsed.fields.name;
     if (parsed.fields.logo !== undefined) logo = parsed.fields.logo || null;
     if (parsed.fields.description !== undefined) description = parsed.fields.description;
+    if (parsed.fields.category !== undefined) category = parsed.fields.category;
     logoFile = parsed.files.logoFile || parsed.files.logo || parsed.files.image;
   }
 
@@ -223,7 +228,7 @@ router.patch('/suppliers/:id', adminWriteMiddleware, async (req, res) => {
     return res.status(409).json({ error: 'This supplier already exists.' });
   }
 
-  const supplier = await stmt.updateSupplier(validation.value, id, logo, description);
+  const supplier = await stmt.updateSupplier(validation.value, id, logo, description, category);
   if (!supplier) {
     return res.status(404).json({ error: 'Supplier not found.' });
   }
@@ -237,6 +242,7 @@ router.patch('/suppliers/:id', adminWriteMiddleware, async (req, res) => {
     name: supplier.name,
     logo: supplier.logo,
     description: supplier.description || '',
+    category: supplier.category || 'Auto Spares',
     logoUrl,
   });
 });

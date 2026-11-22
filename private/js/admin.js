@@ -400,6 +400,7 @@ function renderAdminSuppliers(suppliers) {
           <h2 style="margin:0 0 4px 0;font-size:1.15rem;font-weight:700;">${escapeHtml(s.name)}</h2>
           ${s.description ? `<p style="margin:0 0 6px 0;font-size:0.84rem;color:var(--color-text-muted);max-width:550px;line-height:1.4;">${escapeHtml(s.description)}</p>` : ''}
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="admin-category-badge">${escapeHtml(s.category || 'Auto Spares')}</span>
             <span class="admin-part-count-badge">
               <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
               ${s.partCount} ${s.partCount === 1 ? 'part' : 'parts'}
@@ -516,6 +517,7 @@ async function openSupplierForm(supplier = null) {
   const form = document.getElementById('supplierForm');
   const idInput = document.getElementById('supplierFormId');
   const nameInput = document.getElementById('supplierName');
+  const catInput = document.getElementById('supplierCategory');
   const descInput = document.getElementById('supplierDescription');
   const logoSelect = document.getElementById('supplierLogo');
   const logoPreview = document.getElementById('logoPreview');
@@ -530,6 +532,7 @@ async function openSupplierForm(supplier = null) {
   currentEditSupplierLogo = null;
   if (fileInput) fileInput.value = '';
   if (uploadText) uploadText.textContent = 'Click or Drag & Drop to upload local logo file';
+  if (catInput) catInput.value = 'Auto Spares';
   if (descInput) descInput.value = '';
   deleteBtn.style.display = 'none';
   logoPreview.style.display = 'none';
@@ -541,6 +544,7 @@ async function openSupplierForm(supplier = null) {
     title.textContent = 'Edit supplier';
     idInput.value = supplier.id;
     nameInput.value = supplier.name;
+    if (catInput) catInput.value = supplier.category || 'Auto Spares';
     if (descInput) descInput.value = supplier.description || '';
     currentEditSupplierLogo = supplier.logo || null;
     deleteBtn.style.display = 'inline-block';
@@ -620,6 +624,8 @@ async function handleSupplierFormSubmit(e) {
   e.preventDefault();
   const id = document.getElementById('supplierFormId').value;
   const name = document.getElementById('supplierName').value;
+  const catInput = document.getElementById('supplierCategory');
+  const category = catInput ? catInput.value.trim() : 'Auto Spares';
   const descInput = document.getElementById('supplierDescription');
   const description = descInput ? descInput.value.trim() : '';
   const logoSelect = document.getElementById('supplierLogo');
@@ -633,6 +639,7 @@ async function handleSupplierFormSubmit(e) {
   try {
     const formData = new FormData();
     formData.append('name', name);
+    formData.append('category', category || 'Auto Spares');
     formData.append('description', description);
 
     if (supplierLogoFile) {

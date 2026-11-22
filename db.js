@@ -109,6 +109,32 @@ async function setSupplierDescription(id, desc) {
   }
 }
 
+async function getSupplierCategoriesMap() {
+  try {
+    const { data } = await supabase
+      .from('settings')
+      .select('value')
+      .eq('key', 'supplier_categories')
+      .single();
+    if (data && data.value) {
+      return JSON.parse(data.value);
+    }
+  } catch {}
+  return {};
+}
+
+async function setSupplierCategory(id, cat) {
+  try {
+    const map = await getSupplierCategoriesMap();
+    map[String(id)] = cat ? String(cat).trim() : 'Auto Spares';
+    await supabase
+      .from('settings')
+      .upsert({ key: 'supplier_categories', value: JSON.stringify(map) }, { onConflict: 'key' });
+  } catch (err) {
+    console.error('Failed to persist supplier category setting:', err.message);
+  }
+}
+
 const stmt = {
   // --- Settings ---
   async getSetting(key) {
@@ -129,20 +155,35 @@ const stmt = {
     try {
       let suppliers = [];
       let hasDescCol = true;
+      let hasCatCol = true;
 
-      const { data, error } = await supabase
+      const firstTry = await supabase
         .from('suppliers')
-        .select('id, name, logo, description, created_at')
+        .select('id, name, logo, description, category, created_at')
         .order('name', { ascending: true });
 
-      if (!error && data && data.length > 0) {
-        suppliers = data;
-      } else if (error && (error.code === '42703' || error.code === 'PGRST204' || String(error.message).includes('description'))) {
-        hasDescCol = false;
-        const retry = await supabase
-          .from('suppliers')
-          .select('id, name, logo, created_at')
-          .order('name', { ascending: true });
+      if (!firstTry.error && firstTry.data && firstTry.data.length > 0) {
+        suppliers = firstTry.data;
+      } else if (firstTry.error) {
+        const errMsg = String(firstTry.error.message || '');
+        if (errMsg.includes('category') || firstTry.error.code === '42703' || firstTry.error.code === 'PGRST204') {
+          hasCatCol = false;
+        }
+        if (errMsg.includes('description')) {
+          hasDescCol = false;
+        }
+
+        const cols = ['id', 'name', 'logo'];
+        if (hasDescCol) cols.push('description');
+        if (hasCatCol) cols.push('category');
+        cols.push('created_at');
+
+        let retry = await supabase.from('suppliers').select(cols.join(', ')).order('name', { ascending: true });
+        if (retry.error) {
+          hasDescCol = false;
+          hasCatCol = false;
+          retry = await supabase.from('suppliers').select('id, name, logo, created_at').order('name', { ascending: true });
+        }
         if (!retry.error && retry.data) {
           suppliers = retry.data;
         }
@@ -152,7 +193,10 @@ const stmt = {
         return DEFAULT_SUPPLIERS;
       }
 
-      const descMap = !hasDescCol ? await getSupplierDescriptionsMap() : {};
+      const [descMap, catMap] = await Promise.all([
+        !hasDescCol ? getSupplierDescriptionsMap() : Promise.resolve({}),
+        !hasCatCol ? getSupplierCategoriesMap() : Promise.resolve({}),
+      ]);
 
       // Count parts per supplier with a single aggregated query (avoids N+1 queries)
       const { data: partRows } = await supabase
@@ -177,12 +221,13 @@ const stmt = {
           ? (rawLogo.startsWith('http') || rawLogo.startsWith('data:') ? rawLogo : (rawLogo.startsWith('/') ? rawLogo : `/logos/${rawLogo}`))
           : (defaultMatch ? defaultMatch.logoUrl || `/logos/${defaultMatch.logo}` : null);
         const description = s.description || descMap[String(s.id)] || (defaultMatch && defaultMatch.description) || '';
+        const category = s.category || catMap[String(s.id)] || (defaultMatch && defaultMatch.category) || 'Auto Spares';
 
         return {
           id: s.id,
           name: defaultMatch ? defaultMatch.name : s.name,
           logo: s.logo || (defaultMatch ? defaultMatch.logo : null),
-          category: (defaultMatch && defaultMatch.category) || 'Auto Spares',
+          category,
           description,
           partCount: count !== undefined ? count : _inMemoryParts.filter(p => p.supplier_id === s.id).length,
           created_at: s.created_at,
@@ -199,22 +244,36 @@ const stmt = {
     try {
       let data = null;
       let hasDescCol = true;
+      let hasCatCol = true;
 
       const firstTry = await supabase
         .from('suppliers')
-        .select('id, name, logo, description, created_at')
+        .select('id, name, logo, description, category, created_at')
         .eq('id', id)
         .single();
 
       if (!firstTry.error && firstTry.data) {
         data = firstTry.data;
-      } else if (firstTry.error && (firstTry.error.code === '42703' || firstTry.error.code === 'PGRST204' || String(firstTry.error.message).includes('description'))) {
-        hasDescCol = false;
-        const retry = await supabase
-          .from('suppliers')
-          .select('id, name, logo, created_at')
-          .eq('id', id)
-          .single();
+      } else if (firstTry.error) {
+        const errMsg = String(firstTry.error.message || '');
+        if (errMsg.includes('category') || firstTry.error.code === '42703' || firstTry.error.code === 'PGRST204') {
+          hasCatCol = false;
+        }
+        if (errMsg.includes('description')) {
+          hasDescCol = false;
+        }
+
+        const cols = ['id', 'name', 'logo'];
+        if (hasDescCol) cols.push('description');
+        if (hasCatCol) cols.push('category');
+        cols.push('created_at');
+
+        let retry = await supabase.from('suppliers').select(cols.join(', ')).eq('id', id).single();
+        if (retry.error) {
+          hasDescCol = false;
+          hasCatCol = false;
+          retry = await supabase.from('suppliers').select('id, name, logo, created_at').eq('id', id).single();
+        }
         if (!retry.error && retry.data) {
           data = retry.data;
         }
@@ -230,6 +289,11 @@ const stmt = {
           const descMap = await getSupplierDescriptionsMap();
           description = descMap[String(id)] || '';
         }
+        let category = data.category;
+        if (!category && !hasCatCol) {
+          const catMap = await getSupplierCategoriesMap();
+          category = catMap[String(id)] || '';
+        }
         const rawLogo = data.logo;
         const logoUrl = rawLogo
           ? (rawLogo.startsWith('http') || rawLogo.startsWith('data:') ? rawLogo : (rawLogo.startsWith('/') ? rawLogo : `/logos/${rawLogo}`))
@@ -239,7 +303,7 @@ const stmt = {
           ...data,
           name: defaultMatch ? defaultMatch.name : data.name,
           logo: data.logo || (defaultMatch ? defaultMatch.logo : null),
-          category: (defaultMatch && defaultMatch.category) || 'Auto Spares',
+          category: category || (defaultMatch && defaultMatch.category) || 'Auto Spares',
           description: description || (defaultMatch && defaultMatch.description) || '',
           logoUrl,
           logo_url: logoUrl,
@@ -261,21 +325,32 @@ const stmt = {
     const match = DEFAULT_SUPPLIERS.find(d => d.name.toLowerCase() === name.toLowerCase());
     return match ? { id: match.id, name: match.name, logo: match.logo } : null;
   },
-  async createSupplier(name, logo, description = '') {
+  async createSupplier(name, logo, description = '', category = 'Auto Spares') {
     const descVal = description ? String(description).trim() : '';
+    const catVal = category ? String(category).trim() : 'Auto Spares';
     try {
-      // 1. Try insert with description column
+      // 1. Try insert with category and description
       const { data, error } = await supabase
         .from('suppliers')
-        .insert({ name, logo: logo || null, description: descVal })
-        .select('id, name, logo, description')
+        .insert({ name, logo: logo || null, description: descVal, category: catVal })
+        .select('id, name, logo, description, category')
         .single();
       if (!error && data) {
-        return { lastInsertRowid: data.id, ...data, description: descVal };
+        return { lastInsertRowid: data.id, ...data, description: descVal, category: catVal };
       }
 
-      // 2. Fallback if column does not exist yet in schema cache
-      if (error && (error.code === '42703' || error.code === 'PGRST204' || String(error.message).includes('description'))) {
+      // 2. Fallback if category or description column does not exist
+      if (error && (error.code === '42703' || error.code === 'PGRST204' || String(error.message).includes('category') || String(error.message).includes('description'))) {
+        const tryDesc = await supabase
+          .from('suppliers')
+          .insert({ name, logo: logo || null, description: descVal })
+          .select('id, name, logo, description')
+          .single();
+        if (!tryDesc.error && tryDesc.data) {
+          if (catVal) await setSupplierCategory(tryDesc.data.id, catVal);
+          return { lastInsertRowid: tryDesc.data.id, ...tryDesc.data, description: descVal, category: catVal };
+        }
+
         const retry = await supabase
           .from('suppliers')
           .insert({ name, logo: logo || null })
@@ -283,24 +358,27 @@ const stmt = {
           .single();
         if (!retry.error && retry.data) {
           if (descVal) await setSupplierDescription(retry.data.id, descVal);
-          return { lastInsertRowid: retry.data.id, ...retry.data, description: descVal };
+          if (catVal) await setSupplierCategory(retry.data.id, catVal);
+          return { lastInsertRowid: retry.data.id, ...retry.data, description: descVal, category: catVal };
         }
       }
     } catch {}
 
     const newId = DEFAULT_SUPPLIERS.length + 1;
-    const newSupplier = { id: newId, name, logo: logo || null, description: descVal, partCount: 0 };
+    const newSupplier = { id: newId, name, logo: logo || null, description: descVal, category: catVal, partCount: 0 };
     DEFAULT_SUPPLIERS.push(newSupplier);
     return { lastInsertRowid: newId, ...newSupplier };
   },
-  async updateSupplier(name, id, logo, description) {
+  async updateSupplier(name, id, logo, description, category) {
     const descVal = description !== undefined && description !== null ? String(description).trim() : undefined;
+    const catVal = category !== undefined && category !== null ? String(category).trim() : undefined;
     const updateData = { name };
     if (logo !== undefined) updateData.logo = logo;
     if (descVal !== undefined) updateData.description = descVal;
+    if (catVal !== undefined) updateData.category = catVal;
 
     try {
-      // 1. Try update with description
+      // 1. Try update with all fields
       const { data, error } = await supabase
         .from('suppliers')
         .update(updateData)
@@ -308,11 +386,31 @@ const stmt = {
         .select('id, name, logo')
         .single();
       if (!error && data) {
-        return { ...data, description: descVal !== undefined ? descVal : '' };
+        return {
+          ...data,
+          description: descVal !== undefined ? descVal : '',
+          category: catVal !== undefined ? catVal : 'Auto Spares',
+        };
       }
 
-      // 2. Fallback if description column doesn't exist
-      if (error && (error.code === '42703' || error.code === 'PGRST204' || String(error.message).includes('description'))) {
+      // 2. Fallback if category or description column doesn't exist
+      if (error && (error.code === '42703' || error.code === 'PGRST204' || String(error.message).includes('category') || String(error.message).includes('description'))) {
+        delete updateData.category;
+        const tryDesc = await supabase
+          .from('suppliers')
+          .update(updateData)
+          .eq('id', id)
+          .select('id, name, logo')
+          .single();
+        if (!tryDesc.error && tryDesc.data) {
+          if (catVal !== undefined) await setSupplierCategory(id, catVal);
+          return {
+            ...tryDesc.data,
+            description: descVal !== undefined ? descVal : '',
+            category: catVal !== undefined ? catVal : 'Auto Spares',
+          };
+        }
+
         delete updateData.description;
         const retry = await supabase
           .from('suppliers')
@@ -322,7 +420,12 @@ const stmt = {
           .single();
         if (!retry.error && retry.data) {
           if (descVal !== undefined) await setSupplierDescription(id, descVal);
-          return { ...retry.data, description: descVal !== undefined ? descVal : '' };
+          if (catVal !== undefined) await setSupplierCategory(id, catVal);
+          return {
+            ...retry.data,
+            description: descVal !== undefined ? descVal : '',
+            category: catVal !== undefined ? catVal : 'Auto Spares',
+          };
         }
       }
     } catch {}
@@ -332,6 +435,7 @@ const stmt = {
       s.name = name;
       if (logo !== undefined) s.logo = logo;
       if (descVal !== undefined) s.description = descVal;
+      if (catVal !== undefined) s.category = catVal;
       return s;
     }
     return null;
@@ -339,10 +443,17 @@ const stmt = {
   async deleteSupplier(id) {
     try {
       await supabase.from('suppliers').delete().eq('id', id);
-      const map = await getSupplierDescriptionsMap();
-      if (map[String(id)]) {
-        delete map[String(id)];
-        await stmt.setSetting('supplier_descriptions', JSON.stringify(map));
+      const [descMap, catMap] = await Promise.all([
+        getSupplierDescriptionsMap(),
+        getSupplierCategoriesMap(),
+      ]);
+      if (descMap[String(id)]) {
+        delete descMap[String(id)];
+        await stmt.setSetting('supplier_descriptions', JSON.stringify(descMap));
+      }
+      if (catMap[String(id)]) {
+        delete catMap[String(id)];
+        await stmt.setSetting('supplier_categories', JSON.stringify(catMap));
       }
     } catch {}
     const idx = DEFAULT_SUPPLIERS.findIndex(d => d.id === Number(id));

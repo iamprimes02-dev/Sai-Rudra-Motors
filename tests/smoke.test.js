@@ -152,11 +152,13 @@ test('smoke: add supplier via admin with custom logo file and description', asyn
 
   const r = await formRequest('POST', base + '/api/admin/suppliers', {
     name: 'Smoke Custom Brand',
+    category: 'Brakes',
     description: 'Specialized brake parts & pads',
   }, { logoFile: logoPath }, { 'X-CSRF-Token': adminCsrf });
 
   assert.strictEqual(r.status, 201);
   assert.ok(r.body.id);
+  assert.strictEqual(r.body.category, 'Brakes');
   assert.strictEqual(r.body.description, 'Specialized brake parts & pads');
   assert.ok(r.body.logo);
   fs.unlinkSync(logoPath);
