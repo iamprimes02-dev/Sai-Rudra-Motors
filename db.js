@@ -128,6 +128,9 @@ const stmt = {
           (d.name === 'HL Mando' && s.name.toLowerCase().includes('hl mando'))
         );
         const count = countMap[s.id];
+        const logoUrl = s.logo
+          ? (s.logo.startsWith('http') ? s.logo : `/logos/${s.logo}`)
+          : (defaultMatch ? defaultMatch.logoUrl || `/logos/${defaultMatch.logo}` : null);
         return {
           id: s.id,
           name: defaultMatch ? defaultMatch.name : s.name,
@@ -136,6 +139,8 @@ const stmt = {
           description: (defaultMatch && defaultMatch.description) || '',
           partCount: count !== undefined ? count : _inMemoryParts.filter(p => p.supplier_id === s.id).length,
           created_at: s.created_at,
+          logoUrl,
+          logo_url: logoUrl,
         };
       });
       return result.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'accent' }));

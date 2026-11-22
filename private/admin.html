@@ -190,10 +190,16 @@
           </button>
           <h1 id="partsPageTitle" style="margin:0;">Parts</h1>
         </div>
-        <button class="btn-primary" id="addPartBtn">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          <span>Add Part</span>
-        </button>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <a href="#" target="_blank" class="btn-secondary" id="viewLiveCatalogueBtn" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;" title="Open this brand's catalogue on the customer website">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <span>View on Customer Site ↗</span>
+          </a>
+          <button class="btn-primary" id="addPartBtn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Part</span>
+          </button>
+        </div>
       </div>
       <div class="admin-parts-grid" id="partsGrid">
         <!-- Part cards injected here -->

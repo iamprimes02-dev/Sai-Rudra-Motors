@@ -355,6 +355,10 @@ function renderAdminSuppliers(suppliers) {
         </div>
       </div>
       <div class="actions">
+        <a href="/supplier/${s.id}" target="_blank" class="admin-action-btn" title="View brand on live customer website" style="text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          <span>Live ↗</span>
+        </a>
         <button class="admin-action-btn btn-parts" title="View Parts Inventory" onclick="app.openSupplierParts(${s.id})">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
           <span>Parts</span>
@@ -604,6 +608,9 @@ async function openSupplierParts(id) {
   const titleEl = document.getElementById('partsPageTitle');
   const grid = document.getElementById('partsGrid');
   const empty = document.getElementById('partsEmpty');
+  const liveBtn = document.getElementById('viewLiveCatalogueBtn');
+
+  if (liveBtn) liveBtn.href = '/supplier/' + id;
 
   if (titleEl) titleEl.textContent = 'Loading parts...';
   if (grid) grid.innerHTML = '';

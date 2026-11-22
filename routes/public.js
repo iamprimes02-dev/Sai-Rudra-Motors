@@ -24,10 +24,16 @@ router.get('/suppliers', async (req, res) => {
   res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
   const rows = await stmt.listSuppliers();
   // Add logo URL for each supplier
-  const suppliersWithLogo = rows.map((s) => ({
-    ...s,
-    logoUrl: s.logo ? '/logos/' + s.logo : null,
-  }));
+  const suppliersWithLogo = rows.map((s) => {
+    const url = s.logo
+      ? (s.logo.startsWith('http') ? s.logo : `/logos/${s.logo}`)
+      : null;
+    return {
+      ...s,
+      logoUrl: s.logoUrl || url,
+      logo_url: s.logo_url || url,
+    };
+  });
   res.json(suppliersWithLogo);
 });
 
@@ -69,10 +75,25 @@ router.get('/suppliers/:id/parts', async (req, res) => {
     });
   }
 
-  const partsWithUrl = parts.map((p) => ({
-    ...p,
-    imageUrl: getImageUrl(p.image_key),
-  }));
+  const partsWithUrl = parts.map((p) => {
+    let vehiclesArr = [];
+    if (Array.isArray(p.vehicles)) {
+      vehiclesArr = p.vehicles;
+    } else if (typeof p.vehicles === 'string') {
+      try {
+        vehiclesArr = JSON.parse(p.vehicles);
+      } catch {
+        vehiclesArr = [];
+      }
+    }
+    const url = getImageUrl(p.image_key);
+    return {
+      ...p,
+      vehicles: vehiclesArr,
+      imageUrl: url,
+      image_url: url,
+    };
+  });
 
   res.json({ supplier, vehicles, parts: partsWithUrl });
 });

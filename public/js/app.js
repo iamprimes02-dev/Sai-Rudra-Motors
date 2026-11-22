@@ -170,7 +170,7 @@ function buildContactLink(number, message) {
 }
 
 async function fetchJson(path) {
-  const res = await fetch(API + path);
+  const res = await fetch(API + path, { cache: 'no-store' });
   if (!res.ok) throw new Error('API error: ' + res.status);
   return res.json();
 }
@@ -314,9 +314,9 @@ function initHomePage() {
         <div class="brand-card-body">
           <div class="brand-card-header">
             <span class="brand-category-badge ${catClass}">${escapeHtml(categoryLabel)}</span>
-            <span class="brand-verified-chip" title="100% Genuine Company Stock">
+            <span class="brand-verified-chip" title="${s.partCount > 0 ? `${s.partCount} parts available in live catalogue` : '100% Genuine Company Stock'}">
               <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              100% Genuine
+              ${s.partCount > 0 ? `${s.partCount} ${s.partCount === 1 ? 'Part' : 'Parts'} in Catalogue` : '100% Genuine'}
             </span>
           </div>
           <h3 class="brand-title"><a href="/supplier/${s.id}">${escapeHtml(s.name)}</a></h3>

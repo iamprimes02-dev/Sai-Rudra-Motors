@@ -189,7 +189,7 @@ function renderParts(parts) {
 
     const partNameOrRef = part.name || `Part #${part.id}`;
     const altText = `${partNameOrRef} - ${supplierData ? supplierData.name : 'SRM'}`;
-    const imageUrl = part.imageUrl || '';
+    const imageUrl = part.imageUrl || part.image_url || '';
 
     // Render vehicles with expandable "+X more"
     const vehiclesContainer = document.createElement('div');
